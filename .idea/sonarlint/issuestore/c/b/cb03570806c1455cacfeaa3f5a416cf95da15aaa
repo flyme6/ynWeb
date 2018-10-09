@@ -1,0 +1,8 @@
+
+hsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ýù²Å8ž¹öØá,
+Psquid:S1135"2Complete the task associated to this TODO comment.(Üð£Å8¯Çú¨á,
+fsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ØÐ¿¼8¯Çú¨á,
+jsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8¯Çú¨á,
+esquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(²²»ë8¯Çú¨á,
+msquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²²»ë8¯Çú¨á,
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½©‘8ž¹öØá,

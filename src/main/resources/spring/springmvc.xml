@@ -25,7 +25,7 @@
     <mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <constructor-arg value="UTF-8" />
+                <constructor-arg value="UTF-8"/>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
@@ -35,11 +35,18 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <!-- 转换器 -->
         <!--<property name="converters">-->
-            <!--<set>-->
-                <!--&lt;!&ndash; 日期类型转换 &ndash;&gt;-->
-                <!--<bean class="com.flyme.controller.converter.CustomDateConverter"/>-->
-            <!--</set>-->
+        <!--<set>-->
+        <!--&lt;!&ndash; 日期类型转换 &ndash;&gt;-->
+        <!--<bean class="com.flyme.controller.converter.CustomDateConverter"/>-->
+        <!--</set>-->
         <!--</property>-->
+    </bean>
+    <!-- 定义文件解释器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 上传图片最大大小5M-->
+        <property name="maxUploadSize" value="5242440"></property>
     </bean>
 
     <!--组件扫描，可以扫描 controller、Service、...

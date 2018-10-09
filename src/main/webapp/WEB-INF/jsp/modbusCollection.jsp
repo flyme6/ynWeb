@@ -32,6 +32,14 @@
                             <button type="button" class="layui-btn" id="test11">保存工程</button>
                             <button type="button" class="layui-btn" id="test12">下载</button>
                         </div>
+                        <form action="<%=basePath %>file/upload" method="post"
+                              enctype="multipart/form-data"> 选择文件:<input type="file" name="file" width="120px"> <input
+                                type="submit" value="上传"></form>
+                        <hr>
+                        <form action="<%=basePath %>file/down" method="get"><input type="submit"
+                                                                                                           value="下载">
+                        </form>
+
                     </div>
                 </div>
             </div>

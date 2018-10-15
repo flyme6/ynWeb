@@ -26,20 +26,15 @@
                     </fieldset>
                     <div class="layui-card-body">
                         <div class="layui-upload">
-                            <button type="button" class="layui-btn" id="test9">开始上传（上载）</button>
-                            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件（打开本地工程）</button>
+                            <button type="button" class="layui-btn layui-btn-normal" id="chooseFile">选择文件（打开本地工程）
+                            </button>
+                            <button type="button" class="layui-btn" id="uploadFile">开始上传（上载）</button>
                             <button type="button" class="layui-btn" id="test10">新建工程</button>
                             <button type="button" class="layui-btn" id="test11">保存工程</button>
-                            <button type="button" class="layui-btn" id="test12">下载</button>
+                            <form action="<%=basePath %>file/down" method="get">
+                                <input type="submit" class="layui-btn" value="下载">
+                            </form>
                         </div>
-                        <form action="<%=basePath %>file/upload" method="post"
-                              enctype="multipart/form-data"> 选择文件:<input type="file" name="file" width="120px"> <input
-                                type="submit" value="上传"></form>
-                        <hr>
-                        <form action="<%=basePath %>file/down" method="get"><input type="submit"
-                                                                                                           value="下载">
-                        </form>
-
                     </div>
                 </div>
             </div>
@@ -75,20 +70,15 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">备用产品IP地址：</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
+                                    <input type="text" name="ip1" lay-verify="ip" autocomplete="off"
                                            placeholder="请输入IP" class="layui-input">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
-                                           placeholder="请输入IP" class="layui-input">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
-                                           placeholder="请输入IP" class="layui-input">
+                                    <input type="text" name="ip2" lay-verify="ip" autocomplete="off"
+                                           placeholder="请输入IP2" class="layui-input">
+                                    <input type="text" name="ip3" lay-verify="ip" autocomplete="off"
+                                           placeholder="请输入IP3" class="layui-input">
                                 </div>
                             </div>
-                            <!--<div class="layui-form-item layui-form-text">
-                                  <label class="layui-form-label">编辑器</label>
-                                  <div class="layui-input-block">
-                                    <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor_hash"></textarea>
-                                  </div>
-                                </div>-->
+
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
                                     <button class="layui-btn" lay-submit="" lay-filter="demo1_hash">立即提交</button>
@@ -134,23 +124,86 @@
 <script>
     var element = layui.element;
 </script>
+<script type="text/html" id="operateTpl">
+    <a title="编辑" onclick="WeLogEdit('编辑','<%=basePath %>modbus_edit', 1, 600, 400)" href="javascript:;">
+        <i class="layui-icon">&#xe642;</i>
+    </a>
+    <a title="查看" onclick="WeAdminShow('查看文章','./show.html',600,400)" href="javascript:;">
+        <i class="layui-icon">&#xe63c;</i>
+    </a>
+    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+        <i class="layui-icon">&#xe640;</i>
+    </a>
+</script>
 <script>
+
     layui.use('upload', function () {
         var $ = layui.jquery,
             upload = layui.upload;
         //选完文件后不自动上传
         upload.render({
-            elem: '#test8',
-            url: '/upload/',
-            auto: false
-            //,multiple: true
-            ,
-            bindAction: '#test9',
+            elem: '#chooseFile',
+            url: '<%=basePath %>file/upload',
+            auto: false,
+            accept: 'file', //普通文件
+            bindAction: '#uploadFile',
             done: function (res) {
-                console.log(res)
+                //假设code=0代表上传成功
+                if (res.code == 200) {
+                    layer.msg(res.msg, {
+                        icon: 16
+                        , shade: 0.01
+                    });
+                }
+            },
+            error: function (index, upload) {
+                layer.msg("上传失败,联系管理员", {
+                    icon: 16
+                    , shade: 0.01
+                });
             }
         });
     });
+
+    /*弹出层+传递ID参数*/
+    window.WeLogEdit = function (title, url, id, w, h) {
+
+        if (title == null || title == '') {
+            title = false;
+        }
+        ;
+        if (url == null || url == '') {
+            url = "404.html";
+        }
+        ;
+        if (w == null || w == '') {
+            w = ($(window).width() * 0.9);
+        }
+        ;
+        if (h == null || h == '') {
+            h = ($(window).height() - 50);
+        }
+        ;
+        layer.open({
+            type: 2,
+            area: [w + 'px', h + 'px'],
+            fix: false, //不固定
+            maxmin: true,
+            shadeClose: true,
+            shade: 0.4,
+            title: title,
+            content: url,
+            success: function (layero, index) {
+                //向iframe页的id=house的元素传值  // 参考 https://yq.aliyun.com/ziliao/133150
+                var body = layer.getChildFrame('body', index);
+                body.contents().find("#dataId").val(id);
+                console.log(id);
+            },
+            error: function (layero, index) {
+                alert("aaa");
+            }
+        });
+    };
 </script>
 <script>
     var element = layui.element;
@@ -169,16 +222,26 @@
         });
     });
 
+    layui.use('form', function () {
+        var form = layui.form;
+        form.verify({
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , 'IP地址不符合规则'
+            ]
+        });
+
+    });
 
     //展示IP配置数据
     table.render({
         elem: '#ipConfig'
         , cols: [[ //标题栏
             {field: 'id', title: 'ID', width: 80, sort: true}
-            , {field: 'ethName', title: '网口', width: 120}
-            , {field: 'ipAddr', title: '地址', minWidth: 150}
-            , {field: 'subnetMask', title: '子网掩码', minWidth: 160}
-            , {field: 'gateway', title: '默认网关', width: 80}
+            , {field: 'ethName', title: '网口', width: 80}
+            , {field: 'ipAddr', title: '地址', width: 160}
+            , {field: 'subnetMask', title: '子网掩码', width: 160}
+            , {field: 'gateway', title: '默认网关', width: 160}
         ]]
         , data: [{
             "id": "10001"
@@ -229,14 +292,15 @@
         elem: '#comConfig'
         , cols: [[ //标题栏
             {field: 'id', title: 'ID', width: 80, sort: true}
-            , {field: 'ethName', title: 'COM口', width: 120}
-            , {field: 'ipAddr', title: '协议类型', minWidth: 150}
-            , {field: 'subnetMask', title: '通信模式', minWidth: 160}
+            , {field: 'ethName', title: 'COM口', width: 80}
+            , {field: 'ipAddr', title: '协议类型', width: 80}
+            , {field: 'subnetMask', title: '通信模式', width: 80}
             , {field: 'gateway', title: '波特率', width: 80}
             , {field: 'gateway', title: '奇偶校验位', width: 80}
             , {field: 'gateway', title: '数据位', width: 80}
             , {field: 'gateway', title: '停止位', width: 80}
             , {field: 'gateway', title: '发送延迟(ms)', width: 80}
+            , {field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true}
         ]]
         , data: [{
             "id": "10001"
@@ -282,4 +346,5 @@
         , limit: 5 //每页默认显示的数量
     });
 </script>
+
 </html>

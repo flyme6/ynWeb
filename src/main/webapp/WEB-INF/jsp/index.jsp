@@ -71,7 +71,7 @@
                             <a href="login.html">串口采集</a>
                         </dd>
                         <dd>
-                            <a href="<%=basePath %>modbusCollection">Modbus TCO采集</a>
+                            <a href="<%=basePath %>modbus_list">Modbus TCO采集</a>
                         </dd>
                         <dd>
                             <a href="login.html">CIP采集</a>

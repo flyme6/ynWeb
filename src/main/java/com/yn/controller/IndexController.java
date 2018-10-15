@@ -40,9 +40,9 @@ public class IndexController {
      * 跳转modbus收集页面
      *
      */
-    @GetMapping(value = "/modbusCollection")
+    @GetMapping(value = "/modbus_list")
     public String modbusCollection() throws Exception {
-        return "modbusCollection";
+        return "modbus/modbus_list";
     }
 
 

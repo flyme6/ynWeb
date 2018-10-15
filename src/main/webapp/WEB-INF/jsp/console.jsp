@@ -67,12 +67,21 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">备用产品IP地址：</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
-                                           placeholder="请输入IP" class="layui-input">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
-                                           placeholder="请输入IP" class="layui-input">
-                                    <input type="text" name="title" lay-verify="title" autocomplete="off"
-                                           placeholder="请输入IP" class="layui-input">
+                                    <input type="text" name="ip1" lay-verify="ip" autocomplete="off"
+                                           placeholder="请输入IP1" class="layui-input">
+
+                                </div>
+                                <div class="layui-input-block">
+
+                                    <input type="text" name="ip2" lay-verify="ip" autocomplete="off"
+                                           placeholder="请输入IP2" class="layui-input">
+
+                                </div>
+                                <div class="layui-input-block">
+
+                                    <input type="text" name="ip3" lay-verify="ip" autocomplete="off"
+                                           placeholder="请输入IP3" class="layui-input">
+
                                 </div>
                             </div>
                             <!--<div class="layui-form-item layui-form-text">
@@ -161,6 +170,16 @@
         });
     });
 
+    layui.use('form', function () {
+        var form = layui.form;
+        form.verify({
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , 'IP地址不符合规则'
+            ]
+        });
+
+    });
 
     //展示IP配置数据
     table.render({

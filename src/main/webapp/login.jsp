@@ -31,6 +31,7 @@
                 <span class="label-title">密码</span>
             </label>
         </div>
+        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
         <button type="submit" class="login-button" onclick="severCheck();">登录<i class="ai ai-enter"></i></button>
     </form>
 </div>

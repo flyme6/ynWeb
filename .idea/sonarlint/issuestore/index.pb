@@ -41,5 +41,15 @@ W
 'src/main/java/com/yn/common/Result.java,d\6\d60ddd837d5981f24be2d74a75f6452197ef12b8
 I
 src/main/resources/YN.ice,5\b\5b57899369c3b6c225b1c1b97d24a60d9fb31126
-`
-0src/main/webapp/WEB-INF/jsp/modbusCollection.jsp,e\1\e16401d65932bd97d988e39b2b3f3b33bc79c518
+X
+(src/main/webapp/assets/font/iconfont.svg,e\7\e799fb404f794d04f5dab13d9310db3a4cb58ca7
+f
+6src/main/java/com/yn/controller/ModbusControllere.java,b\2\b26ac212496dc5605d275ff0b28dd7d816c4d545
+O
+src/main/resources/YNCommon.ice,f\0\f09c5408caf05f4054c3e51bbcd85f36e92c469b
+T
+$src/main/webapp/WEB-INF/jsp/form.jsp,a\3\a3613d48b97a943519e629781623026f901f7a94
+b
+2src/main/webapp/WEB-INF/jsp/modbus/modbus_list.jsp,8\0\80888b6834e67684e4491976630387f49dfd7d80
+b
+2src/main/webapp/WEB-INF/jsp/modbus/modbus_edit.jsp,1\9\19a80bd0bcd3c64b51f2d71625441964ee3bd3a8

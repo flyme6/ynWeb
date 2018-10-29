@@ -1,63 +1,63 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path;
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://"
++ request.getServerName() + ":" + request.getServerPort()
++ path;
 %>
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="assets/css/layui.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="icon" href="/favicon.ico">
-    <title>管理后台</title>
+	<meta charset="UTF-8">
+	<title>管理员登录-WeAdmin Frame型后台管理系统-WeAdmin 1.0</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./static/css/font.css">
+	<link rel="stylesheet" href="./static/css/weadmin.css">
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+
 </head>
-<body class="login-wrap">
-<div class="login-container">
-    <form class="login-form" action="<%=basePath %>/login" method="post">
-        <div class="input-group">
-            <input type="text" id="username" name="username" class="input-field">
-            <label for="username" class="input-label">
-                <span class="label-title">用户名</span>
-            </label>
-        </div>
-        <div class="input-group">
-            <input type="password" id="password" name="password" class="input-field">
-            <label for="password" class="input-label">
-                <span class="label-title">密码</span>
-            </label>
-        </div>
-        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-        <button type="submit" class="login-button" onclick="severCheck();">登录<i class="ai ai-enter"></i></button>
-    </form>
-</div>
+<body class="login-bg">
+    
+    <div class="login">
+        <div class="message">后台管理系统</div>
+        <div id="darkbannerwrap"></div>
+        <form action="<%=basePath %>/login" method="post" class="layui-form" >
+            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input class="loginin" value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
+            <div>
+            	前端静态展示，请随意输入，即可登录。
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        
+        	layui.extend({
+				admin: '{/}./static/js/admin'
+			});
+            layui.use(['form','admin'], function(){
+              var form = layui.form
+              	,admin = layui.admin;
+              // layer.msg('玩命卖萌中', function(){
+              //   //关闭后的操作
+              //   });
+              //监听提交
+              form.on('submit(login)', function(data){
+                layer.msg(JSON.stringify(data.field),function(){
+                    location.href='./index.html'
+                });
+                return false;
+              });
+            });   
+    </script>  
+    <!-- 底部结束 -->
 </body>
-<script src="assets/layui.js"></script>
-<%--<script type="text/javascript">--%>
-<%--function severCheck() {--%>
-<%--window.location.href = "index.html";--%>
-<%--}--%>
-<%--</script>--%>
-<script>
-    layui.define(['element'], function (exports) {
-
-        var $ = layui.$;
-        $('.input-field').on('change', function () {
-            var $this = $(this),
-                value = $.trim($this.val()),
-                $parent = $this.parent();
-
-            if (value !== '' && !$parent.hasClass('field-focus')) {
-                $parent.addClass('field-focus');
-            } else {
-                $parent.removeClass('field-focus');
-            }
-        })
-        exports('login');
-    });
-</script>
 </html>

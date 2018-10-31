@@ -49,10 +49,17 @@
         <jasper-runtime.version>5.5.15</jasper-runtime.version>
         <quartz.version>2.2.1</quartz.version>
         <shiro.version>1.2.3</shiro.version>
+        <sqlite-jdbc.version>3.8.11.2</sqlite-jdbc.version>
     </properties>
 
     <dependencies>
 
+        <!--sqllite3-->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>${sqlite-jdbc.version}</version>
+        </dependency>
 
         <!--添加测试类-->
         <dependency>

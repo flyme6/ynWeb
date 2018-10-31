@@ -16,7 +16,7 @@ public class LoginController {
     /**
      * 跳转登录页面
      */
-    @RequestMapping(value = "/login_toLogin", method = {RequestMethod.GET})
+    @RequestMapping(value = "/login", method = {RequestMethod.GET})
     public String toLogin() throws Exception {
         return "../../login";
     }
@@ -26,7 +26,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/login", method = {RequestMethod.POST})
     public String Login() throws Exception {
-        return "redirect:/index";
+        return "redirect:index";
 //        return "index";
     }
 

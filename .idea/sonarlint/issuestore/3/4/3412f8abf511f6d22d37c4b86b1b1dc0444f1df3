@@ -1,0 +1,15 @@
+
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8Àîª¿å,
+jsquid:S00101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8”º¯¿å,
+`squid:S3518"CMake sure this expression can't be zero before doing this division.(û"8™Ş§¿å,
+Dsquid:S1481"&Remove this unused "a" local variable.(€ôá8›´¨¿å,
+Isquid:S1135"2Complete the task associated to this TODO comment.(Üğ£Å
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ƒÇãˆúÿÿÿÿ8Ÿª¿å,
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(ƒÇãˆúÿÿÿÿ8¾ñ©¿å,
+Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8È¿°¿å,

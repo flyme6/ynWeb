@@ -160,17 +160,17 @@
         function frameVal() {
             var dataId = $('input[name="dataId"]').val();
             var index = parent.layer.getFrameIndex(window.name);
-            parent.layui.jquery("#memberList tr").each(function () {
+            parent.layui.jquery("#modbusTCP tr").each(function () {
                 if ($(this).attr('data-id') == dataId) {
                     console.log($(this));
                     var tdArr = $(this).children('td');
-                    var username = tdArr.eq(2).text(); //姓名
+                    var cmd_timeout = tdArr.eq(2).text(); //姓名
                     var sex = tdArr.eq(3).text(); //性别
                     var phone = tdArr.eq(4).text(); //电话
                     var email = tdArr.eq(5).text(); //邮箱
                     var address = tdArr.eq(6).text(); //地址
 
-                    $('input[name="username"]').val(username);
+                    $('input[name="cmd_timeout"]').val(cmd_timeout);
                     console.log("sex:" + sex);
                     $('input[name="sex"][value="' + sex + '"]').attr("checked", true);
                     $('input[name="phone"]').val(phone);

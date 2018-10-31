@@ -11,7 +11,7 @@
     <!-- 为JAVA PO类起类别名 -->
     <typeAliases>
         <!-- 别名方式2，自动扫描，将JAVA类的类名作为类的类别名 -->
-        <package name="com.flyme.model"/>
+        <package name="com.yn.entity"/>
     </typeAliases>
 
 

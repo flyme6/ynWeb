@@ -1,6 +1,7 @@
 package com.yn.smo;
 
 import com.yn.common.Result;
+import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
 
 /**
@@ -13,4 +14,6 @@ import com.yn.entity.CModbusTcpExample;
 
 public interface ICModbusTcpService {
     Result queryICModbusTcp(CModbusTcpExample cModbusTcp);
+
+    Result saveICModbusTcp(CModbusTcp cModbusTcp);
 }

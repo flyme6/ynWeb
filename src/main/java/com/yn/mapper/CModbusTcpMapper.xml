@@ -82,7 +82,7 @@
     package_len, allow_empty_addr, byte_order16, byte_order32, byte_order64, cmd_cache_size, 
     active
   </sql>
-  <select id="selectByExample" resultType="hashmap" parameterType="com.yn.entity.CModbusTcpExample" >
+  <select id="selectByExample" resultType="java.util.LinkedHashMap" parameterType="com.yn.entity.CModbusTcpExample" >
     select
     <if test="distinct" >
       distinct

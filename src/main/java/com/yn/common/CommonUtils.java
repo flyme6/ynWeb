@@ -20,14 +20,19 @@ public class CommonUtils {
         return null == str ? "" : str;
     }
 
+    public static Integer getIntFromObject(String str) {
+        log.debug("str={}", str);
+        return Integer.valueOf(null == str ? "" : str);
+    }
+
 
     public static String generateId() {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
-    public static Result genSuccessResult() {
+    public static Result genUpdateSuccessResult() {
         Result result = new Result();
-        result.addMsg("成功");
+        result.addMsg(Constant.MSG_UPDATE_SUCCESS);
         result.addCode(200);
         return result;
     }

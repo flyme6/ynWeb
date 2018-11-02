@@ -70,19 +70,11 @@ public class ModbusTCPController {
      */
     @ResponseBody
     @RequestMapping(value = "/query")
-    public String querymodbusTCP(HttpServletRequest request) {
+    public String queryModbusTCP(HttpServletRequest request) {
 
         String limit = CommonUtils.getStrFromObject(request.getParameter("limit"));
         String page = CommonUtils.getStrFromObject(request.getParameter("page"));
         CModbusTcp cModbusTcp = new CModbusTcp();
-//        try {
-//            int showCount = Integer.parseInt(limit);
-//            int currentPage = Integer.parseInt(page);
-//            cModbusTcp.setLastCount((currentPage - 1) * showCount);
-//            cModbusTcp.setPageSize(showCount);
-//        } catch (Exception e) {
-//            log.error(e.toString());
-//        }
         CModbusTcpExample example = new CModbusTcpExample();
         try {
             int showCount = Integer.parseInt(limit);
@@ -94,6 +86,61 @@ public class ModbusTCPController {
         }
         String result = service.queryICModbusTcp(example).toString();
         return result;
+    }
+
+    /**
+     * 修改modbusTCP，提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/goEdit")
+    public String editModbusTCP(HttpServletRequest request) {
+        String result = service.saveICModbusTcp(parseRequestCModbusTcp(request)).toString();
+        return result;
+    }
+
+    private CModbusTcp parseRequestCModbusTcp(HttpServletRequest request) {
+        String name = CommonUtils.getStrFromObject(request.getParameter("name"));
+        Integer weight = CommonUtils.getIntFromObject(request.getParameter("weight"));
+        String main_ip = CommonUtils.getStrFromObject(request.getParameter("main_ip"));
+        String back_ip = CommonUtils.getStrFromObject(request.getParameter("back_ip"));
+        Integer port = CommonUtils.getIntFromObject(request.getParameter("port"));
+
+        Integer clct_interval = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("clct_interval")));
+        Integer clct_timeout = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("clct_timeout")));
+        Integer cmd_timeout = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("cmd_timeout")));
+        Integer fault_count = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("fault_count")));
+        Integer package_len = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("package_len")));
+        Integer allow_empty_addr = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("allow_empty_addr")));
+
+        String byte_order16 = CommonUtils.getStrFromObject(request.getParameter("byte_order16"));
+        String byte_order32 = CommonUtils.getStrFromObject(request.getParameter("byte_order32"));
+        String byte_order64 = CommonUtils.getStrFromObject(request.getParameter("byte_order64"));
+
+        Integer cmd_cache_size = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("cmd_cache_size")));
+        Integer active = Integer.valueOf(CommonUtils.getStrFromObject(request.getParameter("active")));
+
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName(name);
+        cModbusTcp.setWeight(weight);
+        cModbusTcp.setMainIp(main_ip);
+        cModbusTcp.setPort(port);
+        cModbusTcp.setBackIp(back_ip);
+
+        cModbusTcp.setClctInterval(clct_interval);
+        cModbusTcp.setClctTimeout(clct_timeout);
+        cModbusTcp.setCmdTimeout(cmd_timeout);
+        cModbusTcp.setFaultCount(fault_count);
+        cModbusTcp.setPackageLen(package_len);
+        cModbusTcp.setAllowEmptyAddr(allow_empty_addr);
+        cModbusTcp.setByteOrder16(byte_order16);
+        cModbusTcp.setByteOrder32(byte_order32);
+        cModbusTcp.setByteOrder64(byte_order64);
+        cModbusTcp.setCmdCacheSize(cmd_cache_size);
+        cModbusTcp.setActive(active);
+        return cModbusTcp;
     }
 
 }

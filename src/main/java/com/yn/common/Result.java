@@ -1,6 +1,5 @@
 package com.yn.common;
 
-import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -10,12 +9,12 @@ public class Result extends JSONObject {
 
     private static final Logger log = LoggerFactory.getLogger(Result.class);
 
-    public Result() {
+    public Result(){
         try {
             this.put("msg", "");
             this.put("code", "");
-            this.put("count", "");
-            this.put("data", "");
+            this.put("count", "0");
+            this.put("data", "0");
         } catch (JSONException e) {
             log.error("Result constructor error:{}", e.getMessage());
         }
@@ -65,5 +64,11 @@ public class Result extends JSONObject {
         }
     }
 
+    public static Result genUpdateSuccessResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_UPDATE_SUCCESS);
+        result.addCode(Constant.CODE_SUCCESS);
+        return result;
+    }
 
 }

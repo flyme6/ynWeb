@@ -33,4 +33,16 @@ public class CModbusTcpMapperTest {
         List<Map<String, Object>> maps = mapper.selectByExample(example);
         System.out.println(maps.toString());
     }
+
+    @Test
+    public void updateByPrimaryKey() throws Exception {
+        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CModbusTcpMapper");
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName("cmbs");
+        cModbusTcp.setWeight(101);
+        cModbusTcp.setMainIp("10.1.0.1");
+        cModbusTcp.setPort(8080);
+        int i = mapper.updateByPrimaryKey(cModbusTcp);
+        System.out.println(i);
+    }
 }

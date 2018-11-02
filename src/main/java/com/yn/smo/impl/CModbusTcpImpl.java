@@ -42,12 +42,12 @@ public class CModbusTcpImpl implements ICModbusTcpService {
 //            map.put("total", total);
 //            map.put("rows", maps);
             result.addCode(Constant.CODE_SUCCESS);
-            result.addMsg(Constant.MSG_SUCCESS);
+            result.addMsg(Constant.MSG_QUERY_SUCCESS);
             result.addCount(total);
             result.addData(maps);
 
         } catch (Exception e) {
-            log.error("AuditLabelServiceImpl.queryAuditLabel error:{}",e.getMessage());
+            log.error("AuditLabelServiceImpl.queryAuditLabel error:{}", e.getMessage());
 //            result.addMsg(e.getMessage());
 //            result.addStatus("60020");
 //
@@ -59,6 +59,21 @@ public class CModbusTcpImpl implements ICModbusTcpService {
 //            auditException.setSystem("平衡性组件-web应用");
 //            auditException.setErrorClass("AuditLabelServiceImpl");
 //            auditExceptionBmo.insertSelective(auditException);
+        }
+        return result;
+    }
+
+    @Override
+    public Result saveICModbusTcp(CModbusTcp cModbusTcp) {
+        Result result = new Result();
+        try {
+
+            icModbusTcpBmo.updateByPrimaryKey(cModbusTcp);
+            result = Result.genUpdateSuccessResult();
+        } catch (Exception e) {
+            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            result.addCode(Constant.CODE_FAIL);
+            result.addMsg(e.getMessage());
         }
         return result;
     }

@@ -1,6 +1,7 @@
 package com.yn.smo;
 
 import com.yn.common.Result;
+import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,22 @@ public class CModbusTcpMapperTest {
     public void selectByExample() throws Exception {
         ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
         CModbusTcpExample example = new CModbusTcpExample();
+        example.setOrderByClause("'name'");
         Result result = service.queryICModbusTcp(example);
+        System.out.println(result);
+    }
+
+    @Test
+    public void updateByPrimaryKey() throws Exception {
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
+
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName("cmbs");
+        cModbusTcp.setWeight(101);
+        cModbusTcp.setMainIp("10.1.0.1");
+        cModbusTcp.setPort(8080);
+
+        Result result = service.saveICModbusTcp(cModbusTcp);
         System.out.println(result);
     }
 }

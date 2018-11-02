@@ -41,23 +41,32 @@
                                 class="layui-icon"></i>添加
                         </button>
                     </div>
-                    <table class="layui-table" id="modbusTCP"></table>
+                    <table class="layui-table" id="modbusTCP" lay-filter="modbusTCP">
+                    </table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./modbusTCP/edit', 2, 600, 400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="modbusTCP_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+
+            <%--<a title="编辑" onclick="WeAdminEdit('编辑','./modbusTCP/edit',1, 600, 400)" href="javascript:;">--%>
+            <%--<i class="layui-icon">&#xe642;</i>--%>
+            <%--</a>--%>
+            <%--<a title="删除" onclick="modbusTCP_del(this,'要删除的id')" href="javascript:;">--%>
+            <%--<i class="layui-icon">&#xe640;</i>--%>
+            <%--</a>--%>
+            <%--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
+            <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--%>
+            <%--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>--%>
+
+            <a title="编辑" lay-event="edit" href="javascript:;"><i class="layui-icon">&#xe642;</i></a>
+            <a title="编辑" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}../static/js/admin'
     });
@@ -67,6 +76,8 @@
             $ = layui.jquery,
             form = layui.form,
             admin = layui.admin;
+
+        // var checkStatus =table.checkStatus(id);
 
         form.verify({
             ip: [
@@ -98,7 +109,7 @@
                     , {field: 'cmd_cache_size', title: '命令队列大小'}
                     , {field: 'active', title: '激活'}
                     , {
-                        field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true,fixed: 'right'
+                        field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
                     }
                 ]]
                 , skin: 'line' //表格风格
@@ -108,6 +119,21 @@
                 , limit: 5 //每页默认显示的数量
             });
 
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if(layEvent === 'edit'){
+                aa = obj;
+                WeAdminEdit('编辑', './modbusTCP/edit', id, 600, 400)
+            }else if(layEvent === 'del'){
+                modbusTCP_del(this,id);
+            }
+            console.log(id);
+
+        });
 
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
@@ -129,6 +155,7 @@
             });
         }
     });
+
 
 </script>
 </html>

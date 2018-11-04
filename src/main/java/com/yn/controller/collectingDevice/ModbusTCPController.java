@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -85,6 +83,19 @@ public class ModbusTCPController {
             log.error(e.toString());
         }
         String result = service.queryICModbusTcp(example).toString();
+        return result;
+    }
+
+    /**
+     * 修改modbusTCP，提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/goDel")
+    public String edlModbusTCP(HttpServletRequest request) {
+        String result = service.delICModbusTcp(parseRequestCModbusTcp(request)).toString();
         return result;
     }
 

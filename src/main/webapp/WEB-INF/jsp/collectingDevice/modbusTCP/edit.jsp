@@ -26,7 +26,7 @@
 
 <body>
 <div class="weadmin-body">
-    <form class="layui-form" action="goEdit">
+    <form class="layui-form" action="goEdit" method="post">
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
                 <span class="we-red">*</span>设备名称
@@ -289,32 +289,70 @@
         //     return false;
         // });
 
-        //监听提交
-        form.on('submit(edit)', function (data) {
-            var datas = data.field;
-            var action = data.form.action;
-            layer.alert(JSON.stringify(data.field), {
-                        title: '最终的提交信息'
-                    });
-            $.ajax({
-                url: action,
-                data: datas,
-                type: "GET",
-                dataType: "json",
-                success: function (msg) {
-                    console.log(msg);
-                    layer.alert(msg, {
-                        icon: 6
-                    });
-                },
-                error: function (error) {
-                    alert(error)
-                }
+        // //监听提交
+        // form.on('submit(edit)', function (data) {
+        //     var datas = data.field;
+        //     var action = data.form.action;
+        //     //         //刷新父页面
+        //     parent.location.reload();
+        //     // $.ajax({
+        //     //     url: action,
+        //     //     data: datas,
+        //     //     type: "GET",
+        //     //     dataType: "json",
+        //     //     success: function (msg) {
+        //     //         console.log(msg);
+        //     //         layer.alert(msg, {
+        //     //             icon: 6
+        //     //         });
+        //     //     },
+        //     //     error: function (error) {
+        //     //         alert(error)
+        //     //     }
+        //     //
+        //     // });
+        // });
 
+        // 解决方式1
+        // form.on('submit(edit)', function (data) {
+        //     parent.location.reload();
+        // });
+
+        form.on('submit(edit)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 201) {
+                        setTimeout(function(){
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        },1000);
+                    }
+                },
+                error:function(info){
+                    if (info.code === 200) {
+                        setTimeout(function(){
+                            top.layer.close(index);
+                            top.layer.msg("用户添加成功！");
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        },1000);
+                    }
+                }
             });
+            return false;
         });
     });
-
 
 
 </script>

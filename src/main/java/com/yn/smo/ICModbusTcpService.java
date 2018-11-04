@@ -16,4 +16,6 @@ public interface ICModbusTcpService {
     Result queryICModbusTcp(CModbusTcpExample cModbusTcp);
 
     Result saveICModbusTcp(CModbusTcp cModbusTcp);
+
+    Result delICModbusTcp(CModbusTcp cModbusTcp);
 }

@@ -41,7 +41,7 @@ public class CModbusTcpImpl implements ICModbusTcpService {
 //            Map<String,Object> map = new HashMap<>();
 //            map.put("total", total);
 //            map.put("rows", maps);
-            result.addCode(Constant.CODE_SUCCESS);
+            result.addCode(Constant.CODE_QUERY_SUCCESS);
             result.addMsg(Constant.MSG_QUERY_SUCCESS);
             result.addCount(total);
             result.addData(maps);
@@ -67,13 +67,27 @@ public class CModbusTcpImpl implements ICModbusTcpService {
     public Result saveICModbusTcp(CModbusTcp cModbusTcp) {
         Result result = new Result();
         try {
-
             icModbusTcpBmo.updateByPrimaryKey(cModbusTcp);
-            result = Result.genUpdateSuccessResult();
+            result = Result.getUpdateSuccessResult();
         } catch (Exception e) {
             log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
-            result.addCode(Constant.CODE_FAIL);
-            result.addMsg(e.getMessage());
+            result = Result.getUpdateFailResult();
+            result.addMsg(e.toString());
+        }
+        return result;
+    }
+
+    @Override
+    public Result delICModbusTcp(CModbusTcp cModbusTcp) {
+        Result result = new Result();
+        try {
+
+            icModbusTcpBmo.deleteByPrimaryKey(cModbusTcp.getName());
+            result = Result.getDelSuccessResult();
+        } catch (Exception e) {
+            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            result = Result.getUpdateFailResult();
+            result.addMsg(e.toString());
         }
         return result;
     }

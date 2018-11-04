@@ -64,11 +64,31 @@ public class Result extends JSONObject {
         }
     }
 
-    public static Result genUpdateSuccessResult(){
+    public static Result getUpdateSuccessResult(){
         Result result = new Result();
         result.addMsg(Constant.MSG_UPDATE_SUCCESS);
-        result.addCode(Constant.CODE_SUCCESS);
+        result.addCode(Constant.CODE_UPDATE_SUCCESS);
         return result;
     }
 
+    public static Result getUpdateFailResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_UPDATE_FAIL);
+        result.addCode(Constant.CODE_UPDATE_FAIL);
+        return result;
+    }
+
+    public static Result getDelSuccessResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_DELE_SUCCESS);
+        result.addCode(Constant.CODE_DELE_SUCCESS);
+        return result;
+    }
+
+    public static Result getDelFailResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_DELE_FAIL);
+        result.addCode(Constant.CODE_DELE_FAIL);
+        return result;
+    }
 }

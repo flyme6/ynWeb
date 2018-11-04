@@ -91,4 +91,18 @@ public class Result extends JSONObject {
         result.addCode(Constant.CODE_DELE_FAIL);
         return result;
     }
+
+    public static Result getAddSuccessResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_ADD_SUCCESS);
+        result.addCode(Constant.CODE_ADD_SUCCESS);
+        return result;
+    }
+
+    public static Result getAddFailResult(){
+        Result result = new Result();
+        result.addMsg(Constant.MSG_ADD_FAIL);
+        result.addCode(Constant.CODE_ADD_FAIL);
+        return result;
+    }
 }

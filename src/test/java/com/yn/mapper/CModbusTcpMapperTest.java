@@ -45,4 +45,13 @@ public class CModbusTcpMapperTest {
         int i = mapper.updateByPrimaryKey(cModbusTcp);
         System.out.println(i);
     }
+
+    @Test
+    public void delByPrimaryKey() throws Exception {
+        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CModbusTcpMapper");
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName("cmbs");
+        int i = mapper.deleteByPrimaryKey(cModbusTcp.getName());
+        System.out.println(i);
+    }
 }

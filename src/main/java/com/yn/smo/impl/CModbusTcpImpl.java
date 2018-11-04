@@ -6,6 +6,7 @@ import com.yn.common.Result;
 import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
 import com.yn.smo.ICModbusTcpService;
+import com.yn.util.ObjectUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,15 +79,43 @@ public class CModbusTcpImpl implements ICModbusTcpService {
     }
 
     @Override
+    public Result addICModbusTcp(CModbusTcp cModbusTcp) {
+        Result result = new Result();
+        try {
+            CModbusTcp cModbusTcp1 = icModbusTcpBmo.selectByPrimaryKey(cModbusTcp.getName());
+            boolean aNull = ObjectUtil.isNull(cModbusTcp1);
+            if (aNull) {
+                int insert = icModbusTcpBmo.insert(cModbusTcp);
+                if (insert > 0) {
+                    result = Result.getAddSuccessResult();
+                }
+            }else {
+                result = Result.getAddFailResult();
+                result.addMsg("名称已存在");
+            }
+        } catch (Exception e) {
+            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            result = Result.getAddFailResult();
+            result.addMsg(e.toString());
+        }
+        return result;
+    }
+
+    @Override
     public Result delICModbusTcp(CModbusTcp cModbusTcp) {
         Result result = new Result();
         try {
 
-            icModbusTcpBmo.deleteByPrimaryKey(cModbusTcp.getName());
-            result = Result.getDelSuccessResult();
+            int i = icModbusTcpBmo.deleteByPrimaryKey(cModbusTcp.getName());
+            if (i > 0) {
+                result = Result.getDelSuccessResult();
+            } else {
+                result = Result.getDelFailResult();
+            }
+
         } catch (Exception e) {
             log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
-            result = Result.getUpdateFailResult();
+            result = Result.getDelFailResult();
             result.addMsg(e.toString());
         }
         return result;

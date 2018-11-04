@@ -45,4 +45,15 @@ public class CModbusTcpMapperTest {
         Result result = service.saveICModbusTcp(cModbusTcp);
         System.out.println(result);
     }
+
+    @Test
+    public void delByPrimaryKey() throws Exception {
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
+
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName("cmbs5");
+
+        Result result = service.delICModbusTcp(cModbusTcp);
+        System.out.println(result);
+    }
 }

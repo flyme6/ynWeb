@@ -42,7 +42,7 @@
                 <span class="we-red">*</span>权重
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_weight" name="weight" lay-verify="required" autocomplete="off"
+                <input type="text" id="L_weight" name="weight" lay-verify="required|number" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -69,7 +69,7 @@
                 <span class="we-red">*</span>端口号
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_port" name="port" lay-verify="required" autocomplete="off"
+                <input type="text" id="L_port" name="port" lay-verify="required|number" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -78,7 +78,7 @@
                 采集周期
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_acquisitionCycle" name="clct_interval" lay-verify=""
+                <input type="text" id="L_acquisitionCycle" name="clct_interval" lay-verify="number"
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -88,7 +88,7 @@
                 采集超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_clct_timeout" name="clct_timeout" lay-verify=""
+                <input type="text" id="L_clct_timeout" name="clct_timeout" lay-verify="number"
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -98,7 +98,7 @@
                 命令超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_cmd_timeout" name="cmd_timeout" autocomplete="off"
+                <input type="text" id="L_cmd_timeout" name="cmd_timeout" lay-verify="number" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -110,7 +110,7 @@
                 允许失败次数
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_fault_count" name="fault_count" autocomplete="off"
+                <input type="text" id="L_fault_count" name="fault_count" lay-verify="number" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -119,7 +119,7 @@
                 包长度
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_package_len" name="package_len" autocomplete="off" class="layui-input">
+                <input type="text" id="L_package_len" name="package_len" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -127,7 +127,7 @@
                 采集空地址
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_allow_empty_addr" name="allow_empty_addr" autocomplete="off"
+                <input type="text" id="L_allow_empty_addr" name="allow_empty_addr" lay-verify="number"  autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -160,7 +160,7 @@
                 命令队列大小
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_cmd_cache_size" name="cmd_cache_size" autocomplete="off" class="layui-input">
+                <input type="text" id="L_cmd_cache_size" name="cmd_cache_size" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -168,15 +168,9 @@
                 激活
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_active" name="active" autocomplete="off" class="layui-input">
+                <input type="text" id="L_active" name="active" autocomplete="off" lay-verify="number" class="layui-input">
             </div>
         </div>
-        <%--<div class="layui-form-item">--%>
-        <%--<label for="L_repass" class="layui-form-label">--%>
-        <%--</label>--%>
-        <%--<button class="layui-btn" id="L_repass" lay-filter="add" lay-submit="">确定</button>--%>
-        <%--<input type="text" name="dataId" id="dataId" value=""/>--%>
-        <%--</div>--%>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit="" lay-filter="edit">立即提交</button>

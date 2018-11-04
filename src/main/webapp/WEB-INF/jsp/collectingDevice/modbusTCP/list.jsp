@@ -125,15 +125,27 @@
             // console.log(data);
             var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
             var layEvent = obj.event; //获得 lay-event 对应的值
-            if(layEvent === 'edit'){
+            if (layEvent === 'edit') {
                 aa = obj;
                 WeAdminEdit('编辑', './modbusTCP/edit', id, 600, 400)
-            }else if(layEvent === 'del'){
+            } else if (layEvent === 'del') {
                 // modbusTCP_del(this,id);
-                layer.confirm('真的删除行么', function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
+                layer.confirm('真的删除行么', function (index) {
+
                     //向服务端发送删除指令
+                    $.ajax({
+                        url: "modbusTCP/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
                 });
             }
             console.log(id);

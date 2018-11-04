@@ -107,8 +107,31 @@ public class ModbusTCPController {
      */
     @ResponseBody
     @RequestMapping(value = "/goEdit")
-    public String editModbusTCP(HttpServletRequest request) {
-        String result = service.saveICModbusTcp(parseRequestCModbusTcp(request)).toString();
+    public String editModbusTCP(String name, Integer weight, String main_ip, String back_ip,
+                                Integer port, Integer clct_interval, Integer clct_timeout, Integer cmd_timeout, Integer fault_count,
+                                Integer package_len, Integer allow_empty_addr, String byte_order16, String byte_order32,
+                                String byte_order64, Integer cmd_cache_size, Integer active
+    ) {
+//        String result = service.saveICModbusTcp(parseRequestCModbusTcp(request)).toString();
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName(name);
+        cModbusTcp.setWeight(weight);
+        cModbusTcp.setMainIp(main_ip);
+        cModbusTcp.setPort(port);
+        cModbusTcp.setBackIp(back_ip);
+
+        cModbusTcp.setClctInterval(clct_interval);
+        cModbusTcp.setClctTimeout(clct_timeout);
+        cModbusTcp.setCmdTimeout(cmd_timeout);
+        cModbusTcp.setFaultCount(fault_count);
+        cModbusTcp.setPackageLen(package_len);
+        cModbusTcp.setAllowEmptyAddr(allow_empty_addr);
+        cModbusTcp.setByteOrder16(byte_order16);
+        cModbusTcp.setByteOrder32(byte_order32);
+        cModbusTcp.setByteOrder64(byte_order64);
+        cModbusTcp.setCmdCacheSize(cmd_cache_size);
+        cModbusTcp.setActive(active);
+        String result = service.saveICModbusTcp(cModbusTcp).toString();
         return result;
     }
 

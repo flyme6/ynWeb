@@ -129,7 +129,12 @@
                 aa = obj;
                 WeAdminEdit('编辑', './modbusTCP/edit', id, 600, 400)
             }else if(layEvent === 'del'){
-                modbusTCP_del(this,id);
+                // modbusTCP_del(this,id);
+                layer.confirm('真的删除行么', function(index){
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
             }
             console.log(id);
 

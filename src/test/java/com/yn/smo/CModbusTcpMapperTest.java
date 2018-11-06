@@ -25,7 +25,7 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpSericeImpl");
         CModbusTcpExample example = new CModbusTcpExample();
         example.setOrderByClause("'name'");
         Result result = service.queryICModbusTcp(example);
@@ -34,7 +34,7 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void updateByPrimaryKey() throws Exception {
-        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpSericeImpl");
 
         CModbusTcp cModbusTcp = new CModbusTcp();
         cModbusTcp.setName("cmbs");
@@ -48,7 +48,7 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void delByPrimaryKey() throws Exception {
-        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpImpl");
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpSericeImpl");
 
         CModbusTcp cModbusTcp = new CModbusTcp();
         cModbusTcp.setName("cmbs5");

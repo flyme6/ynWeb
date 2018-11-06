@@ -12,6 +12,7 @@
     <!-- 配置数据源,使用dbcp连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="${sqlite.driver}"/>
+        <!--<property name="url" value="${sqlite.url}"/>-->
         <property name="url" value="${sqlite.url}"/>
     </bean>
 

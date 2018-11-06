@@ -5,7 +5,6 @@ import com.yn.common.Constant;
 import com.yn.common.Result;
 import com.yn.entity.CModbusRtu;
 import com.yn.entity.CModbusRtuExample;
-import com.yn.entity.CModbusTcp;
 import com.yn.smo.ICModbusRtuService;
 import com.yn.util.ObjectUtil;
 import org.slf4j.Logger;
@@ -17,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CModbusTcpServiceImpl implements ICModbusRtuService {
-    private static final Logger log = LoggerFactory.getLogger(CModbusTcpServiceImpl.class);
+public class CModbusRtuServiceImpl implements ICModbusRtuService {
+    private static final Logger log = LoggerFactory.getLogger(CModbusRtuServiceImpl.class);
 
     @Autowired
     private ICModbusRtuBmo bmo;

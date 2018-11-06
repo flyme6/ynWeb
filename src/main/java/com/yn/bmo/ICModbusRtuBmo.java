@@ -2,8 +2,6 @@ package com.yn.bmo;
 
 import com.yn.entity.CModbusRtu;
 import com.yn.entity.CModbusRtuExample;
-import com.yn.entity.CModbusTcp;
-import com.yn.entity.CModbusTcpExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

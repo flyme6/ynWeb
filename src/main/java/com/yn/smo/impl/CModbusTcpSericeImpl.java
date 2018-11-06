@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +23,8 @@ import java.util.Map;
  * @Date ：Created in 15:07 2018/10/31
  */
 @Service
-public class CModbusTcpImpl implements ICModbusTcpService {
-    private static final Logger log = LoggerFactory.getLogger(CModbusTcpImpl.class);
+public class CModbusTcpSericeImpl implements ICModbusTcpService {
+    private static final Logger log = LoggerFactory.getLogger(CModbusTcpSericeImpl.class);
 
     @Autowired
     private ICModbusTcpBmo icModbusTcpBmo;

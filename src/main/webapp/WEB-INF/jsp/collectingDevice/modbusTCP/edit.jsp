@@ -34,7 +34,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="L_name" name="name" lay-verify="required|nikename"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" readonly>
             </div>
         </div>
         <div class="layui-form-item">

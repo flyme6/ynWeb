@@ -209,7 +209,7 @@
             ip: [
                 /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
                 , '请检查IP地址是否输入正确？'
-            ],
+            ]
         });
         //页面初始化加载
         $(function () {
@@ -274,43 +274,6 @@
             });
             return false;
         });
-
-        //监听提交
-        // form.on('submit(edit)', function (data) {
-        //     layer.alert(JSON.stringify(data.field), {
-        //         title: '最终的提交信息'
-        //     })
-        //     return false;
-        // });
-
-        // //监听提交
-        // form.on('submit(edit)', function (data) {
-        //     var datas = data.field;
-        //     var action = data.form.action;
-        //     //         //刷新父页面
-        //     parent.location.reload();
-        //     // $.ajax({
-        //     //     url: action,
-        //     //     data: datas,
-        //     //     type: "GET",
-        //     //     dataType: "json",
-        //     //     success: function (msg) {
-        //     //         console.log(msg);
-        //     //         layer.alert(msg, {
-        //     //             icon: 6
-        //     //         });
-        //     //     },
-        //     //     error: function (error) {
-        //     //         alert(error)
-        //     //     }
-        //     //
-        //     // });
-        // });
-
-        // 解决方式1
-        // form.on('submit(edit)', function (data) {
-        //     parent.location.reload();
-        // });
 
         form.on('submit(edit)', function (data) {
             var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});

@@ -47,19 +47,8 @@
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-
-            <%--<a title="编辑" onclick="WeAdminEdit('编辑','./modbusTCP/edit',1, 600, 400)" href="javascript:;">--%>
-            <%--<i class="layui-icon">&#xe642;</i>--%>
-            <%--</a>--%>
-            <%--<a title="删除" onclick="modbusTCP_del(this,'要删除的id')" href="javascript:;">--%>
-            <%--<i class="layui-icon">&#xe640;</i>--%>
-            <%--</a>--%>
-            <%--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>--%>
-            <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--%>
-            <%--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>--%>
-
-            <a title="编辑" lay-event="edit" href="javascript:;"><i class="layui-icon">&#xe642;</i></a>
-            <a title="编辑" lay-event="del" href="javascript:;"><i class="layui-icon">&#xe640;</i></a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="编辑" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>

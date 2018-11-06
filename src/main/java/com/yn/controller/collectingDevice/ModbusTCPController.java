@@ -102,7 +102,7 @@ public class ModbusTCPController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 添加modbusTCP，提供api接口
      *
      * @param request
      * @return

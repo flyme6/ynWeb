@@ -37,28 +37,25 @@
                         <legend>ModbusRTU采集</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusRTU采集配置','./modbusRTU/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusRTU采集配置','./modbusRTU/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="RTUCollect"></table>
+                    <table class="layui-table" id="RTUCollect" lay-filter="modbusTCP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./modbusRTU/edit', 2, 600, 400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="modbusRTU_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="编辑" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}../static/js/admin'
     });
@@ -79,66 +76,27 @@
         //展示RTU配置数据
         table.render({
             elem: '#RTUCollect',
+            url: '../collectingDevice/modbusRTU/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
                 , {field: 'weight', title: '权重'}
-                , {field: 'portNumber', title: '端口号'}
+                , {field: 'port', title: '端口号'}
                 , {field: 'clct_interval', title: '采集周期'}
                 , {field: 'clct_timeout', title: '采集超时'}
                 , {field: 'cmd_timeout', title: '命令超时'}
                 , {field: 'fault_count', title: '允许失败次数'}
                 , {field: 'package_len', title: '包长度'}
+                , {field: 'allow_empty_addr', title: '包长度'}
+                , {field: 'byte_order16', title: '包长度'}
+                , {field: 'byte_order32', title: '包长度'}
+                , {field: 'byte_order64', title: '包长度'}
+                , {field: 'cmd_cache_size', title: '包长度'}
+                , {field: 'active', title: '激活'}
                 ,{
-                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
                 }
-            ]],
-            data: [{
-                "name": "DEV1"
-                , "weight": "60"
-                , "portNumber": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "fault_count": "3"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "portNumber": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "fault_count": "3"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "portNumber": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "fault_count": "3"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "portNumber": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "fault_count": "3"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "portNumber": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "fault_count": "3"
-                , "package_len": "256"
-            }]
+            ]]
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
@@ -146,7 +104,37 @@
             , limit: 5 //每页默认显示的数量
         });
 
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './modbusRTU/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "modbusRTU/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
 
+        });
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
          * http://www.layui.com/doc/modules/form.html#render
@@ -154,18 +142,6 @@
         $(function () {
             form.render();
         });
-
-        /*modbusTCP-删除*/
-        window.modbusRTU_del = function (obj, id) {
-            layer.confirm('确认要删除吗？', function (index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
-        }
 
     });
 

@@ -1,5 +1,7 @@
 package com.yn.mapper;
 
+import com.yn.entity.CModbusRtu;
+import com.yn.entity.CModbusRtuExample;
 import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
 import org.junit.Before;
@@ -27,9 +29,9 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CModbusTcpMapper");
-        CModbusTcp cModbusTcp = new CModbusTcp();
-        CModbusTcpExample example = new CModbusTcpExample();
+        CModbusRtuMapper mapper = (CModbusRtuMapper) applicationContext.getBean("CModbusRtuMapper");
+        CModbusRtu recod = new CModbusRtu();
+        CModbusRtuExample example = new CModbusRtuExample();
         List<Map<String, Object>> maps = mapper.selectByExample(example);
         System.out.println(maps.toString());
     }

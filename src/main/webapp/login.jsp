@@ -9,7 +9,7 @@ String basePath = request.getScheme() + "://"
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>管理员登录-WeAdmin Frame型后台管理系统-WeAdmin 1.0</title>
+	<title>管理员登录-后台管理系统</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">

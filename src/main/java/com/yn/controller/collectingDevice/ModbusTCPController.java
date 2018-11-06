@@ -1,6 +1,7 @@
 package com.yn.controller.collectingDevice;
 
 import com.yn.common.CommonUtils;
+import com.yn.common.Result;
 import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
 import com.yn.smo.ICModbusTcpService;
@@ -69,21 +70,20 @@ public class ModbusTCPController {
     @ResponseBody
     @RequestMapping(value = "/query")
     public String queryModbusTCP(HttpServletRequest request) {
-
-        String limit = CommonUtils.getStrFromObject(request.getParameter("limit"));
-        String page = CommonUtils.getStrFromObject(request.getParameter("page"));
-        CModbusTcp cModbusTcp = new CModbusTcp();
-        CModbusTcpExample example = new CModbusTcpExample();
+        String result;
         try {
+            String limit = CommonUtils.getStrFromObject(request.getParameter("limit"));
+            String page = CommonUtils.getStrFromObject(request.getParameter("page"));
+            CModbusTcp cModbusTcp = new CModbusTcp();
+            CModbusTcpExample example = new CModbusTcpExample();
             int showCount = Integer.parseInt(limit);
             int currentPage = Integer.parseInt(page);
             example.setLastCount((currentPage - 1) * showCount);
             example.setPageSize(showCount);
+            return service.queryICModbusTcp(example).toString();
         } catch (Exception e) {
-            log.error(e.toString());
+            return e.getMessage();
         }
-        String result = service.queryICModbusTcp(example).toString();
-        return result;
     }
 
     /**

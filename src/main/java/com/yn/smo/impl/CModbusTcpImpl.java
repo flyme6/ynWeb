@@ -48,18 +48,8 @@ public class CModbusTcpImpl implements ICModbusTcpService {
             result.addData(maps);
 
         } catch (Exception e) {
-            log.error("AuditLabelServiceImpl.queryAuditLabel error:{}", e.getMessage());
-//            result.addMsg(e.getMessage());
-//            result.addStatus("60020");
-//
-//            AuditException auditException=new AuditException();
-//            auditException.setId(CommonUtils.generateId());
-//            auditException.setErrorType("查询");
-//            auditException.setErrorContent("AuditLabelServiceImpl.queryAuditLabel error:"+e.getMessage());
-//            auditException.setCreateDate(new Date());
-//            auditException.setSystem("平衡性组件-web应用");
-//            auditException.setErrorClass("AuditLabelServiceImpl");
-//            auditExceptionBmo.insertSelective(auditException);
+            log.error("com/yn/smo/impl/CModbusTcpImpl.java", e.getMessage());
+            result.addMsg(e.getMessage());
         }
         return result;
     }
@@ -71,7 +61,7 @@ public class CModbusTcpImpl implements ICModbusTcpService {
             icModbusTcpBmo.updateByPrimaryKey(cModbusTcp);
             result = Result.getUpdateSuccessResult();
         } catch (Exception e) {
-            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            log.error("com/yn/smo/impl/CModbusTcpImpl.java", e);
             result = Result.getUpdateFailResult();
             result.addMsg(e.toString());
         }
@@ -89,12 +79,12 @@ public class CModbusTcpImpl implements ICModbusTcpService {
                 if (insert > 0) {
                     result = Result.getAddSuccessResult();
                 }
-            }else {
+            } else {
                 result = Result.getAddFailResult();
                 result.addMsg("名称已存在");
             }
         } catch (Exception e) {
-            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            log.error("com/yn/smo/impl/CModbusTcpImpl.java", e);
             result = Result.getAddFailResult();
             result.addMsg(e.toString());
         }
@@ -114,7 +104,7 @@ public class CModbusTcpImpl implements ICModbusTcpService {
             }
 
         } catch (Exception e) {
-            log.error("CModbusTcpImpl.saveICModbusTcp error:{}", e);
+            log.error("com/yn/smo/impl/CModbusTcpImpl.java", e);
             result = Result.getDelFailResult();
             result.addMsg(e.toString());
         }

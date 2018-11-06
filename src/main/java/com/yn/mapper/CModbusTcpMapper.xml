@@ -86,6 +86,7 @@
     select
     <if test="distinct" >
       distinct
+      distinct
     </if>
     <include refid="Base_Column_List" />
     from c_modbus_tcp

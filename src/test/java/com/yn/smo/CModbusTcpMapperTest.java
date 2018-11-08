@@ -3,6 +3,7 @@ package com.yn.smo;
 import com.yn.common.Result;
 import com.yn.entity.CModbusTcp;
 import com.yn.entity.CModbusTcpExample;
+import com.yn.entity.CModbusTcpRtuExample;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -25,10 +26,10 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpSericeImpl");
-        CModbusTcpExample example = new CModbusTcpExample();
-        example.setOrderByClause("'name'");
-        Result result = service.queryICModbusTcp(example);
+        ICModbusTcpRtuService service = (ICModbusTcpRtuService) applicationContext.getBean("CModbusTcpRtuServiceImpl");
+        CModbusTcpRtuExample example = new CModbusTcpRtuExample();
+//        example.setOrderByClause("'name'");
+        Result result = service.query(example);
         System.out.println(result);
     }
 

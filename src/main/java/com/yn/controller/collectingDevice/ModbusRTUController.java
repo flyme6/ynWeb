@@ -91,7 +91,7 @@ public class ModbusRTUController {
     /**
      * 添加modbusTCP，提供api接口
      *
-     * @param request
+     * @param
      * @return
      */
     @ResponseBody
@@ -104,7 +104,7 @@ public class ModbusRTUController {
     /**
      * 修改modbusTCP，提供api接口
      *
-     * @param request
+     * @param
      * @return
      */
     @ResponseBody
@@ -117,7 +117,7 @@ public class ModbusRTUController {
     /**
      * 修改modbusTCP，提供api接口
      *
-     * @param request
+     * @param
      * @return
      */
     @ResponseBody

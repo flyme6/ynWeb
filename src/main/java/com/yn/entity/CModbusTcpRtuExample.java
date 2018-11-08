@@ -3,7 +3,7 @@ package com.yn.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CModbusTcpRtuExample {
+public class CModbusTcpRtuExample extends Base{
     protected String orderByClause;
 
     protected boolean distinct;

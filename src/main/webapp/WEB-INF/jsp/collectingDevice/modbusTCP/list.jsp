@@ -85,7 +85,7 @@
                     , {field: 'weight', title: '权重'}
                     , {field: 'main_ip', title: '主IP'}
                     , {field: 'back_ip', title: '备IP'}
-                    , {field: 'port', title: '端口号'}
+                    , {field: 'port', title: '端口'}
                     , {field: 'clct_interval', title: '周期'}
                     , {field: 'clct_timeout', title: '超时'}
                     , {field: 'cmd_timeout', title: '命令超时'}

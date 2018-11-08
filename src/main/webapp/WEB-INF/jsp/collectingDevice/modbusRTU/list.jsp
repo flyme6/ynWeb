@@ -81,7 +81,7 @@
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
                 , {field: 'weight', title: '权重'}
-                , {field: 'port', title: '端口号'}
+                , {field: 'port', title: '端口'}
                 , {field: 'clct_interval', title: '采集周期'}
                 , {field: 'clct_timeout', title: '采集超时'}
                 , {field: 'cmd_timeout', title: '命令超时'}

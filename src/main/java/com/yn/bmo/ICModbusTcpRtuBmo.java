@@ -1,7 +1,5 @@
 package com.yn.bmo;
 
-import com.yn.entity.CModbusRtu;
-import com.yn.entity.CModbusRtuExample;
 import com.yn.entity.CModbusTcpRtu;
 import com.yn.entity.CModbusTcpRtuExample;
 import org.apache.ibatis.annotations.Param;

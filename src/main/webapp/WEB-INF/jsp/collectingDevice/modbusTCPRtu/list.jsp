@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>采集设备配置-Modbus透传采集-后台管理系统</title>
+    <title>采集设备配置-ModbusRTU采集-后台管理系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -34,25 +34,21 @@
             <div class="layui-card">
                 <div class="layui-card-body chart-card">
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>Modbus透传采集</legend>
+                        <legend>ModbusRTU透传采集</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加Modbus透传配置','./modbusTCPRtu/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusRTU采集配置','./modbusTCPRtu/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="modbusTCPRtu"></table>
+                    <table class="layui-table" id="RTUCollect" lay-filter="modbusTCP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./modbusTCPRtu/edit', 2, 600, 400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="modbusTCPRtu_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="编辑" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
@@ -80,22 +76,24 @@
         //展示RTU配置数据
         table.render({
             elem: '#RTUCollect',
-            url: '../collectingDevice/modbusRTU/query',//数据接口
+            url: '../collectingDevice/modbusTCPRtu/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
                 , {field: 'weight', title: '权重'}
-                , {field: 'port', title: '端口号'}
+                , {field: 'main_ip', title: '主IP'}
+                , {field: 'back_ip', title: '备IP'}
+                , {field: 'port', title: '端口'}
                 , {field: 'clct_interval', title: '采集周期'}
                 , {field: 'clct_timeout', title: '采集超时'}
                 , {field: 'cmd_timeout', title: '命令超时'}
                 , {field: 'fault_count', title: '允许失败次数'}
                 , {field: 'package_len', title: '包长度'}
-                , {field: 'allow_empty_addr', title: '包长度'}
-                , {field: 'byte_order16', title: '包长度'}
-                , {field: 'byte_order32', title: '包长度'}
-                , {field: 'byte_order64', title: '包长度'}
-                , {field: 'cmd_cache_size', title: '包长度'}
+                , {field: 'allow_empty_addr', title: '采集空地址'}
+                , {field: 'byte_order16', title: '16位'}
+                , {field: 'byte_order32', title: '32位'}
+                , {field: 'byte_order64', title: '64位'}
+                , {field: 'cmd_cache_size', title: '命令队列大小'}
                 , {field: 'active', title: '激活'}
                 ,{
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
@@ -117,12 +115,12 @@
             if (layEvent === 'edit') {
                 aa = obj;
                 console.info(aa);
-                WeAdminEdit('编辑', './modbusRTU/edit', id, 600, 400)
+                WeAdminEdit('编辑', './modbusTCPRtu/edit', id, 600, 400)
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     //向服务端发送删除指令
                     $.ajax({
-                        url: "modbusRTU/goDel",
+                        url: "modbusTCPRtu/goDel",
                         data: "name=" + obj.data.name,
                         type: "GET",
                         dataType: "json",

@@ -263,7 +263,7 @@
         //监听提交
         form.on('submit(add)', function (data) {
             console.log(data);
-            //发异步，把数据提交给php
+            //发异步，把数据提交给接口
             layer.alert("增加成功", {
                 icon: 6
             }, function () {

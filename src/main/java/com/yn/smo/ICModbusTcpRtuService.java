@@ -5,7 +5,7 @@ import com.yn.entity.CModbusTcpRtu;
 import com.yn.entity.CModbusTcpRtuExample;
 
 public interface ICModbusTcpRtuService {
-    Result query(CModbusTcpRtuExample cModbusTcp);
+    Result query(CModbusTcpRtuExample example);
 
     Result save(CModbusTcpRtu recod);
 

@@ -42,142 +42,114 @@
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="ABCIPCollect"></table>
+                    <table class="layui-table" id="ABCIPCollect" lay-filter="modbusTCP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./modbusRTU/edit', 2, 600, 400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="modbusRTU_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
-<script>layui.extend({
-    admin: '{/}../static/js/admin'
-});
-
-layui.use(['table', 'jquery', 'form', 'admin'], function () {
-    var table = layui.table,
-        $ = layui.jquery,
-        form = layui.form,
-        admin = layui.admin;
-
-    form.verify({
-        ip: [
-            /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
-            , 'IP地址不符合规则'
-        ]
+<script>
+    var aa;
+    layui.extend({
+        admin: '{/}../static/js/admin'
     });
 
-    //展示IP配置数据
-    table.render({
-        elem: '#ABCIPCollect',
-        cellMinWidth: 80,
-        cols: [[ //标题栏
-            {field: 'equipmentName', title: '设备名称'}
-            , {field: 'Weights', title: '权重'}
-            , {field: 'primaryIp', title: '主IP'}
-            , {field: 'backupIP', title: '备IP'}
-            , {field: 'portNumber', title: '端口号'}
-            , {field: 'acquisitionCycle', title: '采集周期'}
-            , {field: 'acquisitionTimeout', title: '采集超时'}
-            , {field: 'commandTimeout', title: '命令超时'}
-            , {field: 'allowedFailures', title: '允许失败次数'}
-            , {field: 'packetLength', title: '包长度'}
-            ,{
-                field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
-            }
-        ]],
-        data: [{
-            "equipmentName": "DEV1"
-            , "Weights": "60"
-            , "primaryIp": "192.168.1.1"
-            , "backupIP": "192.168.1.1"
-            , "portNumber": "502"
-            , "acquisitionCycle": "1000"
-            , "acquisitionTimeout": "2000"
-            , "commandTimeout": "4000"
-            , "allowedFailures": "3"
-            , "packetLength": "256"
-        },{
-            "equipmentName": "DEV1"
-            , "Weights": "60"
-            , "primaryIp": "192.168.1.1"
-            , "backupIP": "192.168.1.1"
-            , "portNumber": "502"
-            , "acquisitionCycle": "1000"
-            , "acquisitionTimeout": "2000"
-            , "commandTimeout": "4000"
-            , "allowedFailures": "3"
-            , "packetLength": "256"
-        },{
-            "equipmentName": "DEV1"
-            , "Weights": "60"
-            , "primaryIp": "192.168.1.1"
-            , "backupIP": "192.168.1.1"
-            , "portNumber": "502"
-            , "acquisitionCycle": "1000"
-            , "acquisitionTimeout": "2000"
-            , "commandTimeout": "4000"
-            , "allowedFailures": "3"
-            , "packetLength": "256"
-        },{
-            "equipmentName": "DEV1"
-            , "Weights": "60"
-            , "primaryIp": "192.168.1.1"
-            , "backupIP": "192.168.1.1"
-            , "portNumber": "502"
-            , "acquisitionCycle": "1000"
-            , "acquisitionTimeout": "2000"
-            , "commandTimeout": "4000"
-            , "allowedFailures": "3"
-            , "packetLength": "256"
-        },{
-            "equipmentName": "DEV1"
-            , "Weights": "60"
-            , "primaryIp": "192.168.1.1"
-            , "backupIP": "192.168.1.1"
-            , "portNumber": "502"
-            , "acquisitionCycle": "1000"
-            , "acquisitionTimeout": "2000"
-            , "commandTimeout": "4000"
-            , "allowedFailures": "3"
-            , "packetLength": "256"
-        }]
-        , skin: 'line' //表格风格
-        , even: true
-        , page: true //是否显示分页
-        , limits: [5, 7, 10]
-        , limit: 5 //每页默认显示的数量
-    });
+    layui.use(['table', 'jquery', 'form', 'admin'], function () {
+        var table = layui.table,
+            $ = layui.jquery,
+            form = layui.form,
+            admin = layui.admin;
 
-
-    /*
-     *数据表格中form表单元素是动态插入,所以需要更新渲染下
-     * http://www.layui.com/doc/modules/form.html#render
-     * */
-    $(function () {
-        form.render();
-    });
-
-
-    /*modbus诱传-删除*/
-    window.modbusRTU_del = function (obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {
-                icon: 1,
-                time: 1000
-            });
+        form.verify({
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , 'IP地址不符合规则'
+            ]
         });
-    }
-});
+
+        //展示IP配置数据
+        table.render({
+            elem: '#ABCIPCollect',
+            url: '../forwardingDevice/modbusRTU/query',//数据接口
+            cellMinWidth: 80,
+            cols: [[ //标题栏
+                {field: 'name', title: '设备名称'}
+                , {field: 'port', title: '端口号'}
+                , {field: 'cmd_timeout', title: '命令超时'}
+                , {field: 'allow_empty_addr', title: '转发空地址'}
+                , {field: 'byte_order16', title: '16位数据字节序'}
+                , {field: 'byte_order32', title: '32位数据字节序'}
+                , {field: 'byte_order64', title: '64位数据字节序'}
+                , {field: 'cmd_cache_size', title: '命令队列大小'}
+                , {field: 'active', title: '激活'}
+                , {
+                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+                }
+            ]]
+            , skin: 'line' //表格风格
+            , even: true
+            , page: true //是否显示分页
+            , limits: [5, 7, 10]
+            , limit: 5 //每页默认显示的数量
+        });
+
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './modbusRTU/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "modbusRTU/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
+
+        });
+        /*
+         *数据表格中form表单元素是动态插入,所以需要更新渲染下
+         * http://www.layui.com/doc/modules/form.html#render
+         * */
+        $(function () {
+            form.render();
+        });
+
+
+        /*modbus诱传-删除*/
+        window.modbusRTU_del = function (obj, id) {
+            layer.confirm('确认要删除吗？', function (index) {
+                //发异步删除数据
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', {
+                    icon: 1,
+                    time: 1000
+                });
+            });
+        }
+    });
 </script>
 </html>

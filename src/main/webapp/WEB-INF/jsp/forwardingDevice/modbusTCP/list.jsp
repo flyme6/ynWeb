@@ -114,7 +114,7 @@
                 layer.confirm('真的删除行么', function (index) {
                     //向服务端发送删除指令
                     $.ajax({
-                        url: "modbusRTU/goDel",
+                        url: "modbusTCP/goDel",
                         data: "name=" + obj.data.name,
                         type: "GET",
                         dataType: "json",

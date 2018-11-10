@@ -26,79 +26,79 @@
 
 <body>
 <div class="weadmin-body">
-    <form class="layui-form">
+    <form class="layui-form" action="goEdit" method="post">
         <div class="layui-form-item">
             <label for="L_equipmentName" class="layui-form-label">
                 <span class="we-red">*</span>设备名称
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_equipmentName" name="equipmentName" lay-verify="required|nikename"
+                <input type="text" id="L_equipmentName" name="name" lay-verify="required|nikename"
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_Weights" class="layui-form-label">
-                <span class="we-red">*</span>权重
+                <span class="we-red">*</span>端口号
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_Weights" name="username" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_Weights" name="port" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_primaryIp" class="layui-form-label">
-                <span class="we-red">*</span>主IP
+                命令超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_primaryIp" name="primaryIp" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_primaryIp" name="cmdTimeout" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_backupIP" class="layui-form-label">
-                <span class="we-red">*</span>备IP
+                转发空地址
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_backupIP" name="backupIP" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_backupIP" name="allowEmptyAddr" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_portNumber" class="layui-form-label">
-                <span class="we-red">*</span>端口号
+                16位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_portNumber" name="portNumber" lay-verify="required|nikename" autocomplete="off"
+                <input type="text" id="L_portNumber" name="byteOrder16" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_acquisitionCycle" class="layui-form-label">
-                <span class="we-red">*</span>采集周期
+                32位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_acquisitionCycle" name="acquisitionCycle" lay-verify="required|nikename"
+                <input type="text" id="L_acquisitionCycle" name="byteOrder32" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_acquisitionTimeout" class="layui-form-label">
-                <span class="we-red">*</span>采集超时
+                64位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_acquisitionTimeout" name="acquisitionTimeout" lay-verify="required|nikename"
+                <input type="text" id="L_acquisitionTimeout" name="byteOrder64" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_commandTimeout" class="layui-form-label">
-                <span class="we-red">*</span>命令超时
+                命令队列大小
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_commandTimeout" name="commandTimeout" autocomplete="off"
+                <input type="number" id="L_commandTimeout" name="cmdCacheSize" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -106,20 +106,11 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_allowedFailures" class="layui-form-label">
-                <span class="we-red">*</span>允许失败次数
+            <label for="L_active" class="layui-form-label">
+                激活
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_allowedFailures" name="allowedFailures" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_packetLength" class="layui-form-label">
-                <span class="we-red">*</span>包长度
-            </label>
-            <div class="layui-input-inline">
-                <input type="password" id="L_packetLength" name="packetLength" autocomplete="off" class="layui-input">
+                <input type="number" id="L_active" name="active" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -132,6 +123,7 @@
 </div>
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa = window.parent.aa;
     layui.extend({
         admin: '{/}../../static/js/admin'
     });
@@ -145,10 +137,22 @@
         //自定义验证规则
         form.verify({
             nikename: function (value) {
-                if (value.length < 5) {
-                    return '昵称至少得5个字符啊';
+                if (value.length < 1) {
+                    return '不能为空';
                 }
-            }
+            },
+            back_ip: function (value) {
+                var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+                if (value.length > 0) {
+                    if (!reg.test(value)) {
+                        return "请检查IP地址";
+                    }
+                }
+            },
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , '请检查IP地址是否输入正确？'
+            ]
         });
         //页面初始化加载
         $(function () {
@@ -159,26 +163,31 @@
 
         function frameVal() {
             var dataId = $('input[name="dataId"]').val();
+            console.log(dataId);
             var index = parent.layer.getFrameIndex(window.name);
-            parent.layui.jquery("#memberList tr").each(function () {
-                if ($(this).attr('data-id') == dataId) {
-                    console.log($(this));
-                    var tdArr = $(this).children('td');
-                    var username = tdArr.eq(2).text(); //姓名
-                    var sex = tdArr.eq(3).text(); //性别
-                    var phone = tdArr.eq(4).text(); //电话
-                    var email = tdArr.eq(5).text(); //邮箱
-                    var address = tdArr.eq(6).text(); //地址
 
-                    $('input[name="username"]').val(username);
-                    console.log("sex:" + sex);
-                    $('input[name="sex"][value="' + sex + '"]').attr("checked", true);
-                    $('input[name="phone"]').val(phone);
-                    $('input[name="email"]').val(email);
-                    $('input[name="address"]').val(address);
-                    form.render();
-                }
-            });
+            var name = aa.data.name;
+            var port = aa.data.port;
+            var cmd_timeout = aa.data.cmd_timeout;
+            var allow_empty_addr = aa.data.allow_empty_addr;
+            var byte_order16 = aa.data.byte_order16;
+            var byte_order32 = aa.data.byte_order32;
+            var byte_order64 = aa.data.byte_order64;
+            var cmd_cache_size = aa.data.cmd_cache_size;
+            var active = aa.data.active;
+
+
+            $('input[name="name"]').val(name);
+            $('input[name="port"]').val(port);
+            $('input[name="cmdTimeout"]').val(cmd_timeout);
+            $('input[name="allowEmptyAddr"]').val(allow_empty_addr);
+            $('input[name="byteOrder16"]').val(byte_order16);
+            $('input[name="byteOrder32"]').val(byte_order32);
+            $('input[name="byteOrder64"]').val(byte_order64);
+            $('input[name="cmdCacheSize"]').val(cmd_cache_size);
+            $('input[name="active"]').val(active);
+
+            form.render();
         }
 
         //监听提交
@@ -194,6 +203,42 @@
                 parent.layer.close(index);
             });
             return false;
+        });
+
+        form.on('submit(edit)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 201) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 200) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg("用户添加成功！");
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                }
+            });
+            return false;
+
         });
 
     });

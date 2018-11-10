@@ -26,7 +26,7 @@
 
 <body>
 <div class="weadmin-body">
-    <form class="layui-form">
+    <form class="layui-form" action="goAdd" method="post">
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
                 <span class="we-red">*</span>设备名称
@@ -42,66 +42,63 @@
                 <span class="we-red">*</span>端口号
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_port" name="port" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_port" name="port" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_comm_timeout" class="layui-form-label">
-                <span class="we-red">*</span>通信超时
+                通信超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_comm_timeout" name="comm_timeout" lay-verify="required|nikename"
-                       autocomplete="off"
+                <input type="number" id="L_comm_timeout" name="commTimeout" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_client_limit" class="layui-form-label">
-                <span class="we-red">*</span>最大客户端数量
+                最大客户端数量
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_client_limit" name="client_limit" lay-verify="required|nikename"
-                       autocomplete="off"
+                <input type="number" id="L_client_limit" name="clientLimit" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_cmd_timeout" class="layui-form-label">
-                <span class="we-red">*</span>命令超时
+                命令超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_cmd_timeout" name="cmd_timeout" lay-verify="required|nikename"
-                       autocomplete="off"
+                <input type="number" id="L_cmd_timeout" name="cmdTimeout" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_allow_empty_addr" class="layui-form-label">
-                <span class="we-red">*</span>转发空地址
+                转发空地址
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_allow_empty_addr" name="allow_empty_addr" lay-verify="required|nikename"
+                <input type="number" id="L_allow_empty_addr" name="allowEmptyAddr" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order16" class="layui-form-label">
-                <span class="we-red">*</span>16位数据字节序
+                16位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_byte_order16" name="byte_order16" lay-verify="required|nikename"
+                <input type="text" id="L_byte_order16" name="byteOrder16" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order32" class="layui-form-label">
-                <span class="we-red">*</span>32位数据字节序
+                32位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_byte_order32" name="byte_order32" autocomplete="off"
+                <input type="text" id="L_byte_order32" name="byteOrder32" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -110,28 +107,27 @@
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order64" class="layui-form-label">
-                <span class="we-red">*</span>64位数据字节序
+                64位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_byte_order64" name="byte_order64" autocomplete="off"
+                <input type="text" id="L_byte_order64" name="byteOrder64" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_cmd_cache_size" class="layui-form-label">
-                <span class="we-red">*</span>命令队列大小
+                命令队列大小
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_cmd_cache_size" name="cmd_cache_size" autocomplete="off"
-                       class="layui-input">
+                <input type="number" id="L_cmd_cache_size" name="cmdCacheSize" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_active" class="layui-form-label">
-                <span class="we-red">*</span>激活
+                激活
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_active" name="active" autocomplete="off" class="layui-input">
+                <input type="number" id="L_active" name="active" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -143,6 +139,81 @@
     </form>
 </div>
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.extend({
+        admin: '{/}../../static/js/admin'
+    });
+
+    layui.use(['form', 'jquery', 'admin', 'layer'], function () {
+        var form = layui.form,
+            $ = layui.jquery,
+            admin = layui.admin,
+            layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nikename: function (value) {
+                if (value.length < 1) {
+                    return '不能为空';
+                }
+            },
+            back_ip: function (value) {
+                var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+                if (value.length > 0) {
+                    if (!reg.test(value)) {
+                        return "请检查IP地址";
+                    }
+                }
+            },
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , '请检查IP地址是否输入正确？'
+            ],
+            number: [/^[0-9]*$/, '必须输入数字']
+        });
+
+
+        form.on('submit(add)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 301) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    } else {
+                        top.layer.close(index);
+                        top.layer.msg(info.msg);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 300) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+
+
+</script>
 </body>
 
 </html>

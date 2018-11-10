@@ -1,9 +1,7 @@
 package com.yn.smo;
 
 import com.yn.common.Result;
-import com.yn.entity.CModbusTcp;
-import com.yn.entity.CModbusTcpExample;
-import com.yn.entity.CModbusTcpRtuExample;
+import com.yn.entity.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,8 +24,8 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        ICModbusTcpRtuService service = (ICModbusTcpRtuService) applicationContext.getBean("CModbusTcpRtuServiceImpl");
-        CModbusTcpRtuExample example = new CModbusTcpRtuExample();
+        IFIec104Service service = (IFIec104Service) applicationContext.getBean("FIec104ServiceImpl");
+        FIec104Example example = new FIec104Example();
 //        example.setOrderByClause("'name'");
         Result result = service.query(example);
         System.out.println(result);

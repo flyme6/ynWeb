@@ -82,7 +82,7 @@ public class ModbusTCPController {
             example.setPageSize(showCount);
             return service.queryICModbusTcp(example).toString();
         } catch (Exception e) {
-            return e.getMessage();
+            return Result.getQueryFailResult(e).toString();
         }
     }
 

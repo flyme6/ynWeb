@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yn.mapper.FModbusRtuMapper" >
+  <resultMap id="BaseResultMap" type="com.yn.entity.FModbusRtu" >
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="INTEGER" />
+    <result column="cmd_timeout" property="cmdTimeout" jdbcType="INTEGER" />
+    <result column="allow_empty_addr" property="allowEmptyAddr" jdbcType="INTEGER" />
+    <result column="byte_order16" property="byteOrder16" jdbcType="VARCHAR" />
+    <result column="byte_order32" property="byteOrder32" jdbcType="VARCHAR" />
+    <result column="byte_order64" property="byteOrder64" jdbcType="VARCHAR" />
+    <result column="cmd_cache_size" property="cmdCacheSize" jdbcType="INTEGER" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    name, port, cmd_timeout, allow_empty_addr, byte_order16, byte_order32, byte_order64, 
+    cmd_cache_size, active
+  </sql>
+  <select id="selectByExample" resultType="java.util.LinkedHashMap" parameterType="com.yn.entity.FModbusRtuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from f_modbus_rtu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from f_modbus_rtu
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from f_modbus_rtu
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yn.entity.FModbusRtuExample" >
+    delete from f_modbus_rtu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yn.entity.FModbusRtu" >
+    insert into f_modbus_rtu (name, port, cmd_timeout, 
+      allow_empty_addr, byte_order16, byte_order32, 
+      byte_order64, cmd_cache_size, active
+      )
+    values (#{name,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{cmdTimeout,jdbcType=INTEGER}, 
+      #{allowEmptyAddr,jdbcType=INTEGER}, #{byteOrder16,jdbcType=VARCHAR}, #{byteOrder32,jdbcType=VARCHAR}, 
+      #{byteOrder64,jdbcType=VARCHAR}, #{cmdCacheSize,jdbcType=INTEGER}, #{active,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yn.entity.FModbusRtu" >
+    insert into f_modbus_rtu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="cmdTimeout != null" >
+        cmd_timeout,
+      </if>
+      <if test="allowEmptyAddr != null" >
+        allow_empty_addr,
+      </if>
+      <if test="byteOrder16 != null" >
+        byte_order16,
+      </if>
+      <if test="byteOrder32 != null" >
+        byte_order32,
+      </if>
+      <if test="byteOrder64 != null" >
+        byte_order64,
+      </if>
+      <if test="cmdCacheSize != null" >
+        cmd_cache_size,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="cmdTimeout != null" >
+        #{cmdTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="allowEmptyAddr != null" >
+        #{allowEmptyAddr,jdbcType=INTEGER},
+      </if>
+      <if test="byteOrder16 != null" >
+        #{byteOrder16,jdbcType=VARCHAR},
+      </if>
+      <if test="byteOrder32 != null" >
+        #{byteOrder32,jdbcType=VARCHAR},
+      </if>
+      <if test="byteOrder64 != null" >
+        #{byteOrder64,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdCacheSize != null" >
+        #{cmdCacheSize,jdbcType=INTEGER},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yn.entity.FModbusRtuExample" resultType="java.lang.Integer" >
+    select count(*) from f_modbus_rtu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f_modbus_rtu
+    <set >
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.port != null" >
+        port = #{record.port,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmdTimeout != null" >
+        cmd_timeout = #{record.cmdTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="record.allowEmptyAddr != null" >
+        allow_empty_addr = #{record.allowEmptyAddr,jdbcType=INTEGER},
+      </if>
+      <if test="record.byteOrder16 != null" >
+        byte_order16 = #{record.byteOrder16,jdbcType=VARCHAR},
+      </if>
+      <if test="record.byteOrder32 != null" >
+        byte_order32 = #{record.byteOrder32,jdbcType=VARCHAR},
+      </if>
+      <if test="record.byteOrder64 != null" >
+        byte_order64 = #{record.byteOrder64,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmdCacheSize != null" >
+        cmd_cache_size = #{record.cmdCacheSize,jdbcType=INTEGER},
+      </if>
+      <if test="record.active != null" >
+        active = #{record.active,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f_modbus_rtu
+    set name = #{record.name,jdbcType=VARCHAR},
+      port = #{record.port,jdbcType=INTEGER},
+      cmd_timeout = #{record.cmdTimeout,jdbcType=INTEGER},
+      allow_empty_addr = #{record.allowEmptyAddr,jdbcType=INTEGER},
+      byte_order16 = #{record.byteOrder16,jdbcType=VARCHAR},
+      byte_order32 = #{record.byteOrder32,jdbcType=VARCHAR},
+      byte_order64 = #{record.byteOrder64,jdbcType=VARCHAR},
+      cmd_cache_size = #{record.cmdCacheSize,jdbcType=INTEGER},
+      active = #{record.active,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yn.entity.FModbusRtu" >
+    update f_modbus_rtu
+    <set >
+      <if test="port != null" >
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="cmdTimeout != null" >
+        cmd_timeout = #{cmdTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="allowEmptyAddr != null" >
+        allow_empty_addr = #{allowEmptyAddr,jdbcType=INTEGER},
+      </if>
+      <if test="byteOrder16 != null" >
+        byte_order16 = #{byteOrder16,jdbcType=VARCHAR},
+      </if>
+      <if test="byteOrder32 != null" >
+        byte_order32 = #{byteOrder32,jdbcType=VARCHAR},
+      </if>
+      <if test="byteOrder64 != null" >
+        byte_order64 = #{byteOrder64,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdCacheSize != null" >
+        cmd_cache_size = #{cmdCacheSize,jdbcType=INTEGER},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=INTEGER},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yn.entity.FModbusRtu" >
+    update f_modbus_rtu
+    set port = #{port,jdbcType=INTEGER},
+      cmd_timeout = #{cmdTimeout,jdbcType=INTEGER},
+      allow_empty_addr = #{allowEmptyAddr,jdbcType=INTEGER},
+      byte_order16 = #{byteOrder16,jdbcType=VARCHAR},
+      byte_order32 = #{byteOrder32,jdbcType=VARCHAR},
+      byte_order64 = #{byteOrder64,jdbcType=VARCHAR},
+      cmd_cache_size = #{cmdCacheSize,jdbcType=INTEGER},
+      active = #{active,jdbcType=INTEGER}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,6 +1,7 @@
 package com.yn.controller.collectingDevice;
 
 import com.yn.common.CommonUtils;
+import com.yn.common.Result;
 import com.yn.entity.CModbusRtu;
 import com.yn.entity.CModbusTcpRtu;
 import com.yn.entity.CModbusTcpRtuExample;
@@ -80,7 +81,7 @@ public class ModbusTCPRtuController {
             example.setPageSize(showCount);
             return service.query(example).toString();
         } catch (Exception e) {
-            return e.getMessage();
+            return Result.getQueryFailResult(e).toString();
         }
     }
 

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yn.mapper.CIec104Mapper">
+    <resultMap id="BaseResultMap" type="com.yn.entity.CIec104">
+        <id column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="weight" property="weight" jdbcType="INTEGER"/>
+        <result column="main_ip" property="mainIp" jdbcType="VARCHAR"/>
+        <result column="back_ip" property="backIp" jdbcType="VARCHAR"/>
+        <result column="port" property="port" jdbcType="INTEGER"/>
+        <result column="s_init" property="sInit" jdbcType="INTEGER"/>
+        <result column="r_init" property="rInit" jdbcType="INTEGER"/>
+        <result column="r_cache_size" property="rCacheSize" jdbcType="INTEGER"/>
+        <result column="s_cache_size" property="sCacheSize" jdbcType="INTEGER"/>
+        <result column="pub_addr_size" property="pubAddrSize" jdbcType="INTEGER"/>
+        <result column="reason_size" property="reasonSize" jdbcType="INTEGER"/>
+        <result column="info_addr_size" property="infoAddrSize" jdbcType="INTEGER"/>
+        <result column="timer0" property="timer0" jdbcType="INTEGER"/>
+        <result column="timer1" property="timer1" jdbcType="INTEGER"/>
+        <result column="timer2" property="timer2" jdbcType="INTEGER"/>
+        <result column="timer3" property="timer3" jdbcType="INTEGER"/>
+        <result column="cmd_cache_size" property="cmdCacheSize" jdbcType="INTEGER"/>
+        <result column="active" property="active" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    name, weight, main_ip, back_ip, port, s_init, r_init, r_cache_size, s_cache_size, 
+    pub_addr_size, reason_size, info_addr_size, timer0, timer1, timer2, timer3, cmd_cache_size, 
+    active
+  </sql>
+    <select id="selectByExample" resultType="java.util.LinkedHashMap" parameterType="com.yn.entity.CIec104Example">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from c_iec104
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from c_iec104
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from c_iec104
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.yn.entity.CIec104Example">
+        delete from c_iec104
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.yn.entity.CIec104">
+    insert into c_iec104 (name, weight, main_ip, 
+      back_ip, port, s_init, 
+      r_init, r_cache_size, s_cache_size, 
+      pub_addr_size, reason_size, info_addr_size, 
+      timer0, timer1, timer2, 
+      timer3, cmd_cache_size, active
+      )
+    values (#{name,jdbcType=VARCHAR}, #{weight,jdbcType=INTEGER}, #{mainIp,jdbcType=VARCHAR}, 
+      #{backIp,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{sInit,jdbcType=INTEGER}, 
+      #{rInit,jdbcType=INTEGER}, #{rCacheSize,jdbcType=INTEGER}, #{sCacheSize,jdbcType=INTEGER}, 
+      #{pubAddrSize,jdbcType=INTEGER}, #{reasonSize,jdbcType=INTEGER}, #{infoAddrSize,jdbcType=INTEGER}, 
+      #{timer0,jdbcType=INTEGER}, #{timer1,jdbcType=INTEGER}, #{timer2,jdbcType=INTEGER}, 
+      #{timer3,jdbcType=INTEGER}, #{cmdCacheSize,jdbcType=INTEGER}, #{active,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.yn.entity.CIec104">
+        insert into c_iec104
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="mainIp != null">
+                main_ip,
+            </if>
+            <if test="backIp != null">
+                back_ip,
+            </if>
+            <if test="port != null">
+                port,
+            </if>
+            <if test="sInit != null">
+                s_init,
+            </if>
+            <if test="rInit != null">
+                r_init,
+            </if>
+            <if test="rCacheSize != null">
+                r_cache_size,
+            </if>
+            <if test="sCacheSize != null">
+                s_cache_size,
+            </if>
+            <if test="pubAddrSize != null">
+                pub_addr_size,
+            </if>
+            <if test="reasonSize != null">
+                reason_size,
+            </if>
+            <if test="infoAddrSize != null">
+                info_addr_size,
+            </if>
+            <if test="timer0 != null">
+                timer0,
+            </if>
+            <if test="timer1 != null">
+                timer1,
+            </if>
+            <if test="timer2 != null">
+                timer2,
+            </if>
+            <if test="timer3 != null">
+                timer3,
+            </if>
+            <if test="cmdCacheSize != null">
+                cmd_cache_size,
+            </if>
+            <if test="active != null">
+                active,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=INTEGER},
+            </if>
+            <if test="mainIp != null">
+                #{mainIp,jdbcType=VARCHAR},
+            </if>
+            <if test="backIp != null">
+                #{backIp,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                #{port,jdbcType=INTEGER},
+            </if>
+            <if test="sInit != null">
+                #{sInit,jdbcType=INTEGER},
+            </if>
+            <if test="rInit != null">
+                #{rInit,jdbcType=INTEGER},
+            </if>
+            <if test="rCacheSize != null">
+                #{rCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="sCacheSize != null">
+                #{sCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="pubAddrSize != null">
+                #{pubAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="reasonSize != null">
+                #{reasonSize,jdbcType=INTEGER},
+            </if>
+            <if test="infoAddrSize != null">
+                #{infoAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="timer0 != null">
+                #{timer0,jdbcType=INTEGER},
+            </if>
+            <if test="timer1 != null">
+                #{timer1,jdbcType=INTEGER},
+            </if>
+            <if test="timer2 != null">
+                #{timer2,jdbcType=INTEGER},
+            </if>
+            <if test="timer3 != null">
+                #{timer3,jdbcType=INTEGER},
+            </if>
+            <if test="cmdCacheSize != null">
+                #{cmdCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="active != null">
+                #{active,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.yn.entity.CIec104Example" resultType="java.lang.Integer">
+        select count(*) from c_iec104
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update c_iec104
+        <set>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.weight != null">
+                weight = #{record.weight,jdbcType=INTEGER},
+            </if>
+            <if test="record.mainIp != null">
+                main_ip = #{record.mainIp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.backIp != null">
+                back_ip = #{record.backIp,jdbcType=VARCHAR},
+            </if>
+            <if test="record.port != null">
+                port = #{record.port,jdbcType=INTEGER},
+            </if>
+            <if test="record.sInit != null">
+                s_init = #{record.sInit,jdbcType=INTEGER},
+            </if>
+            <if test="record.rInit != null">
+                r_init = #{record.rInit,jdbcType=INTEGER},
+            </if>
+            <if test="record.rCacheSize != null">
+                r_cache_size = #{record.rCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.sCacheSize != null">
+                s_cache_size = #{record.sCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.pubAddrSize != null">
+                pub_addr_size = #{record.pubAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.reasonSize != null">
+                reason_size = #{record.reasonSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.infoAddrSize != null">
+                info_addr_size = #{record.infoAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.timer0 != null">
+                timer0 = #{record.timer0,jdbcType=INTEGER},
+            </if>
+            <if test="record.timer1 != null">
+                timer1 = #{record.timer1,jdbcType=INTEGER},
+            </if>
+            <if test="record.timer2 != null">
+                timer2 = #{record.timer2,jdbcType=INTEGER},
+            </if>
+            <if test="record.timer3 != null">
+                timer3 = #{record.timer3,jdbcType=INTEGER},
+            </if>
+            <if test="record.cmdCacheSize != null">
+                cmd_cache_size = #{record.cmdCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="record.active != null">
+                active = #{record.active,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update c_iec104
+        set name = #{record.name,jdbcType=VARCHAR},
+        weight = #{record.weight,jdbcType=INTEGER},
+        main_ip = #{record.mainIp,jdbcType=VARCHAR},
+        back_ip = #{record.backIp,jdbcType=VARCHAR},
+        port = #{record.port,jdbcType=INTEGER},
+        s_init = #{record.sInit,jdbcType=INTEGER},
+        r_init = #{record.rInit,jdbcType=INTEGER},
+        r_cache_size = #{record.rCacheSize,jdbcType=INTEGER},
+        s_cache_size = #{record.sCacheSize,jdbcType=INTEGER},
+        pub_addr_size = #{record.pubAddrSize,jdbcType=INTEGER},
+        reason_size = #{record.reasonSize,jdbcType=INTEGER},
+        info_addr_size = #{record.infoAddrSize,jdbcType=INTEGER},
+        timer0 = #{record.timer0,jdbcType=INTEGER},
+        timer1 = #{record.timer1,jdbcType=INTEGER},
+        timer2 = #{record.timer2,jdbcType=INTEGER},
+        timer3 = #{record.timer3,jdbcType=INTEGER},
+        cmd_cache_size = #{record.cmdCacheSize,jdbcType=INTEGER},
+        active = #{record.active,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yn.entity.CIec104">
+        update c_iec104
+        <set>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=INTEGER},
+            </if>
+            <if test="mainIp != null">
+                main_ip = #{mainIp,jdbcType=VARCHAR},
+            </if>
+            <if test="backIp != null">
+                back_ip = #{backIp,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                port = #{port,jdbcType=INTEGER},
+            </if>
+            <if test="sInit != null">
+                s_init = #{sInit,jdbcType=INTEGER},
+            </if>
+            <if test="rInit != null">
+                r_init = #{rInit,jdbcType=INTEGER},
+            </if>
+            <if test="rCacheSize != null">
+                r_cache_size = #{rCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="sCacheSize != null">
+                s_cache_size = #{sCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="pubAddrSize != null">
+                pub_addr_size = #{pubAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="reasonSize != null">
+                reason_size = #{reasonSize,jdbcType=INTEGER},
+            </if>
+            <if test="infoAddrSize != null">
+                info_addr_size = #{infoAddrSize,jdbcType=INTEGER},
+            </if>
+            <if test="timer0 != null">
+                timer0 = #{timer0,jdbcType=INTEGER},
+            </if>
+            <if test="timer1 != null">
+                timer1 = #{timer1,jdbcType=INTEGER},
+            </if>
+            <if test="timer2 != null">
+                timer2 = #{timer2,jdbcType=INTEGER},
+            </if>
+            <if test="timer3 != null">
+                timer3 = #{timer3,jdbcType=INTEGER},
+            </if>
+            <if test="cmdCacheSize != null">
+                cmd_cache_size = #{cmdCacheSize,jdbcType=INTEGER},
+            </if>
+            <if test="active != null">
+                active = #{active,jdbcType=INTEGER},
+            </if>
+        </set>
+        where name = #{name,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yn.entity.CIec104">
+    update c_iec104
+    set weight = #{weight,jdbcType=INTEGER},
+      main_ip = #{mainIp,jdbcType=VARCHAR},
+      back_ip = #{backIp,jdbcType=VARCHAR},
+      port = #{port,jdbcType=INTEGER},
+      s_init = #{sInit,jdbcType=INTEGER},
+      r_init = #{rInit,jdbcType=INTEGER},
+      r_cache_size = #{rCacheSize,jdbcType=INTEGER},
+      s_cache_size = #{sCacheSize,jdbcType=INTEGER},
+      pub_addr_size = #{pubAddrSize,jdbcType=INTEGER},
+      reason_size = #{reasonSize,jdbcType=INTEGER},
+      info_addr_size = #{infoAddrSize,jdbcType=INTEGER},
+      timer0 = #{timer0,jdbcType=INTEGER},
+      timer1 = #{timer1,jdbcType=INTEGER},
+      timer2 = #{timer2,jdbcType=INTEGER},
+      timer3 = #{timer3,jdbcType=INTEGER},
+      cmd_cache_size = #{cmdCacheSize,jdbcType=INTEGER},
+      active = #{active,jdbcType=INTEGER}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -37,28 +37,25 @@
                         <legend>ABCIP采集</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加ABCIP采集配置','./ABCIP/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加ABCIP采集配置','./ABCIP/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="ABCIPCollect"></table>
+                    <table class="layui-table" id="ABCIPCollect" lay-filter="ABCIP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./ABCIP/edit', 2, 500, 600)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="ABCIP_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}../static/js/admin'
     });
@@ -76,85 +73,28 @@
             ]
         });
 
-        //展示IP配置数据
+        //展示RTU配置数据
         table.render({
             elem: '#ABCIPCollect',
+            url: '../collectingDevice/ABCIP/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
                 , {field: 'weight', title: '权重'}
                 , {field: 'main_ip', title: '主IP'}
                 , {field: 'back_ip', title: '备IP'}
-                , {field: 'port', title: '端口号'}
+                , {field: 'port', title: '端口'}
                 , {field: 'clct_interval', title: '采集周期'}
                 , {field: 'clct_timeout', title: '采集超时'}
                 , {field: 'cmd_timeout', title: '命令超时'}
                 , {field: 'package_len', title: '包长度'}
-                , {
-                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+                , {field: 'route', title: '路由地址'}
+                , {field: 'cmd_cache_size', title: '命令队列大小'}
+                , {field: 'active', title: '激活'}
+                ,{
+                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
                 }
-            ]],
-            data: [{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            },{
-                "name": "DEV1"
-                , "weight": "60"
-                , "main_ip": "192.168.1.1"
-                , "back_ip": "192.168.1.1"
-                , "port": "502"
-                , "clct_interval": "1000"
-                , "clct_timeout": "2000"
-                , "cmd_timeout": "4000"
-                , "package_len": "256"
-            }]
+            ]]
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
@@ -162,7 +102,37 @@
             , limit: 5 //每页默认显示的数量
         });
 
+        table.on('tool(ABCIP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './ABCIP/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "ABCIP/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
 
+        });
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
          * http://www.layui.com/doc/modules/form.html#render
@@ -171,17 +141,6 @@
             form.render();
         });
 
-        /*ABCIP-删除*/
-        window.ABCIP_del = function (obj, id) {
-            layer.confirm('确认要删除吗？', function (index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
-        }
     });
 
 </script>

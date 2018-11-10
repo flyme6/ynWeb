@@ -26,28 +26,27 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        CModbusTcpRtuMapper mapper = (CModbusTcpRtuMapper) applicationContext.getBean("CModbusTcpRtuMapper");
-        CModbusRtu recod = new CModbusRtu();
-        CModbusTcpRtuExample example = new CModbusTcpRtuExample();
+        FModbusTcpMapper mapper = (FModbusTcpMapper) applicationContext.getBean("FModbusTcpMapper");
+        FModbusTcpExample example = new FModbusTcpExample();
         List<Map<String, Object>> maps = mapper.selectByExample(example);
         System.out.println(maps.toString());
     }
 
     @Test
     public void updateByPrimaryKey() throws Exception {
-        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CModbusTcpMapper");
-        CModbusTcp cModbusTcp = new CModbusTcp();
-        cModbusTcp.setName("cmbs");
-        cModbusTcp.setWeight(101);
-        cModbusTcp.setMainIp("10.1.0.1");
-        cModbusTcp.setPort(8080);
-        int i = mapper.updateByPrimaryKey(cModbusTcp);
+        CAbcipMapper mapper = (CAbcipMapper) applicationContext.getBean("CAbcipMapper");
+        CAbcip recod = new CAbcip();
+        recod.setName("ccip");
+        recod.setWeight(101);
+        recod.setMainIp("10.1.0.1");
+        recod.setPort(8080);
+        int i = mapper.updateByPrimaryKey(recod);
         System.out.println(i);
     }
 
     @Test
     public void delByPrimaryKey() throws Exception {
-        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CModbusTcpMapper");
+        CModbusTcpMapper mapper = (CModbusTcpMapper) applicationContext.getBean("CAbcipMapper");
         CModbusTcp cModbusTcp = new CModbusTcp();
         cModbusTcp.setName("cmbs");
         int i = mapper.deleteByPrimaryKey(cModbusTcp.getName());

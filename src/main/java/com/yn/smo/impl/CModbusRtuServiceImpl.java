@@ -48,7 +48,7 @@ public class CModbusRtuServiceImpl implements ICModbusRtuService {
             result = Result.getUpdateSuccessResult();
         } catch (Exception e) {
             log.error("com/yn/smo/impl/CModbusTcpServiceImpl.java", e);
-            result = Result.getUpdateFailResult();
+            result = Result.getUpdateFailResult(e);
             result.addMsg(e.toString());
         }
         return result;

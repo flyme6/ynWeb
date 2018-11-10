@@ -9,7 +9,7 @@ public class Result extends JSONObject {
 
     private static final Logger log = LoggerFactory.getLogger(Result.class);
 
-    public Result(){
+    public Result() {
         try {
             this.put("msg", "");
             this.put("code", "");
@@ -64,45 +64,75 @@ public class Result extends JSONObject {
         }
     }
 
-    public static Result getUpdateSuccessResult(){
+    public static Result getQuerySuccessResult() {
+        Result result = new Result();
+        result.addMsg(Constant.MSG_QUERY_SUCCESS);
+        result.addCode(Constant.CODE_QUERY_SUCCESS);
+        return result;
+    }
+
+    public static Result getQueryFailResult(Exception e) {
+        Result result = new Result();
+        result.addMsg(Constant.MSG_QUERY_FAIL + e);
+        result.addCode(Constant.CODE_QUERY_FAIL);
+        return result;
+    }
+
+    public static Result getUpdateSuccessResult() {
         Result result = new Result();
         result.addMsg(Constant.MSG_UPDATE_SUCCESS);
         result.addCode(Constant.CODE_UPDATE_SUCCESS);
         return result;
     }
 
-    public static Result getUpdateFailResult(){
+    public static Result getUpdateFailResult(Exception e) {
         Result result = new Result();
-        result.addMsg(Constant.MSG_UPDATE_FAIL);
+        result.addMsg(Constant.MSG_UPDATE_FAIL + e);
         result.addCode(Constant.CODE_UPDATE_FAIL);
         return result;
     }
 
-    public static Result getDelSuccessResult(){
+    public static Result getDelSuccessResult() {
         Result result = new Result();
         result.addMsg(Constant.MSG_DELE_SUCCESS);
         result.addCode(Constant.CODE_DELE_SUCCESS);
         return result;
     }
 
-    public static Result getDelFailResult(){
+    public static Result getDelFailResult(Exception e) {
+        Result result = new Result();
+        result.addMsg(Constant.MSG_DELE_FAIL + e);
+        result.addCode(Constant.CODE_DELE_FAIL);
+        return result;
+    }
+
+    public static Result getDelFailResult() {
         Result result = new Result();
         result.addMsg(Constant.MSG_DELE_FAIL);
         result.addCode(Constant.CODE_DELE_FAIL);
         return result;
     }
 
-    public static Result getAddSuccessResult(){
+    public static Result getAddSuccessResult() {
         Result result = new Result();
         result.addMsg(Constant.MSG_ADD_SUCCESS);
         result.addCode(Constant.CODE_ADD_SUCCESS);
         return result;
     }
 
-    public static Result getAddFailResult(){
+    public static Result getAddFailResult() {
         Result result = new Result();
         result.addMsg(Constant.MSG_ADD_FAIL);
         result.addCode(Constant.CODE_ADD_FAIL);
         return result;
     }
+
+    public static Result getAddFailResult(Exception e) {
+        Result result = new Result();
+        result.addMsg(Constant.MSG_ADD_FAIL + e);
+        result.addCode(Constant.CODE_ADD_FAIL);
+        return result;
+    }
+
+
 }

@@ -36,7 +36,7 @@ public class CModbusTcpRtuServiceImpl implements ICModbusTcpRtuService {
             result.addCount(total);
             result.addData(maps);
         } catch (Exception e) {
-            log.error("com/yn/smo/impl/CModbusTcpRtuServiceImpl.java", e);
+            log.error("query", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -49,8 +49,8 @@ public class CModbusTcpRtuServiceImpl implements ICModbusTcpRtuService {
             bmo.updateByPrimaryKey(recod);
             result = Result.getUpdateSuccessResult();
         } catch (Exception e) {
-            log.error("com/yn/smo/impl/CModbusTcpRtuServiceImpl.java", e);
-            result = Result.getUpdateFailResult();
+            log.error("save", e);
+            result = Result.getUpdateFailResult(e);
             result.addMsg(e.toString());
         }
         return result;
@@ -72,7 +72,7 @@ public class CModbusTcpRtuServiceImpl implements ICModbusTcpRtuService {
                 result.addMsg("名称已存在");
             }
         } catch (Exception e) {
-            log.error("com/yn/smo/impl/CModbusTcpRtuServiceImpl.java", e);
+            log.error("add", e);
             result = Result.getAddFailResult();
             result.addMsg(e.toString());
         }
@@ -91,9 +91,8 @@ public class CModbusTcpRtuServiceImpl implements ICModbusTcpRtuService {
             }
 
         } catch (Exception e) {
-            log.error("com/yn/smo/impl/CModbusTcpRtuServiceImpl.java", e);
-            result = Result.getDelFailResult();
-            result.addMsg(e.toString());
+            log.error("del", e);
+            result = Result.getDelFailResult(e);
         }
         return result;
     }

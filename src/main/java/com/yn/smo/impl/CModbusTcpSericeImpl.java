@@ -60,7 +60,7 @@ public class CModbusTcpSericeImpl implements ICModbusTcpService {
             result = Result.getUpdateSuccessResult();
         } catch (Exception e) {
             log.error("com/yn/smo/impl/CModbusTcpImpl.java", e);
-            result = Result.getUpdateFailResult();
+            result = Result.getUpdateFailResult(e);
             result.addMsg(e.toString());
         }
         return result;

@@ -3,7 +3,7 @@ package com.yn.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CIec104Example {
+public class CIec104Example extends Base {
     protected String orderByClause;
 
     protected boolean distinct;

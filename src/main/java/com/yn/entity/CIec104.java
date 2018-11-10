@@ -1,6 +1,6 @@
 package com.yn.entity;
 
-public class CIec104 {
+public class CIec104 extends Base{
     private String name;
 
     private Integer weight;

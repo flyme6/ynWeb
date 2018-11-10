@@ -270,7 +270,7 @@
                     if (info.code === 200) {
                         setTimeout(function () {
                             top.layer.close(index);
-                            top.layer.msg("用户添加成功！");
+                            top.layer.msg(info.msg);
                             layer.closeAll("iframe");
                             //刷新父页面
                             parent.location.reload();

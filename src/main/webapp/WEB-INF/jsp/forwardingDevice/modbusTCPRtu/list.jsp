@@ -37,28 +37,25 @@
                         <legend>Modbus诱传转发</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusRTU采集配置','./modbusTCPRtu/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusRTU采集配置','./modbusTCPRtu/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="ABCIPCollect"></table>
+                    <table class="layui-table" id="ABCIPCollect" lay-filter="modbusTCP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./modbusTCPRtu/edit', 2, 600, 400)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="modbusTCPRtu_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}../static/js/admin'
     });
@@ -79,6 +76,7 @@
         //展示IP配置数据
         table.render({
             elem: '#ABCIPCollect',
+            url: '../forwardingDevice/modbusTCPRtu/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
@@ -95,80 +93,7 @@
                 ,{
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
                 }
-            ]],
-            data: [{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            },{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            },{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            },{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            },{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            },{
-                "name": "DEV1"
-                , "port": "60"
-                , "comm_timeout": "60"
-                , "client_limit": "60"
-                , "cmd_timeout": "4000"
-                , "allow_empty_addr": "192.168.1.1"
-                , "byte_order16": "2000"
-                , "byte_order32": "4000"
-                , "byte_order64": "4000"
-                , "cmd_cache_size": "256"
-                , "active": "true"
-            }]
+            ]]
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
@@ -176,6 +101,37 @@
             , limit: 5 //每页默认显示的数量
         });
 
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './modbusTCPRtu/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "modbusTCPRtu/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
+
+        });
 
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下

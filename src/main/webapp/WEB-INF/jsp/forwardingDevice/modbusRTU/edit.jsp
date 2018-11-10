@@ -34,7 +34,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="L_equipmentName" name="name" lay-verify="required|nikename"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" readonly>
             </div>
         </div>
         <div class="layui-form-item">
@@ -116,7 +116,7 @@
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <button class="layui-btn" id="L_repass" lay-filter="add" lay-submit="">确定</button>
+            <button class="layui-btn" id="L_repass" lay-filter="edit" lay-submit="">确定</button>
             <!--<input type="text" name="dataId" id="dataId" value=""/>-->
         </div>
     </form>

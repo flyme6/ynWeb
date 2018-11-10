@@ -26,7 +26,7 @@
 
 <body>
 <div class="weadmin-body">
-    <form class="layui-form">
+    <form class="layui-form" action="goEdit" method="post">
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
                 <span class="we-red">*</span>设备名称
@@ -34,7 +34,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="L_name" name="name" lay-verify="required|nikename"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" readonly>
             </div>
         </div>
         <div class="layui-form-item">
@@ -42,63 +42,63 @@
                 <span class="we-red">*</span>端口号
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_port" name="port" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_port" name="port" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_comm_timeout" class="layui-form-label">
-                <span class="we-red">*</span>通信超时
+                通信超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_comm_timeout" name="comm_timeout" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_comm_timeout" name="commTimeout" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_client_limit" class="layui-form-label">
-                <span class="we-red">*</span>最大客户端数量
+                最大客户端数量
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_client_limit" name="client_limit" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_client_limit" name="clientLimit" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_cmd_timeout" class="layui-form-label">
-                <span class="we-red">*</span>命令超时
+                命令超时
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_cmd_timeout" name="cmd_timeout" lay-verify="required|nikename" autocomplete="off"
+                <input type="number" id="L_cmd_timeout" name="cmdTimeout" lay-verify="" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_allow_empty_addr" class="layui-form-label">
-                <span class="we-red">*</span>转发空地址
+                转发空地址
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_allow_empty_addr" name="allow_empty_addr" lay-verify="required|nikename"
+                <input type="number" id="L_allow_empty_addr" name="allowEmptyAddr" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order16" class="layui-form-label">
-                <span class="we-red">*</span>16位数据字节序
+                16位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_byte_order16" name="byte_order16" lay-verify="required|nikename"
+                <input type="text" id="L_byte_order16" name="byteOrder16" lay-verify=""
                        autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order32" class="layui-form-label">
-                <span class="we-red">*</span>32位数据字节序
+                32位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_byte_order32" name="byte_order32" autocomplete="off"
+                <input type="text" id="L_byte_order32" name="byteOrder32" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -107,39 +107,40 @@
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order64" class="layui-form-label">
-                <span class="we-red">*</span>64位数据字节序
+                64位数据字节序
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_byte_order64" name="byte_order64" autocomplete="off"
+                <input type="text" id="L_byte_order64" name="byteOrder64" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_cmd_cache_size" class="layui-form-label">
-                <span class="we-red">*</span>命令队列大小
+                命令队列大小
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_cmd_cache_size" name="cmd_cache_size" autocomplete="off" class="layui-input">
+                <input type="number" id="L_cmd_cache_size" name="cmdCacheSize" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_active" class="layui-form-label">
-                <span class="we-red">*</span>激活
+                激活
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_active" name="active" autocomplete="off" class="layui-input">
+                <input type="number" id="L_active" name="active" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <button class="layui-btn" id="L_repass" lay-filter="add" lay-submit="">确定</button>
+            <button class="layui-btn" id="L_repass" lay-filter="edit" lay-submit="">确定</button>
             <!--<input type="text" name="dataId" id="dataId" value=""/>-->
         </div>
     </form>
 </div>
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa = window.parent.aa;
     layui.extend({
         admin: '{/}../../static/js/admin'
     });
@@ -153,10 +154,22 @@
         //自定义验证规则
         form.verify({
             nikename: function (value) {
-                if (value.length < 5) {
-                    return '昵称至少得5个字符啊';
+                if (value.length < 1) {
+                    return '不能为空';
                 }
-            }
+            },
+            back_ip: function (value) {
+                var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+                if (value.length > 0) {
+                    if (!reg.test(value)) {
+                        return "请检查IP地址";
+                    }
+                }
+            },
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , '请检查IP地址是否输入正确？'
+            ]
         });
         //页面初始化加载
         $(function () {
@@ -167,26 +180,35 @@
 
         function frameVal() {
             var dataId = $('input[name="dataId"]').val();
+            console.log(dataId);
             var index = parent.layer.getFrameIndex(window.name);
-            parent.layui.jquery("#memberList tr").each(function () {
-                if ($(this).attr('data-id') == dataId) {
-                    console.log($(this));
-                    var tdArr = $(this).children('td');
-                    var username = tdArr.eq(2).text(); //姓名
-                    var sex = tdArr.eq(3).text(); //性别
-                    var phone = tdArr.eq(4).text(); //电话
-                    var email = tdArr.eq(5).text(); //邮箱
-                    var address = tdArr.eq(6).text(); //地址
 
-                    $('input[name="username"]').val(username);
-                    console.log("sex:" + sex);
-                    $('input[name="sex"][value="' + sex + '"]').attr("checked", true);
-                    $('input[name="phone"]').val(phone);
-                    $('input[name="email"]').val(email);
-                    $('input[name="address"]').val(address);
-                    form.render();
-                }
-            });
+            var name = aa.data.name;
+            var port = aa.data.port;
+            var comm_timeout = aa.data.comm_timeout;
+            var client_limit = aa.data.client_limit;
+            var cmd_timeout = aa.data.cmd_timeout;
+            var allow_empty_addr = aa.data.allow_empty_addr;
+            var byte_order16 = aa.data.byte_order16;
+            var byte_order32 = aa.data.byte_order32;
+            var byte_order64 = aa.data.byte_order64;
+            var cmd_cache_size = aa.data.cmd_cache_size;
+            var active = aa.data.active;
+
+
+            $('input[name="name"]').val(name);
+            $('input[name="port"]').val(port);
+            $('input[name="commTimeout"]').val(comm_timeout);
+            $('input[name="clientLimit"]').val(client_limit);
+            $('input[name="cmdTimeout"]').val(cmd_timeout);
+            $('input[name="allowEmptyAddr"]').val(allow_empty_addr);
+            $('input[name="byteOrder16"]').val(byte_order16);
+            $('input[name="byteOrder32"]').val(byte_order32);
+            $('input[name="byteOrder64"]').val(byte_order64);
+            $('input[name="cmdCacheSize"]').val(cmd_cache_size);
+            $('input[name="active"]').val(active);
+
+            form.render();
         }
 
         //监听提交
@@ -202,6 +224,42 @@
                 parent.layer.close(index);
             });
             return false;
+        });
+
+        form.on('submit(edit)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 201) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 200) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                }
+            });
+            return false;
+
         });
 
     });

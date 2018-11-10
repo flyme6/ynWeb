@@ -48,7 +48,7 @@
         </div>
         <script type="text/html" id="operateTpl">
             <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
-            <a title="编辑" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
+            <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
@@ -72,28 +72,28 @@
                 , 'IP地址不符合规则'
             ]
         });
-
-        //展示RTU配置数据
+        //展示IP配置数据
         table.render({
             elem: '#ABCIPCollect',
-            url: '../collectingDevice/IEC104/query',//数据接口
+            url: '../forwardingDevice/IEC104/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '设备名称'}
-                , {field: 'weight', title: '权重'}
-                , {field: 'port', title: '端口'}
-                , {field: 'clct_interval', title: '采集周期'}
-                , {field: 'clct_timeout', title: '采集超时'}
-                , {field: 'cmd_timeout', title: '命令超时'}
-                , {field: 'fault_count', title: '允许失败次数'}
-                , {field: 'package_len', title: '包长度'}
-                , {field: 'allow_empty_addr', title: '包长度'}
-                , {field: 'byte_order16', title: '包长度'}
-                , {field: 'byte_order32', title: '包长度'}
-                , {field: 'byte_order64', title: '包长度'}
-                , {field: 'cmd_cache_size', title: '包长度'}
+                ,{field: 'port', title: '端口号'}
+                ,{field: 'client_limit', title: '最大客户端数量'}
+                , {field: 's_init', title: '发送初始序号'}
+                , {field: 'r_init', title: '接收初始序号'}
+                , {field: 'r_cache_size', title: '允许接收未确认帧数'}
+                , {field: 's_cache_size', title: '允许发送未确认帧数'}
+                , {field: 'pub_addr_size', title: '公共地址长度'}
+                , {field: 'reason_size', title: '传输原因长度'}
+                , {field: 'info_addr_size', title: '信息地址长度'}
+                , {field: 'timer0', title: '定时器0'}
+                , {field: 'timer1', title: '定时器1'}
+                , {field: 'timer2', title: '定时器2'}
+                , {field: 'timer3', title: '定时器3'}
                 , {field: 'active', title: '激活'}
-                ,{
+                , {
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
                 }
             ]]
@@ -102,6 +102,15 @@
             , page: true //是否显示分页
             , limits: [5, 7, 10]
             , limit: 5 //每页默认显示的数量
+        });
+
+
+        /*
+         *数据表格中form表单元素是动态插入,所以需要更新渲染下
+         * http://www.layui.com/doc/modules/form.html#render
+         * */
+        $(function () {
+            form.render();
         });
 
         table.on('tool(modbusTCP)', function (obj) {
@@ -118,7 +127,7 @@
                 layer.confirm('真的删除行么', function (index) {
                     //向服务端发送删除指令
                     $.ajax({
-                        url: "modbusRTU/goDel",
+                        url: "IEC104/goDel",
                         data: "name=" + obj.data.name,
                         type: "GET",
                         dataType: "json",
@@ -134,13 +143,6 @@
             }
             console.log(id);
 
-        });
-        /*
-         *数据表格中form表单元素是动态插入,所以需要更新渲染下
-         * http://www.layui.com/doc/modules/form.html#render
-         * */
-        $(function () {
-            form.render();
         });
 
     });

@@ -37,17 +37,22 @@
                     <div class="layui-card-body">
                         <div class="form-box">
                             <!--<a class="layui-btn layui-btn-blue" id="addUser"><i class="layui-icon">&#xe654;</i>新增</a>-->
-                            <table id="comConfig"></table>
+                            <table class="layui-table" id="comConfig" lay-filter="modbusTCP"></table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script type="text/html" id="operateTpl">
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <%--<a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>--%>
+        </script>
     </div>
 </div>
 </body>
 <script src="../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}../static/js/admin'
     });
@@ -62,6 +67,7 @@
         //展示com配置数据
         table.render({
             elem: '#comConfig',
+            url: '../systemConfig/com/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'port_number', title: '串口号'}
@@ -71,62 +77,49 @@
                 , {field: 'parity', title: '奇偶校验位'}
                 , {field: 'data_bits', title: '数据位'}
                 , {field: 'stop_bits', title: '停止位'}
-            ]],
-            data: [{
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            }, {
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            }, {
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            },{
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            },{
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            },{
-                "port_number": "ETH1"
-                , "send_delay": "200"
-                , "recv_timeout": "1000"
-                , "baud_rate": "14400"
-                , "parity": "NONE"
-                , "data_bits": "7"
-                , "stop_bits": "1"
-            }]
+                , {
+                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'
+                }
+            ]]
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
             , limits: [5, 7, 10]
             , limit: 5 //每页默认显示的数量
         });
+
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './com/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "IEC104/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
+
+        });
+
 
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下

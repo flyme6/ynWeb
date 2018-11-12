@@ -26,8 +26,8 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        FModbusTcpMapper mapper = (FModbusTcpMapper) applicationContext.getBean("FModbusTcpMapper");
-        FModbusTcpExample example = new FModbusTcpExample();
+        ComMapper mapper = (ComMapper) applicationContext.getBean("comMapper");
+        ComExample example = new ComExample();
         List<Map<String, Object>> maps = mapper.selectByExample(example);
         System.out.println(maps.toString());
     }

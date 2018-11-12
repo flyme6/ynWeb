@@ -42,7 +42,7 @@
                         <form class="layui-form layui-col-md12 we-search">
                             按设备过滤：：
                             <div class="layui-inline">
-                                <input class="layui-input" placeholder="设备名称" name="start" id="start">
+                                <input class="layui-input" placeholder="设备名称" name="name" id="start">
                             </div>
                             <div class="layui-inline">
                                 <input type="text" name="username" placeholder="PT1" autocomplete="off"
@@ -53,28 +53,25 @@
                         </form>
                     </div>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加点表配置','./pointsConfig/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加点表配置','./pointsConfig/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <table class="layui-table" id="points"></table>
+                    <table class="layui-table" id="points" lay-filter="modbusTCP"></table>
                 </div>
             </div>
         </div>
         <script type="text/html" id="operateTpl">
-            <a title="编辑" onclick="WeAdminEdit('编辑','./pointsConfig/edit', 2, 500, 600)" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-            </a>
-            <a title="删除" onclick="pointsConfig_del(this,'要删除的id')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-            </a>
+            <a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>
+            <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
         </script>
     </div>
 </div>
 </body>
 <script src="lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa;
     layui.extend({
         admin: '{/}static/js/admin'
     });
@@ -95,9 +92,11 @@
         //展示IP配置数据
         table.render({
             elem: '#points',
+            url: './pointsConfig/query',//数据接口
             cellMinWidth: 80,
             cols: [[ //标题栏
                 {field: 'name', title: '点名'}
+                , {field: 'desc', title: '点描述'}
                 , {field: 'c_dev', title: '采集设备名'}
                 , {field: 'c_devid', title: '采集设备IP'}
                 , {field: 'c_inaddr', title: '采集地址'}
@@ -106,39 +105,47 @@
                 , {field: 'f_devid', title: '转发设备ID'}
                 , {field: 'f_inaddr', title: '转发地址'}
                 , {field: 'f_intype', title: '转发点类型'}
-                , {field: 'desc', title: '点描述'}
                 , {
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
                 }
-            ]],
-            data: [{
-                "name": "PT0001"
-                , "c_dev": "DEV1"
-                , "c_devid": "1"
-                , "c_inaddr": "DO.1"
-                , "c_intype": "int16    "
-                , "f_dev": "F1"
-                , "f_devid": "1"
-                , "f_inaddr": "DO.1"
-                , "f_intype": "int16"
-                , "desc": "首站进站压力"
-            },{
-                "name": "PT0002"
-                , "c_dev": "DEV1"
-                , "c_devid": "1"
-                , "c_inaddr": "AO.1"
-                , "c_intype": "int16    "
-                , "f_dev": "F1"
-                , "f_devid": "1"
-                , "f_inaddr": "AO.1"
-                , "f_intype": "int16"
-                , "desc": "首站出站压力"
-            }]
+            ]]
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
             , limits: [5, 7, 10]
             , limit: 5 //每页默认显示的数量
+        });
+
+        table.on('tool(modbusTCP)', function (obj) {
+            // var data = obj.data;//获得当前行数据
+            // console.log("ceshi");
+            // console.log(data);
+            var id = $(this).parent('div').parent('td').parent('tr').attr('data-index');
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'edit') {
+                aa = obj;
+                console.info(aa);
+                WeAdminEdit('编辑', './pointsConfig/edit', id, 600, 400)
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: "pointsConfig/goDel",
+                        data: "name=" + obj.data.name,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (msg) {
+                            obj.del(); //删除对应行（tr）的DOM结构
+                            layer.close(index);
+                        },
+                        error: function (error) {
+                            alert(error + "出现异常");
+                        }
+                    });
+                });
+            }
+            console.log(id);
+
         });
 
 

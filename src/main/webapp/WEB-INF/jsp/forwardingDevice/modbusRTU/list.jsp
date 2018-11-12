@@ -37,7 +37,7 @@
                         <legend>ModbusRTU转发</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加Modbus透传配置','./modbusRTU/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加Modbus透传配置','./modbusRTU/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->

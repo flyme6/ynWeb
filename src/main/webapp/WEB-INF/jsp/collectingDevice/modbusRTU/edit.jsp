@@ -157,6 +157,12 @@
                        class="layui-input">
             </div>
         </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" id="L_repass" lay-filter="edit" lay-submit="">确定</button>
+            <!--<input type="text" name="dataId" id="dataId" value=""/>-->
+        </div>
     </form>
 </div>
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>

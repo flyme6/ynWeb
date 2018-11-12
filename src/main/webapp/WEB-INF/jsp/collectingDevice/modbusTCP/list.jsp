@@ -37,7 +37,7 @@
                         <legend>ModbusTCP采集</legend>
                     </fieldset>
                     <div class="weadmin-block">
-                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusTCP采集配置','./modbusTCP/add',500,600)"><i
+                        <button class="layui-btn" onclick="WeAdminShow('添加ModbusTCP采集配置','./modbusTCP/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
                     </div>

@@ -1,11 +1,11 @@
 package com.yn.smo.impl;
 
-import com.yn.bmo.IPointsBmo;
+import com.yn.bmo.IComBmo;
 import com.yn.common.Constant;
 import com.yn.common.Result;
-import com.yn.entity.Points;
-import com.yn.entity.PointsExample;
-import com.yn.smo.IPointsService;
+import com.yn.entity.Com;
+import com.yn.entity.ComExample;
+import com.yn.smo.IComService;
 import com.yn.util.ObjectUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +16,17 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class PointsServiceImpl implements IPointsService {
+public class ComServiceImpl implements IComService {
     private static final Logger log = LoggerFactory.getLogger(PointsServiceImpl.class);
 
     @Autowired
-    private IPointsBmo bmo;
+    private IComBmo bmo;
 
     @Override
-    public Result query(PointsExample example) {
+    public Result query(ComExample example) {
         Result result = new Result();
         try {
+
             List<Map<String, Object>> maps = bmo.selectByExample(example);
             int total = bmo.countByExample(example);
             System.out.println(total + "total");
@@ -41,7 +42,7 @@ public class PointsServiceImpl implements IPointsService {
     }
 
     @Override
-    public Result save(Points recod) {
+    public Result save(Com recod) {
         Result result = new Result();
         try {
             bmo.updateByPrimaryKey(recod);
@@ -55,10 +56,10 @@ public class PointsServiceImpl implements IPointsService {
     }
 
     @Override
-    public Result add(Points recod) {
+    public Result add(Com recod) {
         Result result = new Result();
         try {
-            Points recod2 = bmo.selectByPrimaryKey(recod.getName());
+            Com recod2 = bmo.selectByPrimaryKey(recod.getPortNumber());
             boolean aNull = ObjectUtil.isNull(recod2);
             if (aNull) {
                 int insert = bmo.insert(recod);
@@ -78,10 +79,10 @@ public class PointsServiceImpl implements IPointsService {
     }
 
     @Override
-    public Result del(Points recod) {
+    public Result del(Com recod) {
         Result result = new Result();
         try {
-            int i = bmo.deleteByPrimaryKey(recod.getName());
+            int i = bmo.deleteByPrimaryKey(recod.getPortNumber());
             if (i > 0) {
                 result = Result.getDelSuccessResult();
             } else {

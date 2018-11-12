@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yn.mapper.TcpMapper" >
+  <resultMap id="BaseResultMap" type="com.yn.entity.Tcp" >
+    <id column="port_number" property="portNumber" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="subnet_mask" property="subnetMask" jdbcType="VARCHAR" />
+    <result column="gateway" property="gateway" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    port_number, IP, subnet_mask, gateway
+  </sql>
+  <select id="selectByExample" resultType="java.util.LinkedHashMap" parameterType="com.yn.entity.TcpExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tcp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="lastCount != null or lastCount == 0">
+      limit #{lastCount} ,
+      <if test="pageSize != null and pageSize != ''">
+        #{pageSize}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tcp
+    where port_number = #{portNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tcp
+    where port_number = #{portNumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yn.entity.TcpExample" >
+    delete from tcp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yn.entity.Tcp" >
+    insert into tcp (port_number, IP, subnet_mask, 
+      gateway)
+    values (#{portNumber,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{subnetMask,jdbcType=VARCHAR}, 
+      #{gateway,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yn.entity.Tcp" >
+    insert into tcp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="portNumber != null" >
+        port_number,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="subnetMask != null" >
+        subnet_mask,
+      </if>
+      <if test="gateway != null" >
+        gateway,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="portNumber != null" >
+        #{portNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="subnetMask != null" >
+        #{subnetMask,jdbcType=VARCHAR},
+      </if>
+      <if test="gateway != null" >
+        #{gateway,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yn.entity.TcpExample" resultType="java.lang.Integer" >
+    select count(*) from tcp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tcp
+    <set >
+      <if test="record.portNumber != null" >
+        port_number = #{record.portNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null" >
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subnetMask != null" >
+        subnet_mask = #{record.subnetMask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gateway != null" >
+        gateway = #{record.gateway,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tcp
+    set port_number = #{record.portNumber,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      subnet_mask = #{record.subnetMask,jdbcType=VARCHAR},
+      gateway = #{record.gateway,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yn.entity.Tcp" >
+    update tcp
+    <set >
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="subnetMask != null" >
+        subnet_mask = #{subnetMask,jdbcType=VARCHAR},
+      </if>
+      <if test="gateway != null" >
+        gateway = #{gateway,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where port_number = #{portNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yn.entity.Tcp" >
+    update tcp
+    set IP = #{ip,jdbcType=VARCHAR},
+      subnet_mask = #{subnetMask,jdbcType=VARCHAR},
+      gateway = #{gateway,jdbcType=VARCHAR}
+    where port_number = #{portNumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

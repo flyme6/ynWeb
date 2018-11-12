@@ -102,7 +102,7 @@
                 layer.confirm('真的删除行么', function (index) {
                     //向服务端发送删除指令
                     $.ajax({
-                        url: "IEC104/goDel",
+                        url: "com/goDel",
                         data: "name=" + obj.data.name,
                         type: "GET",
                         dataType: "json",

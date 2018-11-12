@@ -25,8 +25,8 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        IComService service = (IComService) applicationContext.getBean("comServiceImpl");
-        ComExample example = new ComExample();
+        ITcpService service = (ITcpService) applicationContext.getBean("tcpServiceImpl");
+        TcpExample example = new TcpExample();
 //        example.setOrderByClause("'name'");
         Result result = service.query(example);
 

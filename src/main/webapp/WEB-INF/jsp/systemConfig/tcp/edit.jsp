@@ -32,35 +32,35 @@
                 <span class="we-red">*</span>网口名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_portNumber" name="portNumber" lay-verify="required|nikename"
+                <input type="text" id="L_portNumber" name="portNumber" lay-verify="required"
                        autocomplete="off"
                        class="layui-input" readonly>
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_sendDelay" class="layui-form-label">
-                <span class="we-red">*</span>IP地址
+            <label for="L_ip" class="layui-form-label">
+                IP地址
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_sendDelay" name="sendDelay" lay-verify="required" autocomplete="off"
+                <input type="text" id="L_ip" name="ip" lay-verify="back_ip" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_recvTimeout" class="layui-form-label">
+            <label for="L_subnetMask" class="layui-form-label">
                 子网掩码
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_recvTimeout" name="recvTimeout" lay-verify="" autocomplete="off"
+                <input type="text" id="L_subnetMask" name="subnetMask" lay-verify="back_ip" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_baudRate" class="layui-form-label">
-               默认网关
+                默认网关
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_baudRate" name="baudRate" lay-verify="" autocomplete="off"
+                <input type="text" id="L_baudRate" name="gateway" lay-verify="back_ip" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -92,14 +92,6 @@
             //         return '不能为空';
             //     }
             // },
-            nikename: function (value) {
-                var reg = /^[a-z]\w{1,19}$/;
-                if (value.length > 0) {
-                    if (!reg.test(value)) {
-                        return "必须以字母开头";
-                    }
-                }
-            },
 
             back_ip: function (value) {
                 var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
@@ -112,7 +104,7 @@
             ip: [
                 /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
                 , '请检查IP地址是否输入正确？'
-            ],
+            ]
         });
         //页面初始化加载
         $(function () {
@@ -127,21 +119,16 @@
             var index = parent.layer.getFrameIndex(window.name);
 
             var port_number = aa.data.port_number;
-            var send_delay = aa.data.send_delay;
-            var recv_timeout = aa.data.recv_timeout;
-            var baud_rate = aa.data.baud_rate;
-            var parity = aa.data.parity;
-            var data_bits = aa.data.data_bits;
-            var stop_bits = aa.data.stop_bits;
+            var IP = aa.data.IP;
+            var gateway = aa.data.gateway;
+            var subnet_mask = aa.data.subnet_mask;
 
 
             $('input[name="portNumber"]').val(port_number);
-            $('input[name="sendDelay"]').val(send_delay);
-            $('input[name="recvTimeout"]').val(recv_timeout);
-            $('input[name="baudRate"]').val(baud_rate);
-            $('input[name="parity"]').val(parity);
-            $('input[name="dataBits"]').val(data_bits);
-            $('input[name="stopBits"]').val(r_init);
+            $('input[name="ip"]').val(IP);
+            $('input[name="subnetMask"]').val(gateway);
+            $('input[name="gateway"]').val(subnet_mask);
+
             form.render();
         }
 

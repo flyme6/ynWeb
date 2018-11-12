@@ -107,7 +107,7 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="./systemConfig/ip">
+                        <a _href="./systemConfig/tcp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>网口配置</cite>
 

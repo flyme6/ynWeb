@@ -36,41 +36,52 @@
                         <legend>通用配置</legend>
                     </fieldset>
                     <div class="layui-card-body">
-                        <form class="layui-form" action="">
+                        <form class="layui-form" action="common/goAdd" method="post">
                             <div class="layui-form-item">
-                                <label class="layui-form-label">名称</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="Project_name" lay-verify="title" autocomplete="off"
+                                <label class="layui-form-label">
+                                    <span class="we-red">*</span>名称</label>
+                                <%--<div class="layui-input-block">--%>
+                                    <%--<input type="text" name="projectName" lay-verify="required" autocomplete="off"--%>
+                                           <%--placeholder="请输入名称" class="layui-input">--%>
+                                <%--</div>--%>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="projectName" lay-verify="required" autocomplete="off"
                                            placeholder="请输入名称" class="layui-input">
+
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">是否启用冗余（默认开）</label>
+                                <label class="layui-form-label">
+                                    <span class="we-red">*</span>启用冗余</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" checked="" name="enable_redun" lay-skin="switch"
-                                           lay-filter="switchTest_hash" lay-text="ON|OFF">
+                                    <input type="checkbox" checked="" name="enableRedun" lay-verify="required"
+                                           lay-skin="switch"
+                                               lay-filter="switchTest" lay-text="开|关">
+
                                 </div>
+
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">备用产品IP地址：</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="IP1" lay-verify="ip" autocomplete="off"
+                                <label class="layui-form-label">
+                                    发送间隔
+                                </label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="ip1" lay-verify="required|ip" autocomplete="off"
                                            placeholder="请输入IP1" class="layui-input">
 
                                 </div>
-                                <div class="layui-input-block">
-
-                                    <input type="text" name="IP2" lay-verify="ip" autocomplete="off"
+                                <div class="layui-input-inline">
+                                    <input type="text" name="ip2" lay-verify="back_ip" autocomplete="off"
                                            placeholder="请输入IP2" class="layui-input">
 
                                 </div>
-                                <div class="layui-input-block">
-
-                                    <input type="text" name="IP3" lay-verify="ip" autocomplete="off"
+                                <div class="layui-input-inline">
+                                    <input type="text" name="ip3" lay-verify="back_ip" autocomplete="off"
                                            placeholder="请输入IP3" class="layui-input">
 
                                 </div>
                             </div>
+
                             <!--<div class="layui-form-item layui-form-text">
                                   <label class="layui-form-label">编辑器</label>
                                   <div class="layui-input-block">
@@ -79,7 +90,7 @@
                                 </div>-->
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="demo1_hash">立即提交</button>
+                                    <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
                                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                                 </div>
                             </div>
@@ -103,12 +114,90 @@
             form = layui.form,
             admin = layui.admin;
 
+        var form = layui.form
+            , layer = layui.layer;
+
         form.verify({
             ip: [
                 /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
                 , 'IP地址不符合规则'
-            ]
+            ],
+            back_ip: function (value) {
+                var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+                if (value.length > 0) {
+                    if (!reg.test(value)) {
+                        return "请检查IP地址";
+                    }
+                }
+            }
         });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            console.info(data);
+            // if(data.value == "on") {
+            //     data.value = "1";
+            //     layer.msg('开关checked：' + data.value + (this.checked ? 'true' : 'false'), {
+            //                 offset: '6px'
+            //             });
+            // } else {
+            //     data.value = "0";
+            //     layer.msg('开关： 关掉了' + data.value, {
+            //                 offset: '6px'
+            //             });
+            // }
+
+            // if (this.checked) {
+            //     data.value = "1";
+            //     layer.msg('开关checked：' + data.value + (this.checked ? 'true' : 'false'), {
+            //         offset: '6px'
+            //     });
+            //     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅 仅是ON|OFF', data.othis)
+            // } else {
+            //     data.value = "0";
+            //     layer.msg('开关： 关掉了' + +data.value, {
+            //         offset: '6px'
+            //     });
+            //
+            // }
+            $(data.elem).attr('type', 'hidden').val(this.checked ? 1 : 0);
+            //do some ajax opeartiopns;
+        });
+
+        form.on('submit(add)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    // console.log(info);
+                    // console.log(info.code);
+                    if (info.code === 301) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg("配置成功");
+                        }, 1000);
+                    }else {
+                        // top.layer.close(index);
+                        top.layer.msg(info.msg);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 300) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                        }, 1000);
+                    }
+                    top.layer.close(index);
+                    top.layer.msg(info.msg);
+                }
+            });
+            return false;
+        });
+
     });
 
 

@@ -7,6 +7,10 @@
           <element id="module-output" name="ynWeb" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.3.2" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.3.2" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.3.2" />
           <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.7.2" />
           <element id="library" level="project" name="Maven: junit:junit:4.12" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
@@ -77,8 +81,6 @@
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-all:1.2.3" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-guice:1.2.3" />
-          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.3" />
-          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:r09" />
           <element id="library" level="project" name="Maven: com.google.inject:guice:3.0" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />

@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Service
 public class UsermgrServiceImpl implements IUsermgrService {
-    private static final Logger log = LoggerFactory.getLogger(TcpServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(UsermgrServiceImpl.class);
 
     @Autowired
     private IUsermgrBmo bmo;
@@ -35,6 +35,34 @@ public class UsermgrServiceImpl implements IUsermgrService {
             result.addMsg(Constant.MSG_QUERY_SUCCESS);
             result.addCount(total);
             result.addData(maps);
+        } catch (Exception e) {
+            log.error("query", e);
+            result.addMsg(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Result query(Usermgr recod) {
+        Result result = new Result();
+        try {
+            Usermgr usermgr = bmo.selectByPrimaryKey(recod.getUsername());
+            if (ObjectUtil.isNotNull(usermgr)) {
+                if (recod.getUsername().equals(usermgr.getUsername())) {
+                    if (recod.getPassword().equals(usermgr.getPassword())) {
+                        result.addMsg("登录成功");
+                        result.addCode(501);
+                        System.out.println("大声道撒多撒" + usermgr.toString());
+                        result.addData(usermgr.getRole());
+                    } else {
+                        result.addMsg("请检查密码是否输入正确");
+                        result.addCode(502);
+                    }
+                }
+            } else {
+                result.addMsg("请检查用户名");
+                result.addCode(500);
+            }
         } catch (Exception e) {
             log.error("query", e);
             result.addMsg(e.getMessage());

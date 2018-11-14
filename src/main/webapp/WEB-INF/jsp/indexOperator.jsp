@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- 引入jstl库 -->
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -12,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>后台管理系统</title>
+    <title>操作员后台管理系统</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -66,7 +64,7 @@
             </dl>
         </li>
         <li class="layui-nav-item">
-            <a href="javascript:;">${sessionScope.username }</a>
+            <a href="javascript:;">Admin</a>
             <dl class="layui-nav-child">
                 <!-- 个人管理二级菜单 -->
                 <dd>
@@ -93,135 +91,135 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-            <!--系统配置-->
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>系统配置</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="./systemConfig/common">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>通用配置</cite>
+            <%--<!--系统配置-->--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">--%>
+                    <%--<i class="iconfont">&#xe6b8;</i>--%>
+                    <%--<cite>系统配置</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                <%--</a>--%>
+                <%--<ul class="sub-menu">--%>
+                    <%--<li>--%>
+                        <%--<a _href="./systemConfig/common">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>通用配置</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./systemConfig/tcp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>网口配置</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./systemConfig/tcp">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>网口配置</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./systemConfig/com">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>串口配置</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./systemConfig/com">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>串口配置</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./systemConfig/user">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户配置</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./systemConfig/user">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>用户配置</cite>--%>
 
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--采集设备配置-->
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>采集设备配置</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="./collectingDevice/modbusTCP">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus TCP采集</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+            <%--<!--采集设备配置-->--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">--%>
+                    <%--<i class="iconfont">&#xe6b8;</i>--%>
+                    <%--<cite>采集设备配置</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                <%--</a>--%>
+                <%--<ul class="sub-menu">--%>
+                    <%--<li>--%>
+                        <%--<a _href="./collectingDevice/modbusTCP">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus TCP采集</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./collectingDevice/modbusRTU">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus RTU采集</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./collectingDevice/modbusRTU">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus RTU采集</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./collectingDevice/modbusTCPRtu">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus 透传采集</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./collectingDevice/modbusTCPRtu">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus 透传采集</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./collectingDevice/ABCIP">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>ABCIP采集</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./collectingDevice/ABCIP">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>ABCIP采集</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./collectingDevice/IEC104">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>IEC104采集</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./collectingDevice/IEC104">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>IEC104采集</cite>--%>
 
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--转发设备配置-->
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe705;</i>
-                    <cite>转发设备配置</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="./forwardingDevice/modbusTCP">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus TCP转发</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+            <%--<!--转发设备配置-->--%>
+            <%--<li>--%>
+                <%--<a href="javascript:;">--%>
+                    <%--<i class="iconfont">&#xe705;</i>--%>
+                    <%--<cite>转发设备配置</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                <%--</a>--%>
+                <%--<ul class="sub-menu">--%>
+                    <%--<li>--%>
+                        <%--<a _href="./forwardingDevice/modbusTCP">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus TCP转发</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./forwardingDevice/modbusRTU">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus RTU转发</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./forwardingDevice/modbusRTU">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus RTU转发</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./forwardingDevice/modbusTCPRtu">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Modbus 透传转发</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./forwardingDevice/modbusTCPRtu">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>Modbus 透传转发</cite>--%>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="./forwardingDevice/IEC104">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>IEC104转发</cite>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a _href="./forwardingDevice/IEC104">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>IEC104转发</cite>--%>
 
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--点表配置-->
-            <li>
-                <a _href="./pointsConfig">
-                    <i class="iconfont">&#xe705;</i>
-                    <cite>点表配置</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-            </li>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+            <%--<!--点表配置-->--%>
+            <%--<li>--%>
+                <%--<a _href="./pointsConfig">--%>
+                    <%--<i class="iconfont">&#xe705;</i>--%>
+                    <%--<cite>点表配置</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                <%--</a>--%>
+            <%--</li>--%>
             <!--运行状态监视-->
             <li>
                 <a _href="./operationalStatus">

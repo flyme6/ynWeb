@@ -49,13 +49,13 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/jsp/exception/error.jsp</location>
-  </error-page>
+  <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/WEB-INF/jsp/exception/error.jsp</location>-->
+  <!--</error-page>-->
 
-  <error-page>
-    <exception-type>java.lang.Exception</exception-type>
-    <location>/WEB-INF/jsp/exception/error.jsp</location>
-  </error-page>
+  <!--<error-page>-->
+    <!--<exception-type>java.lang.Exception</exception-type>-->
+    <!--<location>/WEB-INF/jsp/exception/error.jsp</location>-->
+  <!--</error-page>-->
 </web-app>

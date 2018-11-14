@@ -19,4 +19,12 @@ public class IndexController {
     public String index() throws Exception {
         return "index";
     }
+
+    /**
+     * 跳转主页
+     */
+    @GetMapping(value = "/indexOperator")
+    public String indexOperator() throws Exception {
+        return "indexOperator";
+    }
 }

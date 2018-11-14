@@ -1,8 +1,13 @@
 
-esquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(²²»ë8¯Çú¨á,
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½©‘8ž¹öØá,
-msquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²²»ë8¯Çú¨á,
-jsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8¯Çú¨á,
-hsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ýù²Å8ž¹öØá,
-Psquid:S1135"2Complete the task associated to this TODO comment.(Üð£Å8¯Çú¨á,
-fsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ØÐ¿¼8¯Çú¨á,
+msquid:S00100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿­˜£8Çæ­àð,
+hsquid:S4488("JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ýù²Å8Çæ­àð,
+jsquid:S00112!"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8Çæ­àð,
+Jsquid:S1068"'Remove this unused "log" private field.(ÝÝÙ×üÿÿÿÿ8–ò¥ãð,
+fsquid:S4488 "HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(•ˆØ”8Çæ­àð,
+isquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(½©‘8Çæ­àð,
+Psquid:S1135"2Complete the task associated to this TODO comment.(Üð£Å8Çæ­àð,
+esquid:S00112)"FDefine and throw a dedicated exception instead of using a generic one.(¿­˜£8Çæ­àð,
+[
+squid:S106."9Replace this use of System.out or System.err by a logger.(¢‘®øÿÿÿÿ8öÔ­ãð,
+dsquid:UselessImportCheck"9Remove this unused import 'com.yn.entity.UsermgrExample'.(ÄÃ”8÷ê¹ãð,
+¤%squid:RedundantThrowsDeclarationCheck)"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(¿­˜£8¤©½ãð,

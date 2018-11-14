@@ -25,14 +25,14 @@
 </head>
 
 <body>
-<div class="weadmin-body">
-    <form class="layui-form">
+<div class="weadmin-body" action="goEdit" method="post">
+    <form class="layui-form" action="goEdit" method="post">
         <div class="layui-form-item">
             <label for="L_username" class="layui-form-label">
                 <span class="we-red">*</span>用户名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_username" name="username" lay-verify="required|nikename" autocomplete="off"
+                <input type="text" id="L_username" name="username" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
@@ -45,30 +45,38 @@
                 <span class="we-red">*</span>密码
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_pass" name="pass" autocomplete="off" class="layui-input">
+                <input type="text" id="L_pass" name="password" lay-verify="required" autocomplete="off"
+                       class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 6到16个字符
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="we-red">*</span>确认密码
+            <label for="L_role" class="layui-form-label">
+                <span class="we-red">*</span>角色
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_repass" name="repass" autocomplete="off" class="layui-input">
+                <%--<input type="text" id="L_role" name="role" autocomplete="off" class="layui-input">--%>
+                <select name="role" id="L_role" lay-filter="aihao">
+                    <option value="请选择"></option>
+                    <option value="0">管理员</option>
+                    <%--<option value="1" selected="">阅读</option>--%>
+                    <option value="1">操作员</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
+            <label for="L_bu" class="layui-form-label">
             </label>
-            <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+            <button class="layui-btn" id="L_bu" lay-filter="add" lay-submit="">确定</button>
             <!--<input type="text" name="dataId" id="dataId" value=""/>-->
         </div>
     </form>
 </div>
 <script src="../../lib/layui/layui.js" charset="utf-8"></script>
 <script>
+    var aa = window.parent.aa;
     layui.extend({
         admin: '{/}../../static/js/admin'
     });
@@ -81,11 +89,24 @@
 
         //自定义验证规则
         form.verify({
-            nikename: function (value) {
-                if (value.length < 5) {
-                    return '昵称至少得5个字符啊';
+            // nikename: function (value) {
+            //     if (value.length < 1) {
+            //         return '不能为空';
+            //     }
+            // },
+
+            back_ip: function (value) {
+                var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+                if (value.length > 0) {
+                    if (!reg.test(value)) {
+                        return "请检查IP地址";
+                    }
                 }
-            }
+            },
+            ip: [
+                /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+                , '请检查IP地址是否输入正确？'
+            ]
         });
         //页面初始化加载
         $(function () {
@@ -96,39 +117,54 @@
 
         function frameVal() {
             var dataId = $('input[name="dataId"]').val();
+            console.log(dataId);
             var index = parent.layer.getFrameIndex(window.name);
-            parent.layui.jquery("#memberList tr").each(function () {
-                if ($(this).attr('data-id') == dataId) {
-                    console.log($(this));
-                    var tdArr = $(this).children('td');
-                    var username = tdArr.eq(2).text(); //姓名
-                    var sex = tdArr.eq(3).text(); //性别
-                    var phone = tdArr.eq(4).text(); //电话
-                    var email = tdArr.eq(5).text(); //邮箱
-                    var address = tdArr.eq(6).text(); //地址
 
-                    $('input[name="username"]').val(username);
-                    console.log("sex:" + sex);
-                    $('input[name="sex"][value="' + sex + '"]').attr("checked", true);
-                    $('input[name="phone"]').val(phone);
-                    $('input[name="email"]').val(email);
-                    $('input[name="address"]').val(address);
-                    form.render();
-                }
-            });
+            var username = aa.data.username;
+            var password = aa.data.password;
+            var role = aa.data.role;
+
+
+            $('input[name="username"]').val(username);
+            $('input[name="password"]').val(password);
+            $('input[name="role"]').val(role);
+
+            form.render();
         }
 
-        //监听提交
-        form.on('submit(add)', function (data) {
-            console.log(data);
-            //发异步，把数据提交给php
-            layer.alert("增加成功", {
-                icon: 6
-            }, function () {
-                // 获得frame索引
-                var index = parent.layer.getFrameIndex(window.name);
-                //关闭当前frame
-                parent.layer.close(index);
+        form.on('submit(edit)', function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 201) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 200) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                    top.layer.close(index);
+                    top.layer.msg(info.msg);
+                }
             });
             return false;
         });

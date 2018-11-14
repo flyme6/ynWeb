@@ -7,6 +7,8 @@ import com.yn.entity.UsermgrExample;
 public interface IUsermgrService {
     Result query(UsermgrExample example);
 
+    Result query(Usermgr recod);
+
     Result save(Usermgr recod);
 
     Result add(Usermgr recod);

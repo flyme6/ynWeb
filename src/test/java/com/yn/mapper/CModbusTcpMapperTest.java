@@ -1,6 +1,7 @@
 package com.yn.mapper;
 
 import com.yn.entity.*;
+import com.yn.smo.IUsermgrService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,10 +27,12 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        TcpMapper mapper = (TcpMapper) applicationContext.getBean("tcpMapper");
-        TcpExample example = new TcpExample();
-        List<Map<String, Object>> maps = mapper.selectByExample(example);
-        System.out.println(maps.toString());
+        UsermgrMapper mapper = (UsermgrMapper) applicationContext.getBean("usermgrMapper");
+        Usermgr example = new Usermgr();
+        example.setPassword("ceshi");
+        example.setPassword("1");
+        Usermgr usermgr = mapper.selectByPrimaryKey("ceshi");
+        System.out.println(usermgr.toString());
     }
 
     @Test

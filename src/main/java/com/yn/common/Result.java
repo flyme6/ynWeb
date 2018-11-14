@@ -13,8 +13,8 @@ public class Result extends JSONObject {
         try {
             this.put("msg", "");
             this.put("code", "");
-            this.put("count", "0");
-            this.put("data", "0");
+            this.put("count", "");
+            this.put("data", "");
         } catch (JSONException e) {
             log.error("Result constructor error:{}", e.getMessage());
         }

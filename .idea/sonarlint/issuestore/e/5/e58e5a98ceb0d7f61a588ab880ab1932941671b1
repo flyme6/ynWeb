@@ -1,4 +1,5 @@
 
-Isquid:S1135"2Complete the task associated to this TODO comment.(άπ£Ε
-fsquid:S4488 "JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ΛδΆώÿÿÿÿ
-^squid:S001126"FDefine and throw a dedicated exception instead of using a generic one.(”•Ί
+dsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ΛδΆώÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(άπ£Ε
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(”•Ί
+rsquid:S2095"QUse try-with-resources or close this "BufferedInputStream" in a "finally" clause.(Ϊ‚μωÿÿÿÿ8τ‡δέπ,

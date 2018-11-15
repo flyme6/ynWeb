@@ -2,6 +2,7 @@ package com.yn.mapper;
 
 import com.yn.entity.*;
 import com.yn.smo.IUsermgrService;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -27,12 +28,27 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void selectByExample() throws Exception {
-        UsermgrMapper mapper = (UsermgrMapper) applicationContext.getBean("usermgrMapper");
-        Usermgr example = new Usermgr();
-        example.setPassword("ceshi");
-        example.setPassword("1");
-        Usermgr usermgr = mapper.selectByPrimaryKey("ceshi");
-        System.out.println(usermgr.toString());
+        PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
+        PointsExample example = new PointsExample();
+        PointsExample.Criteria criteria = example.createCriteria();
+        String name = "asd";
+//        String dev = "ca23";
+        if (StringUtils.isNotBlank(name)) {
+            name = "%" + name + "%";
+        }
+//        if (StringUtils.isNotBlank(dev)) {
+//            name = "%" + dev + "%";
+//        }
+        if (StringUtils.isNotBlank(name)) {
+            criteria.andNameLike(name);
+        }
+//        if (StringUtils.isNotBlank(dev)) {
+//            criteria.andCDevLike(dev);
+//            criteria.andFDevLike(dev);
+//        }
+
+        List<Map<String, Object>> maps = mapper.selectByExample(example);
+        System.out.println(maps.toString());
     }
 
     @Test
@@ -46,6 +62,7 @@ public class CModbusTcpMapperTest {
         int i = mapper.updateByPrimaryKey(recod);
         System.out.println(i);
     }
+
 
     @Test
     public void delByPrimaryKey() throws Exception {

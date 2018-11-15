@@ -7,6 +7,7 @@ import com.yn.entity.FModbusTcp;
 import com.yn.entity.FModbusTcpExample;
 import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
+import com.yn.smo.IDevService;
 import com.yn.smo.IFModbusRtuService;
 import com.yn.smo.IPointsService;
 import org.slf4j.Logger;
@@ -33,6 +34,8 @@ public class PointsConfigController {
 
     @Autowired
     private IPointsService service;
+    @Autowired
+    private IDevService devService;
 
     /**
      * 点表配置页面
@@ -42,6 +45,7 @@ public class PointsConfigController {
      */
     @GetMapping(value = "")
     public String Points() throws Exception {
+        devService.add().toString();
         return "pointsConfig/list";
     }
 
@@ -75,18 +79,19 @@ public class PointsConfigController {
      */
     @ResponseBody
     @RequestMapping(value = "/query")
-    public String queryPoints(HttpServletRequest request) {
+    public String queryPoints(String limit, String page, String dev, String name) {
         String result;
         try {
-            String limit = CommonUtils.getStrFromObject(request.getParameter("limit"));
-            String page = CommonUtils.getStrFromObject(request.getParameter("page"));
-            FModbusTcp recod = new FModbusTcp();
+            Points recod = new Points();
             PointsExample example = new PointsExample();
             int showCount = Integer.parseInt(limit);
             int currentPage = Integer.parseInt(page);
+            recod.setName(name);
+//            recod.setcDev(dev);
+            example.setOrderByClause("name");
             example.setLastCount((currentPage - 1) * showCount);
             example.setPageSize(showCount);
-            return service.query(example).toString();
+            return service.query(example, recod).toString();
         } catch (Exception e) {
             return Result.getQueryFailResult(e).toString();
         }
@@ -131,5 +136,44 @@ public class PointsConfigController {
         recod.setName(name);
         String result = service.del(recod).toString();
         return result;
+    }
+
+
+    /**
+     * 查询modbusTCP，提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/queryDriver")
+    public String queryPointsDev(HttpServletRequest request) {
+        String result;
+        try {
+            Points recod = new Points();
+            PointsExample example = new PointsExample();
+            return service.queryDriver(example).toString();
+        } catch (Exception e) {
+            return Result.getQueryFailResult(e).toString();
+        }
+    }
+
+    /**
+     * 查询modbusTCP，提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/Search")
+    public String SearchPointsDev(HttpServletRequest request) {
+        String result;
+        try {
+            PointsExample example = new PointsExample();
+            Points recod = new Points();
+            return service.query(example,recod).toString();
+        } catch (Exception e) {
+            return Result.getQueryFailResult(e).toString();
+        }
     }
 }

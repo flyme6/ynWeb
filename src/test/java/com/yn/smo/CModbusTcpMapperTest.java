@@ -60,4 +60,25 @@ public class CModbusTcpMapperTest {
         Result result = service.delICModbusTcp(cModbusTcp);
         System.out.println(result);
     }
+
+    @Test
+    public void insert() throws Exception {
+        ICModbusTcpService service = (ICModbusTcpService) applicationContext.getBean("CModbusTcpSericeImpl");
+
+        CModbusTcp cModbusTcp = new CModbusTcp();
+        cModbusTcp.setName("cmbs5");
+
+        Result result = service.delICModbusTcp(cModbusTcp);
+        System.out.println(result);
+    }
+
+    @Test
+    public void add() throws Exception {
+        IDevService service = (IDevService) applicationContext.getBean("devServiceImpl");
+
+//        Result add = service.add();
+        Result del = service.del();
+        System.out.println(del);
+//        System.out.println(add);
+    }
 }

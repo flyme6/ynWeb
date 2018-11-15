@@ -39,18 +39,27 @@
                         <legend>点表配置</legend>
                     </fieldset>
                     <div class="layui-row">
-                        <form class="layui-form layui-col-md12 we-search">
-                            按设备过滤：：
+                        <div class="layui-form layui-col-md12 we-search demoTable">
+                            按设备过滤：
                             <div class="layui-inline">
-                                <input class="layui-input" placeholder="设备名称" name="name" id="start">
+                                <%--<input class="layui-input" placeholder="设备名称" name="name" id="start">--%>
+                                <select name="dev" id="dev" lay-filter="dev">
+                                    <option value="请选择"></option>
+                                </select>
                             </div>
+                            <%--<div class="demoTable">--%>
+                                <%--按模板名称搜索：--%>
+                                <%--<div class="layui-inline">--%>
+                                    <%--<input class="layui-input" id="demoReload" autocomplete="off">--%>
+                                <%--</div>--%>
+                                <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
+                            <%--</div>--%>
+
                             <div class="layui-inline">
-                                <input type="text" name="username" placeholder="PT1" autocomplete="off"
-                                       class="layui-input">
+                                <input class="layui-input" name="name" id="name" autocomplete="off">
                             </div>
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                    class="layui-icon">&#xe615;</i></button>
-                        </form>
+                            <button class="layui-btn" data-type="reload">搜索</button>
+                        </div>
                     </div>
                     <div class="weadmin-block">
                         <button class="layui-btn" onclick="WeAdminShow('添加点表配置','./pointsConfig/add',600,400)"><i
@@ -58,6 +67,19 @@
                         </button>
                         <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
+                    <%--<div class="demoTable we-search">--%>
+                        <%--按设备过滤：--%>
+                        <%--<div class="layui-inline">--%>
+                            <%--&lt;%&ndash;<input class="layui-input" placeholder="设备名称" name="name" id="start">&ndash;%&gt;--%>
+                            <%--<select name="dev" id="proNos" lay-filter="dev">--%>
+                                <%--<option value="请选择"></option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                        <%--<div class="layui-inline">--%>
+                            <%--<input class="layui-input" name="name" id="demoReload" autocomplete="off">--%>
+                        <%--</div>--%>
+                        <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
+                    <%--</div>--%>
                     <table class="layui-table" id="points" lay-filter="modbusTCP"></table>
                 </div>
             </div>
@@ -89,12 +111,32 @@
             ]
         });
 
-        //展示IP配置数据
+
+        var resultData;
+
+        var htmls = '<option value="">请选择</option>'; //全局变量
+        $.ajax({
+            url: "./pointsConfig/queryDriver",
+            type: "get",
+            dataType: "json",
+            // contentType: "application/json",
+            async: false,//这得注意是同步
+            success: function (result) {
+                resultData = result.data;
+                console.info(resultData + "resultData");
+                for (var x in resultData) {
+                    htmls += '<option value = "' + resultData[x].dev_name + '">' + resultData[x].dev_name + '</option>'
+                }
+                $("#dev").html(htmls);
+            }
+        });
+        form.render('select');//需要渲染一下
+
+        //方法级渲染
         table.render({
-            elem: '#points',
-            url: './pointsConfig/query',//数据接口
-            cellMinWidth: 80,
-            cols: [[ //标题栏
+            elem: '#points'
+            , url: './pointsConfig/query'
+            , cols: [[ //标题栏
                 {field: 'name', title: '点名'}
                 , {field: 'desc', title: '点描述'}
                 , {field: 'c_dev', title: '采集设备名'}
@@ -109,11 +151,32 @@
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
                 }
             ]]
+            , id: 'testReload'
             , skin: 'line' //表格风格
             , even: true
             , page: true //是否显示分页
             , limits: [5, 7, 10]
             , limit: 5 //每页默认显示的数量
+            // , height: 600
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                var name = $('#name');
+                var dev = $('#dev');
+
+                table.reload('testReload', {
+                    where: {
+                        name: name.val(),
+                        dev: dev.val(),
+                    }
+                });
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
 
         table.on('tool(modbusTCP)', function (obj) {

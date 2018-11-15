@@ -16,9 +16,13 @@ public interface PointsMapper {
 
     int insert(Points record);
 
+    int insertDev();
+
     int insertSelective(Points record);
 
     List<Map<String, Object>> selectByExample(PointsExample example);
+
+    List<Map<String, Object>> selectByDriver(PointsExample example);
 
     Points selectByPrimaryKey(String name);
 

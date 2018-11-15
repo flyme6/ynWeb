@@ -18,7 +18,9 @@ public interface IPointsBmo {
 
     int insertSelective(Points record);
 
-    List<Map<String, Object>> selectByExample(PointsExample example);
+    List<Map<String, Object>> selectByExample(PointsExample example, Points record);
+
+    List<Map<String, Object>> selectByDriver(PointsExample example);
 
     Points selectByPrimaryKey(String name);
 

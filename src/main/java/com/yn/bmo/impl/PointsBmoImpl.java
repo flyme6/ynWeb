@@ -4,6 +4,7 @@ import com.yn.bmo.IPointsBmo;
 import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
 import com.yn.mapper.PointsMapper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,8 +42,22 @@ public class PointsBmoImpl implements IPointsBmo {
     }
 
     @Override
-    public List<Map<String, Object>> selectByExample(PointsExample example) {
+    public List<Map<String, Object>> selectByExample(PointsExample example, Points record) {
+        PointsExample.Criteria criteria = example.createCriteria();
+        String name = record.getName();
+        if (StringUtils.isNotBlank(name)) {
+            name = "%" + name + "%";
+        }
+
+        if (StringUtils.isNotBlank(name)) {
+            criteria.andNameLike(name);
+        }
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectByDriver(PointsExample example) {
+        return mapper.selectByDriver(example);
     }
 
     @Override

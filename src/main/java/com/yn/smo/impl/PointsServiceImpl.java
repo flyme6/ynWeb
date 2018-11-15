@@ -1,5 +1,6 @@
 package com.yn.smo.impl;
 
+import com.yn.bmo.IDevBmo;
 import com.yn.bmo.IPointsBmo;
 import com.yn.common.Constant;
 import com.yn.common.Result;
@@ -22,13 +23,34 @@ public class PointsServiceImpl implements IPointsService {
     @Autowired
     private IPointsBmo bmo;
 
+    private IDevBmo devBmo;
+
     @Override
-    public Result query(PointsExample example) {
+    public Result query(PointsExample example, Points recod) {
         Result result = new Result();
         try {
-            List<Map<String, Object>> maps = bmo.selectByExample(example);
+            List<Map<String, Object>> maps = bmo.selectByExample(example, recod);
             int total = bmo.countByExample(example);
-            System.out.println(total + "total");
+            log.info("total" + total);
+            result.addCode(Constant.CODE_QUERY_SUCCESS);
+            result.addMsg(Constant.MSG_QUERY_SUCCESS);
+            result.addCount(total);
+            result.addData(maps);
+        } catch (Exception e) {
+            log.error("query", e);
+            result.addMsg(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Result queryDriver(PointsExample example) {
+        Result result = new Result();
+        try {
+//            devBmo.insert();
+            List<Map<String, Object>> maps = bmo.selectByDriver(example);
+            int total = bmo.countByExample(example);
+            log.info(total + "total");
             result.addCode(Constant.CODE_QUERY_SUCCESS);
             result.addMsg(Constant.MSG_QUERY_SUCCESS);
             result.addCount(total);

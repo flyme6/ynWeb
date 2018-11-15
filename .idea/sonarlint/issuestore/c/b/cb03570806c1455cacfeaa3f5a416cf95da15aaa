@@ -1,13 +1,15 @@
 
-msquid:S00100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿­˜£8Çæ­àð,
-hsquid:S4488("JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ýù²Å8Çæ­àð,
-jsquid:S00112!"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8Çæ­àð,
-Jsquid:S1068"'Remove this unused "log" private field.(ÝÝÙ×üÿÿÿÿ8–ò¥ãð,
-fsquid:S4488 "HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(•ˆØ”8Çæ­àð,
-isquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(½©‘8Çæ­àð,
-Psquid:S1135"2Complete the task associated to this TODO comment.(Üð£Å8Çæ­àð,
-esquid:S00112)"FDefine and throw a dedicated exception instead of using a generic one.(¿­˜£8Çæ­àð,
-[
-squid:S106."9Replace this use of System.out or System.err by a logger.(¢‘®øÿÿÿÿ8öÔ­ãð,
-dsquid:UselessImportCheck"9Remove this unused import 'com.yn.entity.UsermgrExample'.(ÄÃ”8÷ê¹ãð,
-¤%squid:RedundantThrowsDeclarationCheck)"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(¿­˜£8¤©½ãð,
+csquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ÿ¨±å8üÝ´ñ,
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ßòÍïþÿÿÿÿ8ã¢Á‡ñ,
+dsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(•ˆØ”8Çæ­àð,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½©‘8‹œ§‚ñ,
+ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ¨±å8Çæ­àð,
+fsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ýù²Å8Çæ­àð,
+hsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8Çæ­àð,
+bsquid:UselessImportCheck"9Remove this unused import 'com.yn.entity.UsermgrExample'.(ÄÃ”8ÝæÌÿð,
+asquid:UselessImportCheck"3Remove this unused import 'com.yn.bmo.IUsermgrBmo'.(úÝç¸úÿÿÿÿ8œ²©‚ñ,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(Üð£Å8Çæ­àð,
+Hsquid:S1068"'Remove this unused "log" private field.(ÝÝÙ×üÿÿÿÿ8–ò¥ãð,
+¢%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÿ¨±å8¿áÁ‡ñ,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öé×»ûÿÿÿÿ8á…ƒ‡ñ,

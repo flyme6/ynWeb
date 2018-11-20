@@ -275,7 +275,7 @@
 <!-- 中部结束 -->
 <!-- 底部开始 -->
 <div class="footer">
-    <div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+    <div class="copyright">Copyright ©2018 ynWeb v1.0.0 Beta</div>
 </div>
 <!-- 底部结束 -->
 <script type="text/javascript">

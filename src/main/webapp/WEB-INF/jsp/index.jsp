@@ -254,6 +254,15 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             </li>
+
+            <!--控制台-->
+            <li>
+                <a _href="./console">
+                    <i class="iconfont">&#xe705;</i>
+                    <cite>控制台日志</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -277,7 +286,7 @@
 <!-- 中部结束 -->
 <!-- 底部开始 -->
 <div class="footer">
-    <div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+    <div class="copyright">Copyright ©2018 ynWeb v1.0.0 Beta</div>
 </div>
 <!-- 底部结束 -->
 <script type="text/javascript">

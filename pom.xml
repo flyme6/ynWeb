@@ -51,9 +51,18 @@
         <shiro.version>1.2.3</shiro.version>
         <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
         <poi.version>3.13</poi.version>
+        <websocket.version>1.1</websocket.version>
     </properties>
 
     <dependencies>
+
+        <!--websocket-->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>${websocket.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- poi -->
         <dependency>

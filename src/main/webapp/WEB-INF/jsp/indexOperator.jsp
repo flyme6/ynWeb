@@ -38,38 +38,35 @@
             <dl class="layui-nav-child">
                 <!-- 工程管理二级菜单 -->
                 <dd>
-                    <a onclick="WeAdminShow('新建工程','./login.jsp')">新建工程</a>
+                    <a onclick="WeAdminShow('新建工程','./newProject.jsp')">新建工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('保存工程','./login.jsp')">保存工程</a>
+                    <a onclick="WeAdminShow('保存工程','./saveProject.jsp')">保存工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('备份工程','./login.jsp')">备份工程</a>
+                    <a onclick="WeAdminShow('备份工程','./exportProject.jsp')">备份工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('恢复工程','./login.jsp')">恢复工程</a>
+                    <a onclick="WeAdminShow('恢复工程','./importProject.jsp')">恢复工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('保存工程','./login.jsp')">保存工程</a>
+                    <a onclick="WeAdminShow('启动工程','./startProject .jsp')">启动工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('启动工程','./login.jsp')">启动工程</a>
+                    <a onclick="WeAdminShow('停止工程','./stopProject .jsp')">停止工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('停止工程','./login.jsp')">停止工程</a>
-                </dd>
-                <dd>
-                    <a onclick="WeAdminShow('重启工程','./login.jsp')">重启工程</a>
+                    <a onclick="WeAdminShow('重启工程','./rebootBox .jsp')">重启工程</a>
                 </dd>
             </dl>
         </li>
         <li class="layui-nav-item">
-            <a href="javascript:;">Admin</a>
+            <a href="javascript:;">ceshi</a>
             <dl class="layui-nav-child">
                 <!-- 个人管理二级菜单 -->
-                <dd>
-                    <a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
-                </dd>
+                <%--<dd>--%>
+                <%--<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>--%>
+                <%--</dd>--%>
                 <dd>
                     <a onclick="WeAdminShow('切换帐号','./login.jsp')">切换帐号</a>
                 </dd>

@@ -67,7 +67,7 @@ public class ABCIPController {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -92,7 +92,7 @@ public class ABCIPController {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return
@@ -105,7 +105,7 @@ public class ABCIPController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -118,7 +118,7 @@ public class ABCIPController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return

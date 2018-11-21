@@ -72,7 +72,7 @@ public class PointsConfigController {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -87,7 +87,9 @@ public class PointsConfigController {
             int showCount = Integer.parseInt(limit);
             int currentPage = Integer.parseInt(page);
             recod.setName(name);
-//            recod.setcDev(dev);
+            recod.setcDev(dev);
+            recod.setfDev(dev);
+
             example.setOrderByClause("name");
             example.setLastCount((currentPage - 1) * showCount);
             example.setPageSize(showCount);
@@ -98,7 +100,7 @@ public class PointsConfigController {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return
@@ -111,7 +113,7 @@ public class PointsConfigController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -124,7 +126,7 @@ public class PointsConfigController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -140,7 +142,7 @@ public class PointsConfigController {
 
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -159,7 +161,27 @@ public class PointsConfigController {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询,提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/queryCDriver")
+    public String queryPointsCDev(HttpServletRequest request) {
+        String result;
+        try {
+            Points recod = new Points();
+            PointsExample example = new PointsExample();
+            return service.queryDriver(example).toString();
+        } catch (Exception e) {
+            return Result.getQueryFailResult(e).toString();
+        }
+    }
+
+
+    /**
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -171,7 +193,7 @@ public class PointsConfigController {
         try {
             PointsExample example = new PointsExample();
             Points recod = new Points();
-            return service.query(example,recod).toString();
+            return service.query(example, recod).toString();
         } catch (Exception e) {
             return Result.getQueryFailResult(e).toString();
         }

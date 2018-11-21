@@ -68,7 +68,7 @@ public class FIEC104Controller {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -93,7 +93,7 @@ public class FIEC104Controller {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return
@@ -106,7 +106,7 @@ public class FIEC104Controller {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -119,7 +119,7 @@ public class FIEC104Controller {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return

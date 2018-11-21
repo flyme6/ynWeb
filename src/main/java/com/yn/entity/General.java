@@ -60,4 +60,16 @@ public class General extends Base{
     public void setModify(Integer modify) {
         this.modify = modify;
     }
+
+    @Override
+    public String toString() {
+        return "General{" +
+                "projectName='" + projectName + '\'' +
+                ", enableRedun=" + enableRedun +
+                ", ip1='" + ip1 + '\'' +
+                ", ip2='" + ip2 + '\'' +
+                ", ip3='" + ip3 + '\'' +
+                ", modify=" + modify +
+                '}';
+    }
 }

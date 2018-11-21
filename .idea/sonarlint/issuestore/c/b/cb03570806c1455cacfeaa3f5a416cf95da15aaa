@@ -1,15 +1,15 @@
 
-csquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ÿ¨±å8üİ´ñ,
+¢%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÿ¨±å8ˆá¦€ó,
+dsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(•ˆØ”8ˆá¦€ó,
+fsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ıù²Å8ˆá¦€ó,
+Hsquid:S1068"'Remove this unused "log" private field.(İİÙ×üÿÿÿÿ8ˆá¦€ó,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öé×»ûÿÿÿÿ8ˆá¦€ó,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½©‘8ˆá¦€ó,
 Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(ßòÍïşÿÿÿÿ8ã¢Á‡ñ,
-dsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(•ˆØ”8Çæ­àğ,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½©‘8‹œ§‚ñ,
-ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ¨±å8Çæ­àğ,
-fsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ıù²Å8Çæ­àğ,
-hsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8Çæ­àğ,
-bsquid:UselessImportCheck"9Remove this unused import 'com.yn.entity.UsermgrExample'.(ÄÃ”8İæÌÿğ,
-asquid:UselessImportCheck"3Remove this unused import 'com.yn.bmo.IUsermgrBmo'.(úİç¸úÿÿÿÿ8œ²©‚ñ,
-Nsquid:S1135"2Complete the task associated to this TODO comment.(Üğ£Å8Çæ­àğ,
-Hsquid:S1068"'Remove this unused "log" private field.(İİÙ×üÿÿÿÿ8–ò¥ãğ,
-¢%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÿ¨±å8¿áÁ‡ñ,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(öé×»ûÿÿÿÿ8á…ƒ‡ñ,
+squid:S106"9Replace this use of System.out or System.err by a logger.(ßòÍïşÿÿÿÿ8ˆá¦€ó,
+Nsquid:S1135"2Complete the task associated to this TODO comment.(Üğ£Å8ˆá¦€ó,
+ksquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ¨±å8ˆá¦€ó,
+hsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ì—€†ùÿÿÿÿ8ˆá¦€ó,
+csquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ÿ¨±å8ˆá¦€ó,
+bsquid:UselessImportCheck"9Remove this unused import 'com.yn.entity.UsermgrExample'.(ÄÃ”8ˆá¦€ó,
+asquid:UselessImportCheck"3Remove this unused import 'com.yn.bmo.IUsermgrBmo'.(úİç¸úÿÿÿÿ8ˆá¦€ó,

@@ -40,10 +40,23 @@
                     </fieldset>
                     <div class="layui-row">
                         <div class="layui-form layui-col-md12 we-search demoTable">
-                            按设备过滤：
+                            按采集设备名称：
                             <div class="layui-inline">
                                 <%--<input class="layui-input" placeholder="设备名称" name="name" id="start">--%>
-                                <select name="dev" id="dev" lay-filter="dev">
+                                <select name="cdev" id="cdev" lay-filter="cdev">
+                                    <option value="请选择"></option>
+                                </select>
+                            </div>
+                            <%--<div class="layui-inline">--%>
+                                <%--&lt;%&ndash;<input class="layui-input" placeholder="设备名称" name="name" id="start">&ndash;%&gt;--%>
+                                <%--<select name="dev" id="dev" lay-filter="dev">--%>
+                                    <%--<option value="请选择"></option>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                            按转发设备名称：
+                            <div class="layui-inline">
+                                <%--<input class="layui-input" placeholder="设备名称" name="name" id="start">--%>
+                                <select name="fdev" id="fdev" lay-filter="fdev">
                                     <option value="请选择"></option>
                                 </select>
                             </div>

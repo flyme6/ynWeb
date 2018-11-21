@@ -45,6 +45,10 @@ public class PointsBmoImpl implements IPointsBmo {
     public List<Map<String, Object>> selectByExample(PointsExample example, Points record) {
         PointsExample.Criteria criteria = example.createCriteria();
         String name = record.getName();
+
+        String cdev = record.getcDev();
+        String fdev = record.getfDev();
+
         if (StringUtils.isNotBlank(name)) {
             name = "%" + name + "%";
         }

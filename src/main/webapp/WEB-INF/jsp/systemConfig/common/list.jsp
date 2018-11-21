@@ -41,8 +41,8 @@
                                 <label class="layui-form-label">
                                     <span class="we-red">*</span>名称</label>
                                 <%--<div class="layui-input-block">--%>
-                                    <%--<input type="text" name="projectName" lay-verify="required" autocomplete="off"--%>
-                                           <%--placeholder="请输入名称" class="layui-input">--%>
+                                <%--<input type="text" name="projectName" lay-verify="required" autocomplete="off"--%>
+                                <%--placeholder="请输入名称" class="layui-input">--%>
                                 <%--</div>--%>
                                 <div class="layui-input-inline">
                                     <input type="text" name="projectName" lay-verify="required" autocomplete="off"
@@ -54,9 +54,9 @@
                                 <label class="layui-form-label">
                                     <span class="we-red">*</span>启用冗余</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" checked="" name="enableRedun" lay-verify="required"
+                                    <input type="checkbox" checked="checked" name="enableRedun" lay-verify="required"
                                            lay-skin="switch"
-                                               lay-filter="switchTest" lay-text="开|关">
+                                           lay-filter="switchTest" lay-text="开|关">
 
                                 </div>
 
@@ -179,7 +179,7 @@
                             top.layer.close(index);
                             top.layer.msg("配置成功");
                         }, 1000);
-                    }else {
+                    } else {
                         // top.layer.close(index);
                         top.layer.msg(info.msg);
                     }
@@ -198,6 +198,7 @@
             return false;
         });
 
+        form.render();
     });
 
 

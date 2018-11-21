@@ -86,7 +86,7 @@ public class ModbusTCPRtuController {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return
@@ -99,7 +99,7 @@ public class ModbusTCPRtuController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -112,7 +112,7 @@ public class ModbusTCPRtuController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return

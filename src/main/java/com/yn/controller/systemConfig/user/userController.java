@@ -60,7 +60,7 @@ public class userController {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -85,7 +85,7 @@ public class userController {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return

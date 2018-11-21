@@ -37,7 +37,7 @@ public class commonController {
     }
 
     /**
-     * 查询modbusTCP，提供api接口
+     * 查询，提供api接口
      *
      * @param request
      * @return
@@ -62,21 +62,33 @@ public class commonController {
     }
 
     /**
-     * 添加modbusTCP，提供api接口
+     * 添加，提供api接口
      *
      * @param
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/goAdd")
-    public String addCommon(General recod) {
+    public String addCommon(String projectName, String enableRedun, String ip1, String ip2, String ip3) {
+        General recod = new General();
+        recod.setProjectName(projectName);
+        recod.setIp1(ip1);
+        recod.setIp2(ip2);
+        recod.setIp3(ip3);
+//        enableRedun.equals("on")
+        if ("on".equals(enableRedun)) {
+            recod.setEnableRedun(1);
+        }
+        recod.setModify(1);
+        System.out.println(recod.toString() + "测试");
+
         GeneralExample example = new GeneralExample();
         String result = service.add(recod, example).toString();
         return result;
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return
@@ -92,7 +104,7 @@ public class commonController {
     }
 
     /**
-     * 修改modbusTCP，提供api接口
+     * 修改，提供api接口
      *
      * @param
      * @return

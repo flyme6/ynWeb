@@ -40,16 +40,22 @@
             <dl class="layui-nav-child">
                 <!-- 工程管理二级菜单 -->
                 <dd>
+                    <a onclick="WeAdminShow('保存工程到本地','./exportProject.jsp')">保存工程到本地</a>
+                </dd>
+                <dd>
                     <a onclick="WeAdminShow('新建工程','./newProject.jsp')">新建工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('保存工程','./saveProject.jsp')">保存工程</a>
+                    <a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('备份工程','./exportProject.jsp')">备份工程</a>
+                    <a onclick="WeAdminShow('检查工程','./checkProject.jsp')">检查工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('恢复工程','./importProject.jsp')">恢复工程</a>
+                    <a onclick="WeAdminShow('打开本地工程','./importProject.jsp')">打开本地工程</a>
+                </dd>
+                <dd>
+                    &nbsp;&nbsp;
                 </dd>
                 <dd>
                     <a onclick="WeAdminShow('启动工程','./startProject .jsp')">启动工程</a>
@@ -58,7 +64,7 @@
                     <a onclick="WeAdminShow('停止工程','./stopProject .jsp')">停止工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('重启工程','./rebootBox .jsp')">重启工程</a>
+                    <a onclick="WeAdminShow('重启盒子','./rebootBox .jsp')">重启盒子</a>
                 </dd>
             </dl>
         </li>
@@ -70,7 +76,7 @@
                 <%--<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('切换帐号','./login.jsp')">切换帐号</a>--%>
+                <%--<a onclick="WeAdminShow('切换帐号','./login.jsp')">切换帐号</a>--%>
                 <%--</dd>--%>
                 <dd>
                     <a class="loginout" href="login.html">退出</a>
@@ -79,7 +85,7 @@
         </li>
 
         <%--<li class="layui-nav-item to-index">--%>
-            <%--<a href="/">前台首页</a>--%>
+        <%--<a href="/">前台首页</a>--%>
         <%--</li>--%>
     </ul>
 

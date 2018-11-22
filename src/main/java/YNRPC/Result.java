@@ -20,94 +20,80 @@
 
 package YNRPC;
 
-public enum Result implements java.io.Serializable
-{
-    
+public enum Result implements java.io.Serializable {
+
     RTOK(0),
-    
+
     RTFAIL(1),
-    
+
     RTINVALIDARG(2),
-    
+
     RTACCESSDENIED(3),
-    
+
     RTALREADYEXISTED(4),
-    
+
     RTNOTFOUND(5),
-    
+
     RTNOTLOGGED(6),
-    
+
     RTNOTSTARTED(7);
 
     public int
-    value()
-    {
+    value() {
         return __value;
     }
 
     public static Result
-    valueOf(int __v)
-    {
-        switch(__v)
-        {
-        case 0:
-            return RTOK;
-        case 1:
-            return RTFAIL;
-        case 2:
-            return RTINVALIDARG;
-        case 3:
-            return RTACCESSDENIED;
-        case 4:
-            return RTALREADYEXISTED;
-        case 5:
-            return RTNOTFOUND;
-        case 6:
-            return RTNOTLOGGED;
-        case 7:
-            return RTNOTSTARTED;
+    valueOf(int __v) {
+        switch (__v) {
+            case 0:
+                return RTOK;
+            case 1:
+                return RTFAIL;
+            case 2:
+                return RTINVALIDARG;
+            case 3:
+                return RTACCESSDENIED;
+            case 4:
+                return RTALREADYEXISTED;
+            case 5:
+                return RTNOTFOUND;
+            case 6:
+                return RTNOTLOGGED;
+            case 7:
+                return RTNOTSTARTED;
         }
         return null;
     }
 
-    private
-    Result(int __v)
-    {
+    private Result(int __v) {
         __value = __v;
     }
 
     public void
-    __write(IceInternal.BasicStream __os)
-    {
+    __write(IceInternal.BasicStream __os) {
         __os.writeEnum(value(), 7);
     }
 
     public static void
-    __write(IceInternal.BasicStream __os, Result __v)
-    {
-        if(__v == null)
-        {
+    __write(IceInternal.BasicStream __os, Result __v) {
+        if (__v == null) {
             __os.writeEnum(Result.RTOK.value(), 7);
-        }
-        else
-        {
+        } else {
             __os.writeEnum(__v.value(), 7);
         }
     }
 
     public static Result
-    __read(IceInternal.BasicStream __is)
-    {
+    __read(IceInternal.BasicStream __is) {
         int __v = __is.readEnum(7);
         return __validate(__v);
     }
 
     private static Result
-    __validate(int __v)
-    {
+    __validate(int __v) {
         final Result __e = valueOf(__v);
-        if(__e == null)
-        {
+        if (__e == null) {
             throw new Ice.MarshalException("enumerator value " + __v + " is out of range");
         }
         return __e;

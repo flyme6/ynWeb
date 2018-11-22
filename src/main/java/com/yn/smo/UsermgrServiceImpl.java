@@ -52,7 +52,6 @@ public class UsermgrServiceImpl implements IUsermgrService {
                     if (recod.getPassword().equals(usermgr.getPassword())) {
                         result.addMsg("登录成功");
                         result.addCode(501);
-                        System.out.println("大声道撒多撒" + usermgr.toString());
                         result.addData(usermgr.getRole());
                     } else {
                         result.addMsg("请检查密码是否输入正确");

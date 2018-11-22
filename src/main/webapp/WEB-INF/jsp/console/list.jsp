@@ -55,7 +55,7 @@
     $(document).ready(function () {
         // 指定websocket路径
         // var wsUri = 'ws://192.168.153.132:8080/ynWeb/log';
-        var wsUri = 'ws://http://localhost:8080/ynWeb/log';
+        var wsUri = 'ws://localhost:8080/ynWeb/log';
         var websocket = new WebSocket(wsUri);
         websocket.onmessage = function (event) {
             // 接收服务端的实时日志并添加到HTML页面中

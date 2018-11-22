@@ -40,31 +40,31 @@
             <dl class="layui-nav-child">
                 <!-- 工程管理二级菜单 -->
                 <dd>
-                    <a onclick="WeAdminShow('保存工程到本地','./exportProject.jsp')">保存工程到本地</a>
+                    <a onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('新建工程','./newProject.jsp')">新建工程</a>
+                    <a onclick="WeAdminShow('新建工程','./project/newProject')">新建工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>
+                    <a onclick="WeAdminShow('工程文件下载','./project/saveProject')">工程文件下载</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('检查工程','./checkProject.jsp')">检查工程</a>
+                    <a onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('打开本地工程','./importProject.jsp')">打开本地工程</a>
+                    <a onclick="WeAdminShow('打开本地工程','./project/importProject')">打开本地工程</a>
                 </dd>
                 <dd>
                     &nbsp;&nbsp;
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('启动工程','./startProject .jsp')">启动工程</a>
+                    <a onclick="WeAdminShow('启动工程','./project/startProject')">启动工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('停止工程','./stopProject .jsp')">停止工程</a>
+                    <a onclick="WeAdminShow('停止工程','./project/stopProject')">停止工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('重启盒子','./rebootBox .jsp')">重启盒子</a>
+                    <a onclick="WeAdminShow('重启盒子','./project/rebootBox')">重启盒子</a>
                 </dd>
             </dl>
         </li>

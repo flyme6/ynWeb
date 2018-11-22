@@ -52,6 +52,19 @@ public class CModbusTcpMapperTest {
     }
 
     @Test
+    public void selectByConditions() throws Exception {
+        PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
+        Points recod = new Points();
+        recod.setName("%"+"pt_mbs1" +"%");
+//        recod.setcDev("asd");
+//        recod.setfDev("asd");
+//        recod.setPageSize(5);
+//        recod.setLastCount(0);
+        List<Map<String, Object>> maps = mapper.selectByConditions(recod);
+        System.out.println(maps.toString());
+    }
+
+    @Test
     public void updateByPrimaryKey() throws Exception {
         CAbcipMapper mapper = (CAbcipMapper) applicationContext.getBean("CAbcipMapper");
         CAbcip recod = new CAbcip();

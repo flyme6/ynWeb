@@ -30,7 +30,7 @@ public class PointsServiceImpl implements IPointsService {
         Result result = new Result();
         try {
             List<Map<String, Object>> maps = bmo.selectByExample(example, recod);
-            int total = bmo.countByExample(example);
+            int total = bmo.countByExample(recod);
             log.info("total" + total);
             result.addCode(Constant.CODE_QUERY_SUCCESS);
             result.addMsg(Constant.MSG_QUERY_SUCCESS);
@@ -44,13 +44,12 @@ public class PointsServiceImpl implements IPointsService {
     }
 
     @Override
-    public Result queryDriver(PointsExample example) {
+    public Result query(Points recod) {
         Result result = new Result();
         try {
-//            devBmo.insert();
-            List<Map<String, Object>> maps = bmo.selectByDriver(example);
-            int total = bmo.countByExample(example);
-            log.info(total + "total");
+            List<Map<String, Object>> maps = bmo.queryByConditions(recod);
+            int total = bmo.selectTotal(recod);
+            log.info("total" + total);
             result.addCode(Constant.CODE_QUERY_SUCCESS);
             result.addMsg(Constant.MSG_QUERY_SUCCESS);
             result.addCount(total);
@@ -61,6 +60,43 @@ public class PointsServiceImpl implements IPointsService {
         }
         return result;
     }
+
+    @Override
+    public Result queryDriver(Points recod) {
+        Result result = new Result();
+        try {
+            List<Map<String, Object>> maps = bmo.queryByDriver(recod);
+            int total = bmo.selectTotal(recod);
+            log.info("total" + total);
+            result.addCode(Constant.CODE_QUERY_SUCCESS);
+            result.addMsg(Constant.MSG_QUERY_SUCCESS);
+            result.addCount(total);
+            result.addData(maps);
+        } catch (Exception e) {
+            log.error("query", e);
+            result.addMsg(e.getMessage());
+        }
+        return result;
+    }
+
+//    @Override
+//    public Result queryDriver(PointsExample example,Points recod) {
+//        Result result = new Result();
+//        try {
+////            devBmo.insert();
+//            List<Map<String, Object>> maps = bmo.selectByDriver(example);
+//            int total = bmo.countByExample(recod);
+//            log.info(total + "total");
+//            result.addCode(Constant.CODE_QUERY_SUCCESS);
+//            result.addMsg(Constant.MSG_QUERY_SUCCESS);
+//            result.addCount(total);
+//            result.addData(maps);
+//        } catch (Exception e) {
+//            log.error("query", e);
+//            result.addMsg(e.getMessage());
+//        }
+//        return result;
+//    }
 
     @Override
     public Result save(Points recod) {

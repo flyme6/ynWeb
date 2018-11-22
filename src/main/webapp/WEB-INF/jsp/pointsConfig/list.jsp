@@ -40,59 +40,30 @@
                     </fieldset>
                     <div class="layui-row">
                         <div class="layui-form layui-col-md12 we-search demoTable">
-                            按采集设备名称：
+                            采集设备名称：
                             <div class="layui-inline">
-                                <%--<input class="layui-input" placeholder="设备名称" name="name" id="start">--%>
-                                <select name="cdev" id="cdev" lay-filter="cdev">
+                                <select name="cdev" id="cdev" lay-filter="cdev" style="width: 10px">
                                     <option value="请选择"></option>
                                 </select>
                             </div>
-                            <%--<div class="layui-inline">--%>
-                                <%--&lt;%&ndash;<input class="layui-input" placeholder="设备名称" name="name" id="start">&ndash;%&gt;--%>
-                                <%--<select name="dev" id="dev" lay-filter="dev">--%>
-                                    <%--<option value="请选择"></option>--%>
-                                <%--</select>--%>
-                            <%--</div>--%>
-                            按转发设备名称：
+                            &nbsp;&nbsp;&nbsp;转发设备名称：
                             <div class="layui-inline">
-                                <%--<input class="layui-input" placeholder="设备名称" name="name" id="start">--%>
                                 <select name="fdev" id="fdev" lay-filter="fdev">
                                     <option value="请选择"></option>
                                 </select>
                             </div>
-                            <%--<div class="demoTable">--%>
-                                <%--按模板名称搜索：--%>
-                                <%--<div class="layui-inline">--%>
-                                    <%--<input class="layui-input" id="demoReload" autocomplete="off">--%>
-                                <%--</div>--%>
-                                <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
-                            <%--</div>--%>
-
+                            &nbsp;&nbsp;&nbsp;
                             <div class="layui-inline">
                                 <input class="layui-input" name="name" id="name" autocomplete="off">
                             </div>
-                            <button class="layui-btn" data-type="reload">搜索</button>
+                            <button class="layui-btn" data-type="reload">&nbsp;&nbsp;&nbsp;搜索</button>
                         </div>
                     </div>
                     <div class="weadmin-block">
                         <button class="layui-btn" onclick="WeAdminShow('添加点表配置','./pointsConfig/add',600,400)"><i
                                 class="layui-icon"></i>添加
                         </button>
-                        <!--<span class="fr" style="line-height:40px">共有数据：88 条</span>-->
                     </div>
-                    <%--<div class="demoTable we-search">--%>
-                        <%--按设备过滤：--%>
-                        <%--<div class="layui-inline">--%>
-                            <%--&lt;%&ndash;<input class="layui-input" placeholder="设备名称" name="name" id="start">&ndash;%&gt;--%>
-                            <%--<select name="dev" id="proNos" lay-filter="dev">--%>
-                                <%--<option value="请选择"></option>--%>
-                            <%--</select>--%>
-                        <%--</div>--%>
-                        <%--<div class="layui-inline">--%>
-                            <%--<input class="layui-input" name="name" id="demoReload" autocomplete="off">--%>
-                        <%--</div>--%>
-                        <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
-                    <%--</div>--%>
                     <table class="layui-table" id="points" lay-filter="modbusTCP"></table>
                 </div>
             </div>
@@ -128,6 +99,7 @@
         var resultData;
 
         var htmls = '<option value="">请选择</option>'; //全局变量
+        var htmls2 = '<option value="">请选择</option>'; //全局变量
         $.ajax({
             url: "./pointsConfig/queryDriver",
             type: "get",
@@ -138,9 +110,11 @@
                 resultData = result.data;
                 console.info(resultData + "resultData");
                 for (var x in resultData) {
-                    htmls += '<option value = "' + resultData[x].dev_name + '">' + resultData[x].dev_name + '</option>'
+                    htmls += '<option value = "' + resultData[x].c_dev + '">' + resultData[x].c_dev + '</option>';
+                    htmls2 += '<option value = "' + resultData[x].f_dev + '">' + resultData[x].f_dev + '</option>'
                 }
-                $("#dev").html(htmls);
+                $("#cdev").html(htmls);
+                $("#fdev").html(htmls2);
             }
         });
         form.render('select');//需要渲染一下
@@ -148,7 +122,7 @@
         //方法级渲染
         table.render({
             elem: '#points'
-            , url: './pointsConfig/query'
+            , url: './pointsConfig/Search'
             , cols: [[ //标题栏
                 {field: 'name', title: '点名'}
                 , {field: 'desc', title: '点描述'}
@@ -176,12 +150,14 @@
         var $ = layui.$, active = {
             reload: function () {
                 var name = $('#name');
-                var dev = $('#dev');
+                var cdev = $('#cdev');
+                var fdev = $('#fdev');
 
                 table.reload('testReload', {
                     where: {
                         name: name.val(),
-                        dev: dev.val(),
+                        cdev: cdev.val(),
+                        fdev: fdev.val(),
                     }
                 });
             }

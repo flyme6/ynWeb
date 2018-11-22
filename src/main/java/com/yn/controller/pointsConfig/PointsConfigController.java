@@ -79,7 +79,7 @@ public class PointsConfigController {
      */
     @ResponseBody
     @RequestMapping(value = "/query")
-    public String queryPoints(String limit, String page, String dev, String name) {
+    public String queryPoints(String limit, String page, String cdev, String fdev, String name) {
         String result;
         try {
             Points recod = new Points();
@@ -87,12 +87,15 @@ public class PointsConfigController {
             int showCount = Integer.parseInt(limit);
             int currentPage = Integer.parseInt(page);
             recod.setName(name);
-            recod.setcDev(dev);
-            recod.setfDev(dev);
+            recod.setcDev(cdev);
+            recod.setfDev(fdev);
 
-            example.setOrderByClause("name");
-            example.setLastCount((currentPage - 1) * showCount);
-            example.setPageSize(showCount);
+            recod.setLastCount((currentPage - 1) * showCount);
+            recod.setPageSize(showCount);
+
+//            example.setOrderByClause("name");
+//            example.setLastCount((currentPage - 1) * showCount);
+//            example.setPageSize(showCount);
             return service.query(example, recod).toString();
         } catch (Exception e) {
             return Result.getQueryFailResult(e).toString();
@@ -153,27 +156,7 @@ public class PointsConfigController {
         String result;
         try {
             Points recod = new Points();
-            PointsExample example = new PointsExample();
-            return service.queryDriver(example).toString();
-        } catch (Exception e) {
-            return Result.getQueryFailResult(e).toString();
-        }
-    }
-
-    /**
-     * 查询,提供api接口
-     *
-     * @param request
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/queryCDriver")
-    public String queryPointsCDev(HttpServletRequest request) {
-        String result;
-        try {
-            Points recod = new Points();
-            PointsExample example = new PointsExample();
-            return service.queryDriver(example).toString();
+            return service.queryDriver(recod).toString();
         } catch (Exception e) {
             return Result.getQueryFailResult(e).toString();
         }
@@ -188,12 +171,22 @@ public class PointsConfigController {
      */
     @ResponseBody
     @RequestMapping(value = "/Search")
-    public String SearchPointsDev(HttpServletRequest request) {
-        String result;
+    public String SearchPointsDev(String limit, String page, String cdev, String fdev, HttpServletRequest request) {
+
+        String name = CommonUtils.getStrFromObject(request.getParameter("name"));
         try {
-            PointsExample example = new PointsExample();
             Points recod = new Points();
-            return service.query(example, recod).toString();
+            int showCount = Integer.parseInt(limit);
+            int currentPage = Integer.parseInt(page);
+
+            recod.setName("%" + name + "%");
+            recod.setcDev(cdev);
+            recod.setfDev(fdev);
+
+            recod.setLastCount((currentPage - 1) * showCount);
+            recod.setPageSize(showCount);
+
+            return service.query(recod).toString();
         } catch (Exception e) {
             return Result.getQueryFailResult(e).toString();
         }

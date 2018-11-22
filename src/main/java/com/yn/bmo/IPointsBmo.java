@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IPointsBmo {
-    int countByExample(PointsExample example);
+    int countByExample(Points example);
 
     int deleteByExample(PointsExample example);
 
@@ -19,6 +19,10 @@ public interface IPointsBmo {
     int insertSelective(Points record);
 
     List<Map<String, Object>> selectByExample(PointsExample example, Points record);
+
+    List<Map<String, Object>> queryByConditions(Points record);
+
+    Integer selectTotal(Points record);
 
     List<Map<String, Object>> selectByDriver(PointsExample example);
 
@@ -31,4 +35,6 @@ public interface IPointsBmo {
     int updateByPrimaryKeySelective(Points record);
 
     int updateByPrimaryKey(Points record);
+
+    List<Map<String,Object>> queryByDriver(Points recod);
 }

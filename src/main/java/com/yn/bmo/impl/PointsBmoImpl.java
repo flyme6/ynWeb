@@ -17,7 +17,7 @@ public class PointsBmoImpl implements IPointsBmo {
     private PointsMapper mapper;
 
     @Override
-    public int countByExample(PointsExample example) {
+    public int countByExample(Points example) {
         return mapper.countByExample(example);
     }
 
@@ -43,21 +43,35 @@ public class PointsBmoImpl implements IPointsBmo {
 
     @Override
     public List<Map<String, Object>> selectByExample(PointsExample example, Points record) {
-        PointsExample.Criteria criteria = example.createCriteria();
-        String name = record.getName();
+//        PointsExample.Criteria criteria = example.createCriteria();
+//        String name = record.getName();
+//
+//        String cdev = record.getcDev();
+//        String fdev = record.getfDev();
+//
+//        if (StringUtils.isNotBlank(name)) {
+//            name = "%" + name + "%";
+//        }
+//
+//        if (StringUtils.isNotBlank(name)) {
+//            criteria.andNameLike(name);
+//        }
 
-        String cdev = record.getcDev();
-        String fdev = record.getfDev();
-
-        if (StringUtils.isNotBlank(name)) {
-            name = "%" + name + "%";
-        }
-
-        if (StringUtils.isNotBlank(name)) {
-            criteria.andNameLike(name);
-        }
-        return mapper.selectByExample(example);
+//        criteria.andCDevEqualTo(cdev);
+//        criteria.andFDevEqualTo(fdev);
+        return mapper.selectByExample2(record);
     }
+
+    @Override
+    public List<Map<String, Object>> queryByConditions(Points record) {
+        return mapper.selectByConditions(record);
+    }
+
+    @Override
+    public Integer selectTotal(Points record) {
+        return mapper.selectTotal(record);
+    }
+
 
     @Override
     public List<Map<String, Object>> selectByDriver(PointsExample example) {
@@ -87,5 +101,10 @@ public class PointsBmoImpl implements IPointsBmo {
     @Override
     public int updateByPrimaryKey(Points record) {
         return mapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryByDriver(Points recod) {
+        return mapper.queryByDriver(recod);
     }
 }

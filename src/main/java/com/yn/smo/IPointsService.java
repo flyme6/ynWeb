@@ -5,9 +5,12 @@ import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
 
 public interface IPointsService {
-    Result query(PointsExample example,Points recod);
 
-    Result queryDriver(PointsExample example);
+    Result query(PointsExample example, Points recod);
+
+    Result query(Points recod);
+
+    Result queryDriver(Points recod);
 
     Result save(Points recod);
 

@@ -52,11 +52,12 @@
                                     <option value="请选择"></option>
                                 </select>
                             </div>
-                            &nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;
                             <div class="layui-inline">
-                                <input class="layui-input" name="name" id="name" autocomplete="off">
+                                <input class="layui-input" name="name" id="name" autocomplete="off" placeholder="请输入点名称">
                             </div>
-                            <button class="layui-btn" data-type="reload">&nbsp;&nbsp;&nbsp;搜索</button>
+                            &nbsp;&nbsp;
+                            <button class="layui-btn" data-type="reload">搜索</button>
                         </div>
                     </div>
                     <div class="weadmin-block">

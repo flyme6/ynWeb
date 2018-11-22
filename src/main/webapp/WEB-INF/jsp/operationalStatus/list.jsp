@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://"
-+ request.getServerName() + ":" + request.getServerPort()
-+ path;
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path;
 %>
 <!DOCTYPE html>
 <html>
@@ -34,6 +34,29 @@ String basePath = request.getScheme() + "://"
             <div class="layui-card">
 
                 <div class="layui-card-body chart-card">
+
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>演示数据已经实现ajax，每隔一秒刷新一次</legend>
+                    </fieldset>
+
+                    <table class="layui-table" lay-even="" lay-skin="row" id="table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>监测项</th>
+                            <th>检测数据</th>
+                            <th>说明</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-tbody">
+                        </tbody>
+                    </table>
+
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
                         <legend>通信端口状态</legend>
                     </fieldset>
@@ -109,6 +132,7 @@ String basePath = request.getScheme() + "://"
 </div>
 </body>
 <script src="lib/layui/layui.js" charset="utf-8"></script>
+<script src="static/js/jquery.js" charset="utf-8"></script>
 <script>
     layui.extend({
         admin: '{/}static/js/admin'
@@ -227,13 +251,13 @@ String basePath = request.getScheme() + "://"
             }, {
                 "name": "设备3"
                 , "c_dev": "运行"
-            },{
+            }, {
                 "name": "设备4"
                 , "c_dev": "运行"
-            },{
+            }, {
                 "name": "设备5"
                 , "c_dev": "运行"
-            },{
+            }, {
                 "name": "设备6"
                 , "c_dev": "故障"
             }]
@@ -264,6 +288,39 @@ String basePath = request.getScheme() + "://"
             });
         }
     });
+
+</script>
+
+<script>
+    window.onload = function () {
+        runEvery10Sec();
+    };
+
+    var htmls = ''; //全局变量
+
+    function runEvery10Sec() {
+        setTimeout(runEvery10Sec, 1000 * 1);
+
+        $.ajax({
+            url: "./pointsConfig/queryDriver",
+            type: "get",
+            dataType: "json",
+            async: false,//这得注意是同步
+            success: function (result) {
+                $("#table-tbody").html("");
+                resultData = result.data;
+                for (var x in resultData) {
+                    htmls = "<tr>" +
+                        "<td>" + resultData[x].c_dev + "</td>" +
+                        "<td>" + resultData[x].f_dev + "</td>" +
+                        "<td>" + resultData[x].c_devid + "</td>" +
+                        "</tr>";
+                    $("#table-tbody").append(htmls);
+                }
+            }
+
+        });
+    }
 
 </script>
 </html>

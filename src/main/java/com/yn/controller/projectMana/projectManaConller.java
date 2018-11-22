@@ -1,7 +1,7 @@
 package com.yn.controller.projectMana;
 
 
-import com.yn.util.YnServiceUtil;
+import com.yn.util.ynService.SystemControllerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/exportProject")
     public String exportProject() throws Exception {
-        Object o = YnServiceUtil.exportProject();
+        Object o = SystemControllerUtil.exportProject();
         return "保存工程到本地" + o;
     }
 
@@ -43,7 +43,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/newProject")
     public String project() throws Exception {
-        Object o = YnServiceUtil.newProject();
+        Object o = SystemControllerUtil.newProject();
         return "新建工程" + o;
     }
 
@@ -56,7 +56,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/saveProject")
     public String saveProject() throws Exception {
-        Object o = YnServiceUtil.saveProject();
+        Object o = SystemControllerUtil.saveProject();
         return "工程文件下载" + o;
     }
 
@@ -69,7 +69,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/checkProject")
     public String checkProject() throws Exception {
-        Object o = YnServiceUtil.checkProject();
+        Object o = SystemControllerUtil.checkProject();
         return "检查工程" + o;
     }
 
@@ -82,7 +82,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/importProject")
     public String importProject() throws Exception {
-        Object o = YnServiceUtil.importProject();
+        Object o = SystemControllerUtil.importProject();
         return "打开本地工程" + o;
     }
 
@@ -95,7 +95,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/startProject")
     public String startProject() throws Exception {
-        Object o = YnServiceUtil.startProject();
+        Object o = SystemControllerUtil.startProject();
         return "启动工程" + o;
     }
 
@@ -108,7 +108,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/stopProject")
     public String stopProject() throws Exception {
-        Object o = YnServiceUtil.stopProject();
+        Object o = SystemControllerUtil.stopProject();
         return "停止工程" + o;
     }
 
@@ -121,7 +121,7 @@ public class projectManaConller {
     @ResponseBody
     @GetMapping(value = "/rebootBox")
     public String rebootBox() throws Exception {
-        Object o = YnServiceUtil.rebootBox();
+        Object o = SystemControllerUtil.rebootBox();
         return "重启盒子" + o;
     }
 

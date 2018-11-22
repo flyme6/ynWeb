@@ -1,9 +1,13 @@
-package com.yn.util;
+package com.yn.util.ynService;
 
 import Ice.StringHolder;
 import YNRPC.*;
 
-public class YnServiceUtil {
+/**
+ * 获得系统控制接口，ISystemControl可控制工程启/停等
+ */
+
+public class SystemControllerUtil {
     /**
      * 获取系统信息状态
      *
@@ -283,7 +287,7 @@ public class YnServiceUtil {
 
 //            result = value.checkProject();
 
-            System.out.println("检查工程----" + "获取结果：" + result + "----返回对象：" );
+            System.out.println("检查工程----" + "获取结果：" + result + "----返回对象：");
             return result;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
@@ -448,7 +452,7 @@ public class YnServiceUtil {
     }
 
     public static void main(String[] args) {
-        DeviceInfoListHolder systemInformation = YnServiceUtil.getSystemInformation();
+        DeviceInfoListHolder systemInformation = SystemControllerUtil.getSystemInformation();
         //新建工程
         newProject();
         //保存工程

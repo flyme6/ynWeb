@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -22,6 +22,318 @@ package YNRPC;
 
 public interface IServicePrx extends Ice.ObjectPrx
 {
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     **/
+    public Result init();
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     **/
+    public Result init(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init();
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(Ice.Callback __cb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(Callback_IService_init __cb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, Callback_IService_init __cb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                      IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx,
+                                      IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx,
+                                      IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                      IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     * @param __result The asynchronous result object.
+     **/
+    public Result end_init(Ice.AsyncResult __result);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     **/
+    public Result uninit();
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     **/
+    public Result uninit(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit();
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(Ice.Callback __cb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(Callback_IService_uninit __cb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, Callback_IService_uninit __cb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                        IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx,
+                                        IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx,
+                                        IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                        IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     * @param __result The asynchronous result object.
+     **/
+    public Result end_uninit(Ice.AsyncResult __result);
+
     /**
      * Description: 获得系统控制接口
      * Input:

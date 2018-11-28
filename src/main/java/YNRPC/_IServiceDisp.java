@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -106,6 +106,52 @@ public abstract class _IServiceDisp extends Ice.ObjectImpl implements IService
         return getSystemInformation(si, null);
     }
 
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     **/
+    public final Result init()
+    {
+        return init(null);
+    }
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     **/
+    public final Result uninit()
+    {
+        return uninit(null);
+    }
+
+    public static Ice.DispatchStatus ___init(IService __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        Result __ret = __obj.init(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        Result.__write(__os, __ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
+    public static Ice.DispatchStatus ___uninit(IService __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        Result __ret = __obj.uninit(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        Result.__write(__os, __ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
     public static Ice.DispatchStatus ___getSystemControl(IService __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
@@ -153,7 +199,9 @@ public abstract class _IServiceDisp extends Ice.ObjectImpl implements IService
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping"
+        "ice_ping",
+        "init",
+        "uninit"
     };
 
     public Ice.DispatchStatus __dispatch(IceInternal.Incoming in, Ice.Current __current)
@@ -193,6 +241,14 @@ public abstract class _IServiceDisp extends Ice.ObjectImpl implements IService
             case 6:
             {
                 return ___ice_ping(this, in, __current);
+            }
+            case 7:
+            {
+                return ___init(this, in, __current);
+            }
+            case 8:
+            {
+                return ___uninit(this, in, __current);
             }
         }
 

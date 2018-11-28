@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -20,50 +20,47 @@
 
 package YNRPC;
 
-public class DeviceInfo implements Cloneable, java.io.Serializable
-{
+public class DeviceInfo implements Cloneable, java.io.Serializable {
+    @Override
+    public String toString() {
+        return "DeviceInfo{" +
+                "devName='" + devName + '\'' +
+                ", devState=" + devState +
+                '}';
+    }
+
     public String devName;
 
     public DeviceState devState;
 
-    public DeviceInfo()
-    {
+    public DeviceInfo() {
         devName = "";
         devState = DeviceState.DSFAULT;
     }
 
-    public DeviceInfo(String devName, DeviceState devState)
-    {
+    public DeviceInfo(String devName, DeviceState devState) {
         this.devName = devName;
         this.devState = devState;
     }
 
     public boolean
-    equals(Object rhs)
-    {
-        if(this == rhs)
-        {
+    equals(Object rhs) {
+        if (this == rhs) {
             return true;
         }
         DeviceInfo _r = null;
-        if(rhs instanceof DeviceInfo)
-        {
-            _r = (DeviceInfo)rhs;
+        if (rhs instanceof DeviceInfo) {
+            _r = (DeviceInfo) rhs;
         }
 
-        if(_r != null)
-        {
-            if(devName != _r.devName)
-            {
-                if(devName == null || _r.devName == null || !devName.equals(_r.devName))
-                {
+        if (_r != null) {
+            if (devName != _r.devName) {
+                if (devName == null || _r.devName == null || !devName.equals(_r.devName)) {
                     return false;
                 }
             }
-            if(devState != _r.devState)
-            {
-                if(devState == null || _r.devState == null || !devState.equals(_r.devState))
-                {
+            if (devState != _r.devState) {
+                if (devState == null || _r.devState == null || !devState.equals(_r.devState)) {
                     return false;
                 }
             }
@@ -75,8 +72,7 @@ public class DeviceInfo implements Cloneable, java.io.Serializable
     }
 
     public int
-    hashCode()
-    {
+    hashCode() {
         int __h = 5381;
         __h = IceInternal.HashUtil.hashAdd(__h, "::YNRPC::DeviceInfo");
         __h = IceInternal.HashUtil.hashAdd(__h, devName);
@@ -85,58 +81,46 @@ public class DeviceInfo implements Cloneable, java.io.Serializable
     }
 
     public DeviceInfo
-    clone()
-    {
+    clone() {
         DeviceInfo c = null;
-        try
-        {
-            c = (DeviceInfo)super.clone();
-        }
-        catch(CloneNotSupportedException ex)
-        {
+        try {
+            c = (DeviceInfo) super.clone();
+        } catch (CloneNotSupportedException ex) {
             assert false; // impossible
         }
         return c;
     }
 
     public void
-    __write(IceInternal.BasicStream __os)
-    {
+    __write(IceInternal.BasicStream __os) {
         __os.writeString(devName);
         DeviceState.__write(__os, devState);
     }
 
     public void
-    __read(IceInternal.BasicStream __is)
-    {
+    __read(IceInternal.BasicStream __is) {
         devName = __is.readString();
         devState = DeviceState.__read(__is);
     }
 
     static public void
-    __write(IceInternal.BasicStream __os, DeviceInfo __v)
-    {
-        if(__v == null)
-        {
+    __write(IceInternal.BasicStream __os, DeviceInfo __v) {
+        if (__v == null) {
             __nullMarshalValue.__write(__os);
-        }
-        else
-        {
+        } else {
             __v.__write(__os);
         }
     }
 
     static public DeviceInfo
-    __read(IceInternal.BasicStream __is, DeviceInfo __v)
-    {
-        if(__v == null)
-        {
-             __v = new DeviceInfo();
+    __read(IceInternal.BasicStream __is, DeviceInfo __v) {
+        if (__v == null) {
+            __v = new DeviceInfo();
         }
         __v.__read(__is);
         return __v;
     }
-    
+
     private static final DeviceInfo __nullMarshalValue = new DeviceInfo();
 
     public static final long serialVersionUID = 1882838491L;

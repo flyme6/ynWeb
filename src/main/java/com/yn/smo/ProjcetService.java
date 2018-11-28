@@ -2,6 +2,7 @@ package com.yn.smo;
 
 import Ice.StringHolder;
 import YNRPC.*;
+import com.yn.util.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,7 @@ public class ProjcetService {
             ic = Ice.Util.initialize(args);
 
             // 获取远地打印机的代理
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             // 将上面的代理向下转换成一个Printer接口的代理
             IServicePrx service = IServicePrxHelper.checkedCast(base);
@@ -81,7 +82,7 @@ public class ProjcetService {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -132,7 +133,7 @@ public class ProjcetService {
             ic = Ice.Util.initialize(args);
 
             // 获取远地打印机的代理
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             // 将上面的代理向下转换成一个Printer接口的代理
             IServicePrx service = IServicePrxHelper.checkedCast(base);
@@ -184,7 +185,7 @@ public class ProjcetService {
             ic = Ice.Util.initialize(args);
 
             // 获取远地打印机的代理
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             // 将上面的代理向下转换成一个Printer接口的代理
             IServicePrx service = IServicePrxHelper.checkedCast(base);
@@ -235,7 +236,7 @@ public class ProjcetService {
             ic = Ice.Util.initialize(args);
 
             // 获取远地打印机的代理
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             // 将上面的代理向下转换成一个Printer接口的代理
             IServicePrx service = IServicePrxHelper.checkedCast(base);

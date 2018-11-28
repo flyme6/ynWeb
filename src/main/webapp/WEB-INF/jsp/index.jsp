@@ -29,7 +29,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="./index.jsp">YN后台管理系统</a>
+        <a href="./index">YN后台管理系统</a>
     </div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -40,31 +40,39 @@
             <dl class="layui-nav-child">
                 <!-- 工程管理二级菜单 -->
                 <dd>
-                    <a onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地</a>
+                    <%--<a onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地</a>--%>
+                    <a title="保存工程到本地" onclick="export_project()" href="javascript:">保存工程到本地</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('新建工程','./project/newProject')">新建工程</a>
+                    <%--<a onclick="WeAdminShow('新建工程','./project/newProject')">新建工程</a>--%>
+                    <a title="新建工程" onclick="new_project()" href="javascript:">新建工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('工程文件下载','./project/saveProject')">工程文件下载</a>
+                    <%--<a onclick="WeAdminShow('工程文件下载','./file/down?filename=1.rar')">工程文件下载</a>--%>
+                    <a href="./file/down?filename=1.rar">工程文件下载</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程</a>
+                    <%--<a onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程</a>--%>
+                    <a title="检查工程" onclick="check_project()" href="javascript:">检查工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('打开本地工程','./project/importProject')">打开本地工程</a>
+                    <%--<a onclick="WeAdminShow('打开本地工程','./projectPage/importProject')">打开本地工程</a>--%>
+                    <a onclick="WeAdminShow('打开本地工程','./project/importProjectPage')">打开本地工程</a>
                 </dd>
                 <dd>
                     &nbsp;&nbsp;
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('启动工程','./project/startProject')">启动工程</a>
+                    <%--<a onclick="WeAdminShow('启动工程','./project/startProject')">启动工程</a>--%>
+                    <a title="启动工程" onclick="start_project()" href="javascript:">启动工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('停止工程','./project/stopProject')">停止工程</a>
+                    <%--<a onclick="WeAdminShow('停止工程','./project/stopProject')">停止工程</a>--%>
+                    <a title="停止工程" onclick="stop_project()" href="javascript:">停止工程</a>
                 </dd>
                 <dd>
-                    <a onclick="WeAdminShow('重启盒子','./project/rebootBox')">重启盒子</a>
+                    <%--<a onclick="WeAdminShow('重启盒子','./project/rebootBox')">重启盒子</a>--%>
+                    <a title="重启盒子" onclick="reboot_project()" href="javascript:">重启盒子</a>
                 </dd>
             </dl>
         </li>
@@ -262,7 +270,7 @@
             <li>
                 <a _href="./console">
                     <i class="iconfont">&#xe705;</i>
-                    <cite>控制台日志</cite>
+                    <cite>系统日志(第二版本)</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             </li>
@@ -293,35 +301,240 @@
 </div>
 <!-- 底部结束 -->
 <script type="text/javascript">
-    //			layui扩展模块的两种加载方式-示例
-    //		    layui.extend({
-    //			  admin: '{/}../../static/js/admin' // {/}的意思即代表采用自有路径，即不跟随 base 路径
-    //			});
-    //			//使用拓展模块
-    //			layui.use('admin', function(){
-    //			  var admin = layui.admin;
-    //			});
+
     layui.config({
         base: './static/js/'
         , version: '101100'
     }).use('admin');
     layui.use(['jquery', 'admin'], function () {
-        var $ = layui.jquery;
-        $(function () {
-            // var login = JSON.parse(localStorage.getItem("login"));
-            // if (login) {
-            //     if (login = 0) {
-            //         window.location.href = './login.jsp';
-            //         return false;
-            //     } else {
-            //         return false;
-            //     }
-            // } else {
-            //     window.location.href = './login.jsp';
-            //     return false;
-            // }
-        });
-    });
+            var $ = layui.jquery;
+
+
+            /*控制设备运行状态新建工程*/
+            window.new_project = function () {
+                $.ajax({
+                    url: "./project/newProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    // data: "name=" + obj.data.name,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            layer.msg('新建工程成功', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('新建工程失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+            /*控制设备运行状态保存工程到本地*/
+            window.export_project = function () {
+                $.ajax({
+                    url: "./project/exportProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    // data: "name=" + obj.data.name,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            // top.layer.msg("保存工程到本地成功");
+                            layer.msg('保存工程到本地成功', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('保存工程到本地失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+
+            /*控制设备运行状态检查工程*/
+            window.check_project = function () {
+                $.ajax({
+                    url: "./project/checkProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    // data: "name=" + obj.data.name,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            layer.msg('检查成功', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('检查失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+            /*控制项目工程开始*/
+            window.start_project = function () {
+                $.ajax({
+                    url: "./project/startProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            layer.msg('启动成功,已正常获取数据', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('启动失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现异常，请刷新页面 或者检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+            /*控制项目工程停止*/
+            window.stop_project = function () {
+                $.ajax({
+                    url: "./project/stopProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            layer.msg('停止成功', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('停止失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+            /*控制项目工程重启*/
+            window.reboot_project = function () {
+                $.ajax({
+                    url: "./project/rebootBox",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        layer.msg('重启成功', {
+                            icon: 1,
+                            time: 3000
+                        });
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面，错误代码：' + error.msg, {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    );
 
 </script>
 </body>

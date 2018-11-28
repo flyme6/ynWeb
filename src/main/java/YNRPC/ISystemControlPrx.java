@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -654,6 +654,162 @@ public interface ISystemControlPrx extends Ice.ObjectPrx
      * @param __result The asynchronous result object.
      **/
     public Result end_importProject(Ice.AsyncResult __result);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     **/
+    public Result checkProject();
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     **/
+    public Result checkProject(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject();
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(Ice.Callback __cb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(Callback_ISystemControl_checkProject __cb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     * @param __cb The asynchronous callback object.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, Callback_ISystemControl_checkProject __cb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                              IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx,
+                                              IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __ctx The Context map to send with the invocation.
+     * @param __responseCb The lambda response callback.
+     * @param __exceptionCb The lambda exception callback.
+     * @param __sentCb The lambda sent callback.
+     * @return The asynchronous result object.
+     **/
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx,
+                                              IceInternal.Functional_GenericCallback1<Result> __responseCb,
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb,
+                                              IceInternal.Functional_BoolCallback __sentCb);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __result The asynchronous result object.
+     **/
+    public Result end_checkProject(Ice.AsyncResult __result);
 
     /**
      * Description: 启动工程

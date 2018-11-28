@@ -19,7 +19,7 @@ public class Client2 {
 //			ic = Ice.Util.initialize(args);
 //
 //			// 获取远地打印机的代理
-//			Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+//			Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 //
 //			// 将上面的代理向下转换成一个Printer接口的代理
 //			IServicePrx service = IServicePrxHelper.checkedCast(base);

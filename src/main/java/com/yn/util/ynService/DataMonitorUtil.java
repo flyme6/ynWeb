@@ -2,25 +2,96 @@ package com.yn.util.ynService;
 
 import Ice.IntHolder;
 import YNRPC.*;
+import com.alibaba.fastjson.JSON;
+import com.yn.common.Constant;
+import com.yn.util.Const;
+import com.yn.util.JsonUtil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 获得数据监听接口，IDataMonitor可监视实时数据及日志及通信数据流等。
  */
 public class DataMonitorUtil {
 
+    public static void main(String[] args) {
+        com.yn.common.Result result = new com.yn.common.Result();
+        DeviceInfo[] deviceInfos = getDevicesState();
+//        Map<String, String> map = new HashMap<>();
+        String s = JSON.toJSONString(deviceInfos);
+
+//        System.out.println(s);
+//        map.put("data",s);
+//        System.out.println(map.toString());
+
+//        System.out.println(result);
+        List<HashMap<String, Object>> maps = new ArrayList<>();
+        HashMap<String, Object> map = new HashMap<>();
+
+//        第二种方式
+        for (DeviceInfo deviceInfo : deviceInfos) {
+            String devName = deviceInfo.devName;
+            DeviceState devState = deviceInfo.devState;
+//            for (int i = 0; i < 10; i++) {
+            map.put("devName", devName);
+            map.put("devState", devState.toString());
+            maps.add(map);
+//            }
+//            System.out.println(map.toString());
+        }
+
+//        第一种方式
+        List<HashMap<String, Object>> mMenuData = new ArrayList<>();
+
+        for (int i = 0; i < deviceInfos.length; i++) {
+            HashMap<String, Object> map2 = new HashMap<>();
+//            String s1 = null;
+            String s1 = String.valueOf(deviceInfos[i].devState);
+            if (s1 == "DSRUNNING") {
+//                运行为绿色
+//                s1 = deviceInfos[i].devState.toString();
+//                s1 = "5FB878";
+                s1 = "FD482C";
+            } else if (s1 == "DSFAULT") {
+//                故障为红色
+//                s1 = deviceInfos[i].devState.toString();
+                s1 = "FD482C";
+            } else if (s1 == "DSSTOPPED"){
+//                未使用为灰色
+//                s1 = deviceInfos[i].devState.toString();
+                s1 = "B2B2B2";
+            }
+            map2.put("devName", deviceInfos[i].devName);
+            map2.put("devState", s1);
+//            map2.put("devState", deviceInfos[i].devState);
+            mMenuData.add(map2);
+        }
+
+        result.addCode(Constant.CODE_QUERY_SUCCESS);
+        result.addMsg(Constant.MSG_QUERY_SUCCESS);
+        result.addCount(deviceInfos.length);
+        result.addData(mMenuData);
+        System.out.println(result);
+    }
+
     /**
      * 获得设备状态
      *
      * @return
      */
-    public static Object getDevicesState() {
+    public static DeviceInfo[] getDevicesState() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
         Result result = null;
+        DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+//            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -34,11 +105,12 @@ public class DataMonitorUtil {
             }
 
             IDataMonitorPrx value = iDataMonitorPrxHolder.value;
-            DeviceInfoListHolder deviceInfoListHolder = new DeviceInfoListHolder();
+            deviceInfoListHolder = new DeviceInfoListHolder();
             result = value.getDevicesState(deviceInfoListHolder);
 
-            System.out.println("获得设备状态----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder);
-            return result;
+
+            System.out.println("获得设备状态----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder.value);
+            return deviceInfoListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -49,26 +121,27 @@ public class DataMonitorUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return deviceInfoListHolder.value;
         }
 
     }
 
     /**
-     * 获得设备状态
+     * 获得实时数据
      * ptIds: 点的ID列表
      * values: 返回点的实时数据值
      *
      * @return
      */
-    public static Object queryRealData() {
+    public static Rvqt[] queryRealData() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
         Result result = null;
+        RvqtListHolder rvqtListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -82,12 +155,11 @@ public class DataMonitorUtil {
             }
 
             IDataMonitorPrx value = iDataMonitorPrxHolder.value;
-            RvqtListHolder rvqtListHolder = new RvqtListHolder();
+            rvqtListHolder = new RvqtListHolder();
             int[] ptIds = {1, 2};
             result = value.queryRealDatas(ptIds, rvqtListHolder);
-
-            System.out.println("获得设备状态----" + "获取结果：" + result + "----返回对象：" + rvqtListHolder + "----点ID列表" + ptIds);
-            return result;
+            System.out.println("获得实时数据----" + "获取结果：" + result + "----返回对象：" + rvqtListHolder.value + "----点ID列表" + ptIds);
+            return rvqtListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -98,10 +170,11 @@ public class DataMonitorUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return rvqtListHolder.value;
         }
 
     }
+
 
     /**
      * 获得设备的通信数据流
@@ -120,7 +193,7 @@ public class DataMonitorUtil {
         Result result = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -133,15 +206,15 @@ public class DataMonitorUtil {
                 throw new Error("iDataMonitorPrxHolder为空");
             }
 
-            IDataMonitorPrx value = iDataMonitorPrxHolder.value;
+            IDataMonitorPrx monitorPrx = iDataMonitorPrxHolder.value;
             String devName = "dev";
-            int inId = 1;
-            int limit = 1;
+            int inId = 0;
+            int limit = 0;
             StringListHolder msgs = new StringListHolder();
             Ice.IntHolder outId = new IntHolder();
-            result = value.queryDeviceDataFrames(devName, inId, limit, msgs, outId);
+            result = monitorPrx.queryDeviceDataFrames(devName, inId, limit, msgs, outId);
 
-            System.out.println("获得设备状态----" + "获取结果："
+            System.out.println("获得设备的通信数据流----" + "获取结果："
                     + result + "----返回对象：StringListHolder "
                     + devName + "devName----"
                     + inId + "inId----"
@@ -150,7 +223,14 @@ public class DataMonitorUtil {
                     + msgs + "msgs----"
                     + outId + "outId----"
             );
-            return result;
+            return "获得设备的通信数据流----" + "获取结果："
+                    + result + "----返回对象：StringListHolder "
+                    + devName + "devName----"
+                    + inId + "inId----"
+                    + limit + "limit----"
+                    + limit + "limit----"
+                    + msgs + "msgs----"
+                    + outId + "outId----";
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -183,7 +263,7 @@ public class DataMonitorUtil {
         Result result = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -204,7 +284,7 @@ public class DataMonitorUtil {
             Ice.IntHolder outId = new IntHolder();
             result = value.querySystemLog(inId, limit, msgs, outId);
 
-            System.out.println("获得设备状态----" + "获取结果："
+            System.out.println("获得系统日志信息----" + "获取结果："
                     + result + "----返回对象：StringListHolder " + msgs
                     + "----inId:" + inId
                     + "----limit:" + limit

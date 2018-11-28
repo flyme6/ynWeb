@@ -2,6 +2,7 @@ package com.yn.util.ynService;
 
 import Ice.StringHolder;
 import YNRPC.*;
+import com.yn.util.Const;
 
 /**
  * 获得系统控制接口，ISystemControl可控制工程启/停等
@@ -22,7 +23,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -66,7 +67,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object newProject() {
+    public static Result newProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -74,7 +75,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -115,7 +116,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object saveProject() {
+    public static Result saveProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -123,7 +124,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -163,7 +164,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object exportProject() {
+    public static Result exportProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -171,7 +172,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -212,7 +213,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object importProject() {
+    public static Result importProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -220,7 +221,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -262,7 +263,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object checkProject() {
+    public static Result checkProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -270,7 +271,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -283,9 +284,9 @@ public class SystemControllerUtil {
                 throw new Error("iSystemControlPrxHolder为空");
             }
 
-            ISystemControlPrx value = iSystemControlPrxHolder.value;
+            ISystemControlPrx controlPrx = iSystemControlPrxHolder.value;
 
-//            result = value.checkProject();
+            result = controlPrx.checkProject();
 
             System.out.println("检查工程----" + "获取结果：" + result + "----返回对象：");
             return result;
@@ -311,7 +312,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object startProject() {
+    public static Result startProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -319,7 +320,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -361,7 +362,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object stopProject() {
+    public static Result stopProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -369,7 +370,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -410,7 +411,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Object rebootBox() {
+    public static Result rebootBox() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -418,7 +419,7 @@ public class SystemControllerUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {

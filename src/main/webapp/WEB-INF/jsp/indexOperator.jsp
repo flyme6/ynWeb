@@ -27,7 +27,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="./index.jsp">YN后台管理系统</a>
+        <a href="./indexOperator">YN后台管理系统</a>
     </div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -38,22 +38,22 @@
             <dl class="layui-nav-child">
                 <!-- 工程管理二级菜单 -->
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('保存工程到本地','./exportProject.jsp')">保存工程到本地</a>--%>
+                <%--<a onclick="WeAdminShow('保存工程到本地','./exportProject.jsp')">保存工程到本地</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('新建工程','./newProject.jsp')">新建工程</a>--%>
+                <%--<a onclick="WeAdminShow('新建工程','./newProject.jsp')">新建工程</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>--%>
+                <%--<a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('检查工程','./checkProject.jsp')">检查工程</a>--%>
+                <%--<a onclick="WeAdminShow('检查工程','./checkProject.jsp')">检查工程</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--<a onclick="WeAdminShow('打开本地工程','./importProject.jsp')">打开本地工程</a>--%>
+                <%--<a onclick="WeAdminShow('打开本地工程','./importProject.jsp')">打开本地工程</a>--%>
                 <%--</dd>--%>
                 <%--<dd>--%>
-                    <%--&lt;%&ndash;<a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<a onclick="WeAdminShow('工程文件下载','./saveProject.jsp')">工程文件下载</a>&ndash;%&gt;--%>
                 <%--</dd>--%>
                 <dd>
                     <a onclick="WeAdminShow('启动工程','./startProject .jsp')">启动工程</a>

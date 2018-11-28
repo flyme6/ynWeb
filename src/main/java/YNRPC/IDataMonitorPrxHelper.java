@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -108,7 +108,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
                                                   IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                   IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IDataMonitor_getDevicesState
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IDataMonitor_getDevicesState
         {
             public CB(FunctionalCallback_IDataMonitor_getDevicesState_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -188,7 +188,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __getDevicesState_completed(_Callback_IDataMonitor_getDevicesState __cb, Ice.AsyncResult __result)
+    static public void __getDevicesState_completed(YNRPC._Callback_IDataMonitor_getDevicesState __cb, Ice.AsyncResult __result)
     {
         IDataMonitorPrx __proxy = (IDataMonitorPrx)__result.getProxy();
         Result __ret = null;
@@ -308,7 +308,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
                                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                         IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IDataMonitor_queryDeviceDataFrames
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IDataMonitor_queryDeviceDataFrames
         {
             public CB(FunctionalCallback_IDataMonitor_queryDeviceDataFrames_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -396,7 +396,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __queryDeviceDataFrames_completed(_Callback_IDataMonitor_queryDeviceDataFrames __cb, Ice.AsyncResult __result)
+    static public void __queryDeviceDataFrames_completed(YNRPC._Callback_IDataMonitor_queryDeviceDataFrames __cb, Ice.AsyncResult __result)
     {
         IDataMonitorPrx __proxy = (IDataMonitorPrx)__result.getProxy();
         Result __ret = null;
@@ -507,7 +507,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IDataMonitor_queryPointIds
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IDataMonitor_queryPointIds
         {
             public CB(FunctionalCallback_IDataMonitor_queryPointIds_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -590,7 +590,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __queryPointIds_completed(_Callback_IDataMonitor_queryPointIds __cb, Ice.AsyncResult __result)
+    static public void __queryPointIds_completed(YNRPC._Callback_IDataMonitor_queryPointIds __cb, Ice.AsyncResult __result)
     {
         IDataMonitorPrx __proxy = (IDataMonitorPrx)__result.getProxy();
         Result __ret = null;
@@ -700,7 +700,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IDataMonitor_queryRealDatas
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IDataMonitor_queryRealDatas
         {
             public CB(FunctionalCallback_IDataMonitor_queryRealDatas_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -783,7 +783,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __queryRealDatas_completed(_Callback_IDataMonitor_queryRealDatas __cb, Ice.AsyncResult __result)
+    static public void __queryRealDatas_completed(YNRPC._Callback_IDataMonitor_queryRealDatas __cb, Ice.AsyncResult __result)
     {
         IDataMonitorPrx __proxy = (IDataMonitorPrx)__result.getProxy();
         Result __ret = null;
@@ -898,7 +898,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IDataMonitor_querySystemLog
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IDataMonitor_querySystemLog
         {
             public CB(FunctionalCallback_IDataMonitor_querySystemLog_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -984,7 +984,7 @@ public final class IDataMonitorPrxHelper extends Ice.ObjectPrxHelperBase impleme
         }
     }
 
-    static public void __querySystemLog_completed(_Callback_IDataMonitor_querySystemLog __cb, Ice.AsyncResult __result)
+    static public void __querySystemLog_completed(YNRPC._Callback_IDataMonitor_querySystemLog __cb, Ice.AsyncResult __result)
     {
         IDataMonitorPrx __proxy = (IDataMonitorPrx)__result.getProxy();
         Result __ret = null;

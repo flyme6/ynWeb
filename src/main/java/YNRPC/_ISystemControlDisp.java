@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -68,6 +68,18 @@ public abstract class _ISystemControlDisp extends Ice.ObjectImpl implements ISys
     public static String ice_staticId()
     {
         return __ids[1];
+    }
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     **/
+    public final Result checkProject()
+    {
+        return checkProject(null);
     }
 
     /**
@@ -227,6 +239,17 @@ public abstract class _ISystemControlDisp extends Ice.ObjectImpl implements ISys
         return Ice.DispatchStatus.DispatchOK;
     }
 
+    public static Ice.DispatchStatus ___checkProject(ISystemControl __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        __inS.readEmptyParams();
+        Result __ret = __obj.checkProject(__current);
+        IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
+        Result.__write(__os, __ret);
+        __inS.__endWriteParams(true);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
     public static Ice.DispatchStatus ___startProject(ISystemControl __obj, IceInternal.Incoming __inS, Ice.Current __current)
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
@@ -290,6 +313,7 @@ public abstract class _ISystemControlDisp extends Ice.ObjectImpl implements ISys
 
     private final static String[] __all =
     {
+        "checkProject",
         "exportProject",
         "ice_id",
         "ice_ids",
@@ -317,53 +341,57 @@ public abstract class _ISystemControlDisp extends Ice.ObjectImpl implements ISys
         {
             case 0:
             {
-                return ___exportProject(this, in, __current);
+                return ___checkProject(this, in, __current);
             }
             case 1:
             {
-                return ___ice_id(this, in, __current);
+                return ___exportProject(this, in, __current);
             }
             case 2:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 3:
             {
-                return ___ice_isA(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 4:
             {
-                return ___ice_ping(this, in, __current);
+                return ___ice_isA(this, in, __current);
             }
             case 5:
             {
-                return ___importProject(this, in, __current);
+                return ___ice_ping(this, in, __current);
             }
             case 6:
             {
-                return ___newProject(this, in, __current);
+                return ___importProject(this, in, __current);
             }
             case 7:
             {
-                return ___rebootBox(this, in, __current);
+                return ___newProject(this, in, __current);
             }
             case 8:
             {
-                return ___saveProject(this, in, __current);
+                return ___rebootBox(this, in, __current);
             }
             case 9:
             {
-                return ___startDevice(this, in, __current);
+                return ___saveProject(this, in, __current);
             }
             case 10:
             {
-                return ___startProject(this, in, __current);
+                return ___startDevice(this, in, __current);
             }
             case 11:
             {
-                return ___stopDevice(this, in, __current);
+                return ___startProject(this, in, __current);
             }
             case 12:
+            {
+                return ___stopDevice(this, in, __current);
+            }
+            case 13:
             {
                 return ___stopProject(this, in, __current);
             }

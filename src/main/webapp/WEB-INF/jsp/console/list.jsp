@@ -36,7 +36,7 @@
                 <div class="layui-card-body chart-card">
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>调试控制台(测试专用)</legend>
+                        <legend>系统日志(第二版本)</legend>
                     </fieldset>
                     <div id="log-container"
                          style="height: 450px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
@@ -54,8 +54,11 @@
 <script>
     $(document).ready(function () {
         // 指定websocket路径
+        var ipPort = window.location.host;
         // var wsUri = 'ws://192.168.153.132:8080/ynWeb/log';
-        var wsUri = 'ws://localhost:8080/ynWeb/log';
+        // var wsUri = 'ws://localhost:8080/ynWeb/log';
+
+        var wsUri = 'ws://' + ipPort + '/ynWeb/log';
         var websocket = new WebSocket(wsUri);
         websocket.onmessage = function (event) {
             // 接收服务端的实时日志并添加到HTML页面中
@@ -63,6 +66,8 @@
             // 滚动条滚动到最低部
             $("#log-container").scrollTop($("#log-container div").height() - $("#log-container").height());
         };
+        // comm = $("#comm").val();
+
     });
 </script>
 </html>

@@ -1,5 +1,6 @@
 package com.yn.smo;
 
+import com.csvreader.CsvWriter;
 import com.yn.common.Result;
 import com.yn.entity.*;
 import com.yn.mapper.ComMapper;
@@ -7,6 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * @Author ：flyme
@@ -20,7 +24,7 @@ public class CModbusTcpMapperTest {
 
     @Before
     public void setUp() throws Exception {
-        applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext-sqlite.xml","spring/applicationContext-service.xml");
+        applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext-sqlite.xml", "spring/applicationContext-service.xml");
     }
 
     @Test
@@ -35,6 +39,9 @@ public class CModbusTcpMapperTest {
 
         System.out.println(result);
     }
+
+
+
 
     @Test
     public void updateByPrimaryKey() throws Exception {

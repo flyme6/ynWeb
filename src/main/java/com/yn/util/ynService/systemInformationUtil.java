@@ -1,6 +1,7 @@
 package com.yn.util.ynService;
 
 import YNRPC.*;
+import com.yn.util.Const;
 import org.apache.log4j.Logger;
 
 /**
@@ -16,15 +17,16 @@ public class systemInformationUtil {
      *
      * @return
      */
-    public static Object getSystemResourcesState() {
+    public static KeyValue[] getSystemResourcesState() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
         Result result = null;
         DeviceInfoListHolder deviceInfoListHolder = null;
+        KeyValueListHolder keyValueListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -38,11 +40,11 @@ public class systemInformationUtil {
             }
 
             ISystemInformationPrx value = systemInformationPrxHolder.value;
-            KeyValueListHolder keyValueListHolder = new KeyValueListHolder();
+            keyValueListHolder = new KeyValueListHolder();
             result = value.getSystemResourcesState(keyValueListHolder);
 
-            System.out.println("获得系统资源使用情况----" + "获取结果：" + result + "----返回对象：" + keyValueListHolder);
-            return result;
+            System.out.println("获得系统资源使用情况----" + "获取结果：" + result + "----返回对象：" + keyValueListHolder.value);
+            return keyValueListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -53,7 +55,7 @@ public class systemInformationUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return keyValueListHolder.value;
         }
 
 
@@ -65,15 +67,16 @@ public class systemInformationUtil {
      *
      * @return
      */
-    public static Object getAppRunState() {
+    public static KeyValue[] getAppRunState() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
         Result result = null;
         DeviceInfoListHolder deviceInfoListHolder = null;
+        KeyValueListHolder keyValueListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -87,11 +90,11 @@ public class systemInformationUtil {
             }
 
             ISystemInformationPrx value = systemInformationPrxHolder.value;
-            KeyValueListHolder keyValueListHolder = new KeyValueListHolder();
+            keyValueListHolder = new KeyValueListHolder();
             result = value.getAppRunState(keyValueListHolder);
 
-            System.out.println("获得嵌入式应用的运行情况----" + "获取结果：" + result + "----返回对象：" + keyValueListHolder);
-            return result;
+            System.out.println("获得嵌入式应用的运行情况----" + "获取结果：" + result + "----返回对象：" + keyValueListHolder.value);
+            return keyValueListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -102,7 +105,7 @@ public class systemInformationUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return keyValueListHolder.value;
         }
     }
 
@@ -112,7 +115,7 @@ public class systemInformationUtil {
      *
      * @return
      */
-    public static Object getNetportsState() {
+    public static DeviceInfo[] getNetportsState() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -120,7 +123,7 @@ public class systemInformationUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -134,11 +137,11 @@ public class systemInformationUtil {
             }
 
             ISystemInformationPrx value = systemInformationPrxHolder.value;
-            DeviceInfoListHolder deviceInfoListHolder1 = new DeviceInfoListHolder();
-            result = value.getNetportsState(deviceInfoListHolder1);
+            deviceInfoListHolder = new DeviceInfoListHolder();
+            result = value.getNetportsState(deviceInfoListHolder);
 
-            System.out.println("获得系统网口的运行情况----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder1);
-            return result;
+            System.out.println("获得系统网口的运行情况----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder.value);
+            return deviceInfoListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -149,7 +152,7 @@ public class systemInformationUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return deviceInfoListHolder.value;
         }
     }
 
@@ -159,7 +162,7 @@ public class systemInformationUtil {
      *
      * @return
      */
-    public static Object getComportsState() {
+    public static DeviceInfo[] getComportsState() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -167,7 +170,7 @@ public class systemInformationUtil {
         DeviceInfoListHolder deviceInfoListHolder = null;
         try {
             ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("YNRPC.IService:tcp -p 13613");
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
 
             IServicePrx service = IServicePrxHelper.checkedCast(base);
             if (service == null) {
@@ -181,11 +184,11 @@ public class systemInformationUtil {
             }
 
             ISystemInformationPrx value = systemInformationPrxHolder.value;
-            DeviceInfoListHolder deviceInfoListHolder1 = new DeviceInfoListHolder();
-            result = value.getComportsState(deviceInfoListHolder1);
+            deviceInfoListHolder = new DeviceInfoListHolder();
+            result = value.getComportsState(deviceInfoListHolder);
 
-            System.out.println("获得系统串口的运行情况----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder1);
-            return result;
+            System.out.println("获得系统串口的运行情况----" + "获取结果：" + result + "----返回对象：" + deviceInfoListHolder.value);
+            return deviceInfoListHolder.value;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -196,7 +199,7 @@ public class systemInformationUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return deviceInfoListHolder.value;
         }
     }
 }

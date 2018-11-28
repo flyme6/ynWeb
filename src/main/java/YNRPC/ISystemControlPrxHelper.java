@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -25,6 +25,171 @@ package YNRPC;
  **/
 public final class ISystemControlPrxHelper extends Ice.ObjectPrxHelperBase implements ISystemControlPrx
 {
+    private static final String __checkProject_name = "checkProject";
+
+    public Result checkProject()
+    {
+        return checkProject(null, false);
+    }
+
+    public Result checkProject(java.util.Map<String, String> __ctx)
+    {
+        return checkProject(__ctx, true);
+    }
+
+    private Result checkProject(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        __checkTwowayOnly(__checkProject_name);
+        return end_checkProject(begin_checkProject(__ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_checkProject()
+    {
+        return begin_checkProject(null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx)
+    {
+        return begin_checkProject(__ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_checkProject(Ice.Callback __cb)
+    {
+        return begin_checkProject(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_checkProject(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_checkProject(Callback_ISystemControl_checkProject __cb)
+    {
+        return begin_checkProject(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, Callback_ISystemControl_checkProject __cb)
+    {
+        return begin_checkProject(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_checkProject(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_checkProject(null, false, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_checkProject(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_checkProject(null, false, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_checkProject(__ctx, true, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, 
+                                              IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                              IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                              IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_checkProject(__ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, 
+                                               boolean __explicitCtx, 
+                                               boolean __synchronous, 
+                                               IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                               IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                               IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_checkProject(__ctx, __explicitCtx, __synchronous, 
+                                  new IceInternal.Functional_TwowayCallbackArg1<Result>(__responseCb, __exceptionCb, __sentCb)
+                                      {
+                                          public final void __completed(Ice.AsyncResult __result)
+                                          {
+                                              ISystemControlPrxHelper.__checkProject_completed(this, __result);
+                                          }
+                                      });
+    }
+
+    private Ice.AsyncResult begin_checkProject(java.util.Map<String, String> __ctx, 
+                                               boolean __explicitCtx, 
+                                               boolean __synchronous, 
+                                               IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__checkProject_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__checkProject_name, __cb);
+        try
+        {
+            __result.prepare(__checkProject_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            __result.writeEmptyParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public Result end_checkProject(Ice.AsyncResult __iresult)
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __checkProject_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            Result __ret;
+            __ret = Result.__read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __checkProject_completed(Ice.TwowayCallbackArg1<Result> __cb, Ice.AsyncResult __result)
+    {
+        ISystemControlPrx __proxy = (ISystemControlPrx)__result.getProxy();
+        Result __ret = null;
+        try
+        {
+            __ret = __proxy.end_checkProject(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
     private static final String __exportProject_name = "exportProject";
 
     public Result exportProject(Ice.StringHolder fileName)
@@ -108,7 +273,7 @@ public final class ISystemControlPrxHelper extends Ice.ObjectPrxHelperBase imple
                                                 IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                 IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_ISystemControl_exportProject
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_ISystemControl_exportProject
         {
             public CB(FunctionalCallback_ISystemControl_exportProject_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -188,7 +353,7 @@ public final class ISystemControlPrxHelper extends Ice.ObjectPrxHelperBase imple
         }
     }
 
-    static public void __exportProject_completed(_Callback_ISystemControl_exportProject __cb, Ice.AsyncResult __result)
+    static public void __exportProject_completed(YNRPC._Callback_ISystemControl_exportProject __cb, Ice.AsyncResult __result)
     {
         ISystemControlPrx __proxy = (ISystemControlPrx)__result.getProxy();
         Result __ret = null;

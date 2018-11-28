@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -57,6 +57,15 @@ public interface _ISystemControlOperationsNC
      * Others: 当前工程将被覆盖
      **/
     Result importProject(String fileName);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     **/
+    Result checkProject();
 
     /**
      * Description: 启动工程

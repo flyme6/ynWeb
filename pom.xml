@@ -52,9 +52,26 @@
         <sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
         <poi.version>3.13</poi.version>
         <websocket.version>1.1</websocket.version>
+        <javacsv.version>2.1</javacsv.version>
+        <fastjson.version>1.2.47</fastjson.version>
     </properties>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.javacsv/javacsv -->
+        <dependency>
+            <groupId>net.sourceforge.javacsv</groupId>
+            <artifactId>javacsv</artifactId>
+            <version>${javacsv.version}</version>
+        </dependency>
 
         <!--websocket-->
         <dependency>

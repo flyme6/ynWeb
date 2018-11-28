@@ -24,9 +24,98 @@
 </head>
 
 <body>
-<div class="weadmin-body">
-    <blockquote class="layui-elem-quote">欢迎使用管理后台！</blockquote>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-sm12 layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body chart-card">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>工程管理</legend>
+                    </fieldset>
+                    <div class="layui-card-body">
+                        <div>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('新建工程','./project/newProject')">新建工程
+                            </button>
+                            <button class="layui-btn"
+                            <%--onclick="WeAdminShow('工程文件下载','./file/down?filename=1.rar')">工程文件下载--%>
+                                    onclick="'./file/down?filename=1.rar'"><a href="./file/down?filename=1.rar"
+                                                                              style="color: white">工程文件下载</a>
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('打开本地工程','./project/importProjectPage')">打开本地工程
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('启动工程','./project/startProject')">启动工程
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('停止工程','./project/stopProject')">停止工程
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('重启盒子','./project/rebootBox')">重启盒子
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>数据监视</legend>
+                    </fieldset>
+                    <div class="layui-card-body">
+                        <div>
+                            <button class="layui-btn" id="getDevicesState"
+                                    onclick="WeAdminShow('设备状态','./dataMonitor/getDevicesState')">设备状态
+                            </button>
+                            <button class="layui-btn" onclick="WeAdminShow('实时数据','./dataMonitor/queryRealData')">
+                                实时数据
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('通信数据流','./dataMonitor/queryDeviceDataStream')">
+                                通信数据流
+                            </button>
+                            <button class="layui-btn" onclick="WeAdminShow('系统日志信息','./dataMonitor/querySystemLog')">
+                                系统日志信息
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>系统资源监视</legend>
+                    </fieldset>
+                    <div class="layui-card-body">
+                        <div>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('系统资源使用情况','./systemInformation/getSystemResourcesState')">
+                                系统资源使用情况
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('嵌入式应用的运行情况','./systemInformation/getAppRunState')">
+                                嵌入式应用的运行情况
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('系统网口的运行情况','./systemInformation/getNetportsState')">系统网口的运行情况
+                            </button>
+                            <button class="layui-btn"
+                                    onclick="WeAdminShow('系统串口的运行情况','./systemInformation/getComportsState')">
+                                系统串口的运行情况
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</body>
 </body>
 <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
@@ -65,7 +154,11 @@
             var str = util.timeAgo(new Date(y, M || 0, d || 1, H || 0, m || 0, s || 0));
             $(id).html(str);
             console.log(str);
-        };
+        }
+
+        $(document).on('click', '#getDevicesState', function () {
+            layer.tips('hello');
+        });
     });
 </script>
 

@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -22,6 +22,24 @@ package YNRPC;
 
 public interface _IServiceOperationsNC
 {
+    /**
+     * Description: 初始化系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在第一个用户建立会话时调用
+     **/
+    Result init();
+
+    /**
+     * Description: 卸载系统
+     * Input:
+     * Output: 
+     * Return:
+     * Others: 需要在最后一个用户会话结束时调用
+     **/
+    Result uninit();
+
     /**
      * Description: 获得系统控制接口
      * Input:

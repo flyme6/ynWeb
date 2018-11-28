@@ -36,89 +36,124 @@
                 <div class="layui-card-body chart-card">
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>演示数据已经实现ajax，每隔一秒刷新一次</legend>
+                        <legend>网口端口状态</legend>
+                    </fieldset>
+                    <div class="weadmin-block" id="NetportsState">
+                        <button class="layui-btn" style="background-color: #5FB878; ">TH1</button>
+                        <button class="layui-btn" style="background-color: #FD482C; ">TH2</button>
+                        <button class="layui-btn" style="background-color: #B2B2B2;">TH3</button>
+                    </div>
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>串口端口状态</legend>
+                    </fieldset>
+                    <div class="weadmin-block" id="ComportsState">
+                    </div>
+
+                    <table class="layui-table" id="communicationPortStatus"></table>
+                    <%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">--%>
+                    <%--<legend>系统网口状态</legend>--%>
+                    <%--</fieldset>--%>
+                    <%--&lt;%&ndash;<table class="layui-table" id="NetportsState"></table>&ndash;%&gt;--%>
+                    <%--<table class="layui-table" lay-even="" lay-skin="row" id="NetportsState">--%>
+                    <%--<colgroup>--%>
+                    <%--<col width="150">--%>
+                    <%--<col width="150">--%>
+                    <%--<col>--%>
+                    <%--</colgroup>--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                    <%--<th>网口名称</th>--%>
+                    <%--<th>网口状态</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody id="table-tbody-NetportsState">--%>
+                    <%--</tbody>--%>
+                    <%--</table>--%>
+
+                    <%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">--%>
+                    <%--<legend>系统串口状态</legend>--%>
+                    <%--</fieldset>--%>
+                    <%--&lt;%&ndash;<table class="layui-table" id="ComportsState"></table>&ndash;%&gt;--%>
+
+                    <%--<table class="layui-table" lay-even="" lay-skin="row" id="ComportsState">--%>
+                    <%--<colgroup>--%>
+                    <%--<col width="150">--%>
+                    <%--<col width="150">--%>
+                    <%--<col>--%>
+                    <%--</colgroup>--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                    <%--<th>串口名称</th>--%>
+                    <%--<th>串口状态</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody id="table-tbody-ComportsState">--%>
+                    <%--</tbody>--%>
+                    <%--</table>--%>
+
+
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                        <legend>系统资源使用状态</legend>
                     </fieldset>
 
-                    <table class="layui-table" lay-even="" lay-skin="row" id="table">
+                    <table class="layui-table" lay-even="" lay-skin="row" id="systemResourceUsageStatus">
                         <colgroup>
                             <col width="150">
                             <col width="150">
-                            <col width="200">
                             <col>
                         </colgroup>
                         <thead>
                         <tr>
                             <th>监测项</th>
                             <th>检测数据</th>
-                            <th>说明</th>
+                            <%--<th>说明</th>--%>
                         </tr>
                         </thead>
-                        <tbody id="table-tbody">
+                        <tbody id="table-tbody-systemResourceUsageStatus">
                         </tbody>
                     </table>
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>通信端口状态</legend>
-                    </fieldset>
-                    <div class="weadmin-block">
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH1
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH2
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH3
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH4
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH5
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH6
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH7
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH8
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH9
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH10
-                    </div>
-                    <div class="weadmin-block">
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH1
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH2
-                        <button class="layui-btn" style="background-color: #5FB878"></button>
-                        ETH3
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH4
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH5
-                        <button class="layui-btn" style="background-color: #FF5722"></button>
-                        ETH6
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH7
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH8
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH9
-                        <button class="layui-btn" style="background-color: #c2c2c2"></button>
-                        ETH10
-                    </div>
-                    <table class="layui-table" id="communicationPortStatus"></table>
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>系统资源使用状态</legend>
-                    </fieldset>
-                    <table class="layui-table" id="systemResourceUsageStatus"></table>
-
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
                         <legend>应用运行状态</legend>
                     </fieldset>
-                    <table class="layui-table" id="applicationRunningStatus"></table>
+                    <table class="layui-table" lay-even="" lay-skin="row" id="applicationRunningStatus">
+                        <colgroup>
+                            <col width="150">
+                            <col width="150">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>监测项</th>
+                            <th>检测数据</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-tbody-applicationRunningStatus">
+                        </tbody>
+                    </table>
+
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
                         <legend>设备运行状态</legend>
                     </fieldset>
-                    <table class="layui-table" id="equipmentOperatingStatus"></table>
+
+                    <table class="layui-table" lay-even="" lay-skin="row" id="equipmentOperatingStatus">
+                        <colgroup>
+                            <col width="150">
+                            <col width="150">
+                            <col width="150">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>设备名</th>
+                            <th>运行状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-tbody-equipmentOperatingStatus">
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -151,122 +186,101 @@
             ]
         });
 
+        // //展示系统网口
+        // table.render({
+        //     elem: '#NetportsState'
+        //     , url: './systemInformation/getNetportsState'
+        //     , cellMinWidth: 80
+        //     , cols: [[ //标题栏
+        //         {field: 'devName', title: '网口名称'}
+        //         , {field: 'devState', title: '网口状态'}
+        //     ]]
+        //     , skin: 'line' //表格风格
+        //     , even: true
+        //     , page: true //是否显示分页
+        //     , limits: [5, 7, 10]
+        //     , limit: 5 //每页默认显示的数量
+        // });
+
+        //展示系统串口
+        // table.render({
+        //     elem: '#ComportsState'
+        //     , url: './systemInformation/getComportsState'
+        //     , cellMinWidth: 80
+        //     , cols: [[ //标题栏
+        //         {field: 'devName', title: '串口名称'}
+        //         , {field: 'devState', title: '串口状态'}
+        //     ]]
+        //     , skin: 'line' //表格风格
+        //     , even: true
+        //     , page: true //是否显示分页
+        //     , limits: [5, 7, 10]
+        //     , limit: 5 //每页默认显示的数量
+        // });
+
+
         //展示系统资源使用状态
-        table.render({
-            elem: '#systemResourceUsageStatus',
-            cellMinWidth: 80,
-            cols: [[ //标题栏
-                {field: 'name', title: '监测项'}
-                , {field: 'c_dev', title: '检测数据'}
-                , {field: 'c_devid', title: '说明'}
-            ]],
-            data: [{
-                "name": "CPU使用率"
-                , "c_dev": "30%"
-                , "c_devid": "1"
-            }, {
-                "name": "内存使用率"
-                , "c_dev": "799/1024"
-                , "c_devid": "1"
-            }, {
-                "name": "登陆用户"
-                , "c_dev": "admin"
-                , "c_devid": "1"
-            }]
-            , skin: 'line' //表格风格
-            , even: true
-            , page: true //是否显示分页
-            , limits: [5, 7, 10]
-            , limit: 5 //每页默认显示的数量
-        });
+        // table.render({
+        //     elem: '#systemResourceUsageStatus'
+        //     , url: './systemInformation/getSystemResourcesState'
+        //     , cellMinWidth: 80
+        //     , cols: [[ //标题栏
+        //         {field: 'name', title: '监测项'}
+        //         , {field: 'val', title: '检测数据'}
+        //         , {field: 'c_devid', title: '说明'}
+        //     ]],
+        //     data: [{
+        //         "c_devid": "1"
+        //     }, {
+        //
+        //         "c_devid": "1"
+        //     }, {
+        //         "c_devid": "1"
+        //     }]
+        //     , skin: 'line' //表格风格
+        //     , even: true
+        //     , page: true //是否显示分页
+        //     , limits: [5, 7, 10]
+        //     , limit: 5 //每页默认显示的数量
+        // });
 
         //展示应用运行状态
-        table.render({
-            elem: '#applicationRunningStatus',
-            cellMinWidth: 80,
-            cols: [[ //标题栏
-                {field: 'name', title: '监测项'}
-                , {field: 'c_dev', title: '检测数据'}
-                , {field: 'c_devid', title: '说明'}
-            ]],
-            data: [{
-                "name": "运行状态"
-                , "c_dev": "运行"
-                , "c_devid": "1"
-            }, {
-                "name": "主备状态"
-                , "c_dev": "主"
-                , "c_devid": "1"
-            }, {
-                "name": "启动时间"
-                , "c_dev": "2018-10-23 13:23:07"
-                , "c_devid": "1"
-            }, {
-                "name": "主备状态"
-                , "c_dev": "主"
-                , "c_devid": "1"
-            }, {
-                "name": "应用版本"
-                , "c_dev": "V1.0"
-                , "c_devid": "1"
-            }, {
-                "name": "工程版本"
-                , "c_dev": "12"
-                , "c_devid": "1"
-            }, {
-                "name": "授权点数"
-                , "c_dev": "1000"
-                , "c_devid": "1"
-            }, {
-                "name": "授权时间"
-                , "c_dev": "2020-1-1"
-                , "c_devid": ""
-            }]
-            , skin: 'line' //表格风格
-            , even: true
-            , page: true //是否显示分页
-            // , limits: [5, 7, 10]
-            , limit: 7 //每页默认显示的数量
-        });
+        // table.render({
+        //     elem: '#applicationRunningStatus'
+        //     , url: './systemInformation/getAppRunState'
+        //     , cellMinWidth: 80
+        //     , cols: [[ //标题栏
+        //         {field: 'name', title: '监测项'}
+        //         , {field: 'val', title: '检测数据'}
+        //
+        //     ]]
+        //     , skin: 'line' //表格风格
+        //     , even: true
+        //     , page: true //是否显示分页
+        //     // , limits: [5, 7, 10]
+        //     , limit: 7 //每页默认显示的数量
+        // });
 
 
         //展示设备运行状态
-        table.render({
-            elem: '#equipmentOperatingStatus',
-            cellMinWidth: 80,
-            cols: [[ //标题栏
-                {field: 'name', title: '设备名'}
-                , {field: 'c_dev', title: '运行状态'}
-                ,
-                {
-                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
-                }
-            ]],
-            data: [{
-                "name": "设备1"
-                , "c_dev": "运行"
-            }, {
-                "name": "设备2"
-                , "c_dev": "停止"
-            }, {
-                "name": "设备3"
-                , "c_dev": "运行"
-            }, {
-                "name": "设备4"
-                , "c_dev": "运行"
-            }, {
-                "name": "设备5"
-                , "c_dev": "运行"
-            }, {
-                "name": "设备6"
-                , "c_dev": "故障"
-            }]
-            , skin: 'line' //表格风格
-            , even: true
-            , page: true //是否显示分页
-            , limits: [5, 7, 10]
-            , limit: 5 //每页默认显示的数量
-        });
+        // table.render({
+        //     elem: '#equipmentOperatingStatus'
+        //     , url: './dataMonitor/getDevicesState'
+        //     , cellMinWidth: 80
+        //     , cols: [[ //标题栏
+        //         {field: 'devName', title: '设备名'}
+        //         , {field: 'devState', title: '运行状态'}
+        //         ,
+        //         {
+        //             field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+        //         }
+        //     ]]
+        //     , skin: 'line' //表格风格
+        //     , even: true
+        //     , page: true //是否显示分页
+        //     , limits: [5, 7, 10]
+        //     , limit: 5 //每页默认显示的数量
+        // });
 
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
@@ -295,32 +309,110 @@
     window.onload = function () {
         runEvery10Sec();
     };
-
     var htmls = ''; //全局变量
-
     function runEvery10Sec() {
         setTimeout(runEvery10Sec, 1000 * 1);
 
+
         $.ajax({
-            url: "./pointsConfig/queryDriver",
+            url: "./systemInformation/getSystemResourcesState",
             type: "get",
             dataType: "json",
-            async: false,//这得注意是同步
+            async: true,//这得注意是异步
             success: function (result) {
-                $("#table-tbody").html("");
+                $("#table-tbody-systemResourceUsageStatus").html("");
                 resultData = result.data;
                 for (var x in resultData) {
                     htmls = "<tr>" +
-                        "<td>" + resultData[x].c_dev + "</td>" +
-                        "<td>" + resultData[x].f_dev + "</td>" +
-                        "<td>" + resultData[x].c_devid + "</td>" +
+                        "<td>" + resultData[x].name + "</td>" +
+                        "<td>" + resultData[x].val + "</td>" +
                         "</tr>";
-                    $("#table-tbody").append(htmls);
+                    $("#table-tbody-systemResourceUsageStatus").append(htmls);
+                }
+            }
+
+        });
+
+        $.ajax({
+            url: "./systemInformation/getAppRunState",
+            type: "get",
+            dataType: "json",
+            async: true,//这得注意是异步
+            success: function (result) {
+                $("#table-tbody-applicationRunningStatus").html("");
+                resultData = result.data;
+                for (var x in resultData) {
+                    htmls = "<tr>" +
+                        "<td>" + resultData[x].name + "</td>" +
+                        "<td>" + resultData[x].val + "</td>" +
+                        "</tr>";
+                    $("#table-tbody-applicationRunningStatus").append(htmls);
+                }
+            }
+
+        });
+
+
+        $.ajax({
+            url: "./dataMonitor/getDevicesState",
+            type: "get",
+            dataType: "json",
+            async: true,//这得注意是异步
+            success: function (result) {
+                $("#table-tbody-equipmentOperatingStatus").html("");
+                resultData = result.data;
+                for (var x in resultData) {
+                    htmls = "<tr>" +
+                        "<td>" + resultData[x].devName + "</td>" +
+                        "<td>" + resultData[x].devState + "</td>" +
+                        "<td><button class=\"layui-btn layui-btn-sm\" onclick=\"operateTpl_open(this,'要开启设备的ID')\" href=\"javascript:;\">开启</button></td>" +
+                        "</tr>";
+                    $("#table-tbody-equipmentOperatingStatus").append(htmls);
+                }
+            }
+
+        });
+        //
+        // $.ajax({
+        //     url: "./systemInformation/getNetportsState",
+        //     type: "get",
+        //     dataType: "json",
+        //     async: true,//这得注意是异步
+        //     success: function (result) {
+        //         $("#NetportsState").html("");
+        //         resultData = result.data;
+        //         for (var x in resultData) {
+        //             htmls = "<button class=\"layui-btn\" style=\"background-color: #5FB878; height: 17px\"></button>   " + resultData[x].devName + "状态：" + resultData[x].devState;
+        //             if (x % 6 == 0) {
+        //                 htmls = "<HR SIZE=10>";
+        //             }
+        //             $("#NetportsState").append(htmls);
+        //         }
+        //     }
+        //
+        // });
+
+        $.ajax({
+            url: "./systemInformation/getComportsState",
+            type: "get",
+            dataType: "json",
+            async: true,//这得注意是异步
+            success: function (result) {
+                $("#ComportsState").html("");
+                resultData = result.data;
+                for (var x in resultData) {
+                    // htmls = "<button class=\"layui-btn\" style=\"background-color: #5FB878; height: 17px\"></button>   " + resultData[x].devName + "状态：" + resultData[x].devState;
+                    htmls = "<button class=\"layui-btn\" style=\"background-color:" + resultData[x].devState + "; height: 17px\"></button>   " + resultData[x].devName;
+                    if (x % 7 == 0) {
+                        htmls = "<HR SIZE=10>";
+                    }
+                    $("#ComportsState").append(htmls);
                 }
             }
 
         });
     }
+
 
 </script>
 </html>

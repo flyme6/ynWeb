@@ -4,6 +4,7 @@ import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +21,12 @@ public class LogWebSocketHandle {
     @OnOpen
     public void onOpen(Session session) {
         try {
+//            System.out.println(command + "command");
             // 执行tail -f命令
-//			process = Runtime.getRuntime().exec("tail -f /www/tomcat/apache-tomcat-8.5.31/logs/catalina.out");
-            process = Runtime.getRuntime().exec("tail -f ~/yn_web/apache-tomcat-9.0.12/logs/catalina.out");
+
+//            process = Runtime.getRuntime().exec("tail -f /www/yn/log/yn_0.log");
+            process = Runtime.getRuntime().exec("tail -f /usr/local/yn/log/yn_0.log");
+//            process = Runtime.getRuntime().exec(command);
             inputStream = process.getInputStream();
 
             // 一定要启动新的线程，防止InputStream阻塞处理WebSocket的线程

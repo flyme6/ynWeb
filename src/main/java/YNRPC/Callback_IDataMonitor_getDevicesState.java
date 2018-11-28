@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -29,7 +29,7 @@ package YNRPC;
  **/
 
 public abstract class Callback_IDataMonitor_getDevicesState
-    extends IceInternal.TwowayCallback implements _Callback_IDataMonitor_getDevicesState
+    extends IceInternal.TwowayCallback implements YNRPC._Callback_IDataMonitor_getDevicesState
 {
     public final void __completed(Ice.AsyncResult __result)
     {

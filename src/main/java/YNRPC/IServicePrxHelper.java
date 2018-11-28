@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -108,7 +108,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IService_getDataMonitor
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IService_getDataMonitor
         {
             public CB(FunctionalCallback_IService_getDataMonitor_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -188,7 +188,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    static public void __getDataMonitor_completed(_Callback_IService_getDataMonitor __cb, Ice.AsyncResult __result)
+    static public void __getDataMonitor_completed(YNRPC._Callback_IService_getDataMonitor __cb, Ice.AsyncResult __result)
     {
         IServicePrx __proxy = (IServicePrx)__result.getProxy();
         Result __ret = null;
@@ -293,7 +293,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                    IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IService_getSystemControl
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IService_getSystemControl
         {
             public CB(FunctionalCallback_IService_getSystemControl_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -373,7 +373,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    static public void __getSystemControl_completed(_Callback_IService_getSystemControl __cb, Ice.AsyncResult __result)
+    static public void __getSystemControl_completed(YNRPC._Callback_IService_getSystemControl __cb, Ice.AsyncResult __result)
     {
         IServicePrx __proxy = (IServicePrx)__result.getProxy();
         Result __ret = null;
@@ -478,7 +478,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
                                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                        IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_IService_getSystemInformation
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_IService_getSystemInformation
         {
             public CB(FunctionalCallback_IService_getSystemInformation_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -558,7 +558,7 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
         }
     }
 
-    static public void __getSystemInformation_completed(_Callback_IService_getSystemInformation __cb, Ice.AsyncResult __result)
+    static public void __getSystemInformation_completed(YNRPC._Callback_IService_getSystemInformation __cb, Ice.AsyncResult __result)
     {
         IServicePrx __proxy = (IServicePrx)__result.getProxy();
         Result __ret = null;
@@ -578,6 +578,336 @@ public final class IServicePrxHelper extends Ice.ObjectPrxHelperBase implements 
             return;
         }
         __cb.response(__ret, si.value);
+    }
+
+    private static final String __init_name = "init";
+
+    public Result init()
+    {
+        return init(null, false);
+    }
+
+    public Result init(java.util.Map<String, String> __ctx)
+    {
+        return init(__ctx, true);
+    }
+
+    private Result init(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        __checkTwowayOnly(__init_name);
+        return end_init(begin_init(__ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_init()
+    {
+        return begin_init(null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx)
+    {
+        return begin_init(__ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_init(Ice.Callback __cb)
+    {
+        return begin_init(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_init(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_init(Callback_IService_init __cb)
+    {
+        return begin_init(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, Callback_IService_init __cb)
+    {
+        return begin_init(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_init(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_init(null, false, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_init(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                      IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_init(null, false, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, 
+                                      IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_init(__ctx, true, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, 
+                                      IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                      IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                      IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_init(__ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, 
+                                       boolean __explicitCtx, 
+                                       boolean __synchronous, 
+                                       IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                       IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                       IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_init(__ctx, __explicitCtx, __synchronous, 
+                          new IceInternal.Functional_TwowayCallbackArg1<Result>(__responseCb, __exceptionCb, __sentCb)
+                              {
+                                  public final void __completed(Ice.AsyncResult __result)
+                                  {
+                                      IServicePrxHelper.__init_completed(this, __result);
+                                  }
+                              });
+    }
+
+    private Ice.AsyncResult begin_init(java.util.Map<String, String> __ctx, 
+                                       boolean __explicitCtx, 
+                                       boolean __synchronous, 
+                                       IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__init_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__init_name, __cb);
+        try
+        {
+            __result.prepare(__init_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            __result.writeEmptyParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public Result end_init(Ice.AsyncResult __iresult)
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __init_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            Result __ret;
+            __ret = Result.__read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __init_completed(Ice.TwowayCallbackArg1<Result> __cb, Ice.AsyncResult __result)
+    {
+        IServicePrx __proxy = (IServicePrx)__result.getProxy();
+        Result __ret = null;
+        try
+        {
+            __ret = __proxy.end_init(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
+    }
+
+    private static final String __uninit_name = "uninit";
+
+    public Result uninit()
+    {
+        return uninit(null, false);
+    }
+
+    public Result uninit(java.util.Map<String, String> __ctx)
+    {
+        return uninit(__ctx, true);
+    }
+
+    private Result uninit(java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        __checkTwowayOnly(__uninit_name);
+        return end_uninit(begin_uninit(__ctx, __explicitCtx, true, null));
+    }
+
+    public Ice.AsyncResult begin_uninit()
+    {
+        return begin_uninit(null, false, false, null);
+    }
+
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx)
+    {
+        return begin_uninit(__ctx, true, false, null);
+    }
+
+    public Ice.AsyncResult begin_uninit(Ice.Callback __cb)
+    {
+        return begin_uninit(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_uninit(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_uninit(Callback_IService_uninit __cb)
+    {
+        return begin_uninit(null, false, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, Callback_IService_uninit __cb)
+    {
+        return begin_uninit(__ctx, true, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_uninit(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_uninit(null, false, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_uninit(IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                        IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_uninit(null, false, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, 
+                                        IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb)
+    {
+        return begin_uninit(__ctx, true, false, __responseCb, __exceptionCb, null);
+    }
+
+    public Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, 
+                                        IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                        IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                        IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_uninit(__ctx, true, false, __responseCb, __exceptionCb, __sentCb);
+    }
+
+    private Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, 
+                                         boolean __explicitCtx, 
+                                         boolean __synchronous, 
+                                         IceInternal.Functional_GenericCallback1<Result> __responseCb, 
+                                         IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
+                                         IceInternal.Functional_BoolCallback __sentCb)
+    {
+        return begin_uninit(__ctx, __explicitCtx, __synchronous, 
+                            new IceInternal.Functional_TwowayCallbackArg1<Result>(__responseCb, __exceptionCb, __sentCb)
+                                {
+                                    public final void __completed(Ice.AsyncResult __result)
+                                    {
+                                        IServicePrxHelper.__uninit_completed(this, __result);
+                                    }
+                                });
+    }
+
+    private Ice.AsyncResult begin_uninit(java.util.Map<String, String> __ctx, 
+                                         boolean __explicitCtx, 
+                                         boolean __synchronous, 
+                                         IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__uninit_name);
+        IceInternal.OutgoingAsync __result = getOutgoingAsync(__uninit_name, __cb);
+        try
+        {
+            __result.prepare(__uninit_name, Ice.OperationMode.Normal, __ctx, __explicitCtx, __synchronous);
+            __result.writeEmptyParams();
+            __result.invoke();
+        }
+        catch(Ice.Exception __ex)
+        {
+            __result.abort(__ex);
+        }
+        return __result;
+    }
+
+    public Result end_uninit(Ice.AsyncResult __iresult)
+    {
+        IceInternal.OutgoingAsync __result = IceInternal.OutgoingAsync.check(__iresult, this, __uninit_name);
+        try
+        {
+            if(!__result.__wait())
+            {
+                try
+                {
+                    __result.throwUserException();
+                }
+                catch(Ice.UserException __ex)
+                {
+                    throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+                }
+            }
+            IceInternal.BasicStream __is = __result.startReadParams();
+            Result __ret;
+            __ret = Result.__read(__is);
+            __result.endReadParams();
+            return __ret;
+        }
+        finally
+        {
+            if(__result != null)
+            {
+                __result.cacheMessageBuffers();
+            }
+        }
+    }
+
+    static public void __uninit_completed(Ice.TwowayCallbackArg1<Result> __cb, Ice.AsyncResult __result)
+    {
+        IServicePrx __proxy = (IServicePrx)__result.getProxy();
+        Result __ret = null;
+        try
+        {
+            __ret = __proxy.end_uninit(__result);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        catch(Ice.SystemException __ex)
+        {
+            __cb.exception(__ex);
+            return;
+        }
+        __cb.response(__ret);
     }
 
     /**

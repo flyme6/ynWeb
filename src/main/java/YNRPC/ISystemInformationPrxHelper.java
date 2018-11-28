@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -108,7 +108,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
                                                  IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                  IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_ISystemInformation_getAppRunState
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_ISystemInformation_getAppRunState
         {
             public CB(FunctionalCallback_ISystemInformation_getAppRunState_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -188,7 +188,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
         }
     }
 
-    static public void __getAppRunState_completed(_Callback_ISystemInformation_getAppRunState __cb, Ice.AsyncResult __result)
+    static public void __getAppRunState_completed(YNRPC._Callback_ISystemInformation_getAppRunState __cb, Ice.AsyncResult __result)
     {
         ISystemInformationPrx __proxy = (ISystemInformationPrx)__result.getProxy();
         Result __ret = null;
@@ -293,7 +293,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                    IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_ISystemInformation_getComportsState
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_ISystemInformation_getComportsState
         {
             public CB(FunctionalCallback_ISystemInformation_getComportsState_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -373,7 +373,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
         }
     }
 
-    static public void __getComportsState_completed(_Callback_ISystemInformation_getComportsState __cb, Ice.AsyncResult __result)
+    static public void __getComportsState_completed(YNRPC._Callback_ISystemInformation_getComportsState __cb, Ice.AsyncResult __result)
     {
         ISystemInformationPrx __proxy = (ISystemInformationPrx)__result.getProxy();
         Result __ret = null;
@@ -478,7 +478,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
                                                    IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                    IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_ISystemInformation_getNetportsState
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_ISystemInformation_getNetportsState
         {
             public CB(FunctionalCallback_ISystemInformation_getNetportsState_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -558,7 +558,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
         }
     }
 
-    static public void __getNetportsState_completed(_Callback_ISystemInformation_getNetportsState __cb, Ice.AsyncResult __result)
+    static public void __getNetportsState_completed(YNRPC._Callback_ISystemInformation_getNetportsState __cb, Ice.AsyncResult __result)
     {
         ISystemInformationPrx __proxy = (ISystemInformationPrx)__result.getProxy();
         Result __ret = null;
@@ -663,7 +663,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
                                                           IceInternal.Functional_GenericCallback1<Ice.Exception> __exceptionCb, 
                                                           IceInternal.Functional_BoolCallback __sentCb)
     {
-        class CB extends IceInternal.Functional_TwowayCallback implements _Callback_ISystemInformation_getSystemResourcesState
+        class CB extends IceInternal.Functional_TwowayCallback implements YNRPC._Callback_ISystemInformation_getSystemResourcesState
         {
             public CB(FunctionalCallback_ISystemInformation_getSystemResourcesState_Response responseCb, 
                       IceInternal.Functional_GenericCallback1<Ice.Exception> exceptionCb, 
@@ -743,7 +743,7 @@ public final class ISystemInformationPrxHelper extends Ice.ObjectPrxHelperBase i
         }
     }
 
-    static public void __getSystemResourcesState_completed(_Callback_ISystemInformation_getSystemResourcesState __cb, Ice.AsyncResult __result)
+    static public void __getSystemResourcesState_completed(YNRPC._Callback_ISystemInformation_getSystemResourcesState __cb, Ice.AsyncResult __result)
     {
         ISystemInformationPrx __proxy = (ISystemInformationPrx)__result.getProxy();
         Result __ret = null;

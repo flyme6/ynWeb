@@ -1,6 +1,6 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
@@ -61,6 +61,16 @@ public interface _ISystemControlOperations
      * @param __current The Current object for the invocation.
      **/
     Result importProject(String fileName, Ice.Current __current);
+
+    /**
+     * Description: 校验工程有效性
+     * Input: 
+     * Output: 
+     * Return:
+     * Others: 
+     * @param __current The Current object for the invocation.
+     **/
+    Result checkProject(Ice.Current __current);
 
     /**
      * Description: 启动工程

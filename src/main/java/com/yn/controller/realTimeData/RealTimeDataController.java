@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Author ：flyme
  * @ProjectName: ynWeb1.2
  * @Title : PointsConfigController
- * @Description：点表配置页面
+ * @Description：实时数据展示页面
  * @Date ：Created in 20:46 2018/10/28
  */
 @Controller
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RealTimeDataController{
 
     /**
-     * 点表配置页面
+     * 实时数据展示页面
      *
      * @return
      * @throws Exception

@@ -45,8 +45,19 @@ public class systemInformationServiceImpl implements IsystemInformationService {
 
         for (int i = 0; i < keyValues.length; i++) {
             HashMap<String, Object> map = new HashMap<>();
+            String s = String.valueOf(keyValues[i].val);
+            if (s.equals("STARTING")) {
+                s = "<a style=\"color: #5FB878\"> 应用启动中</a>";
+            } else if (s.equals("SRUNNING")) {
+                s = "<a style=\"color: #5FB878\"> 应用运行中</a>";
+            } else if (s.equals("FAULT")) {
+                s = "<a style=\"color: #FD482C\"> 应用故障</a>";
+            } else if (s.equals("STOPPED")) {
+                s = "<a style=\"color: #B2B2B2\"> 应用停止</a>";
+            }
+
             map.put("name", keyValues[i].name);
-            map.put("val", keyValues[i].val);
+            map.put("val", s);
             mMenuData.add(map);
         }
 
@@ -89,15 +100,17 @@ public class systemInformationServiceImpl implements IsystemInformationService {
             HashMap<String, Object> map = new HashMap<>();
             String s = String.valueOf(deviceInfos[i].devState);
             if (s == "DSRUNNING") {
-//                运行为绿色
-                s = "#B2B2B2";
-//                s = "5FB878";
-            } else if (s == "DSFAULT") {
-//                故障为红色
-                s = "#B2B2B2";
+                // 运行为绿色,设备启动中
+                s = "5FB878";
             } else if (s == "DSSTOPPED") {
-//                未使用为灰色
-                s = "#B2B2B2";
+                // 运行为绿色,设备运行中
+                s = "5FB878";
+            } else if (s == "DSFAULT") {
+                // 故障为红色,设备故障
+                s = "FD482C";
+            } else if (s == "DSSTOPPED") {
+                // 未使用为灰色,
+                s = "B2B2B2";
             }
 
             map.put("devName", deviceInfos[i].devName);

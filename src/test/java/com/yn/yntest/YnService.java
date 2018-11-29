@@ -106,7 +106,8 @@ public class YnService {
         com.yn.common.Result result = new com.yn.common.Result();
         List<HashMap<String, Object>> maps = new ArrayList<>();
         try {
-            Rvqt[] rvqts = DataMonitorUtil.queryRealData();
+            int[] a = new int[]{1, 2};
+            Rvqt[] rvqts = DataMonitorUtil.queryRealData(a);
             for (int i = 0; i < rvqts.length; i++) {
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("q", rvqts[i].q);

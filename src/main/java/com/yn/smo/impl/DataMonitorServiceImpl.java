@@ -1,12 +1,9 @@
 package com.yn.smo.impl;
 
 import YNRPC.DeviceInfo;
-import YNRPC.Rvqt;
-import com.alibaba.fastjson.JSON;
 import com.yn.common.Constant;
 import com.yn.common.Result;
 import com.yn.smo.IDataMonitorService;
-import com.yn.util.JsonUtil;
 import com.yn.util.ynService.DataMonitorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class DataMonitorServiceImpl implements IDataMonitorService {
@@ -29,8 +25,22 @@ public class DataMonitorServiceImpl implements IDataMonitorService {
             DeviceInfo[] devicesState = DataMonitorUtil.getDevicesState();
             for (int i = 0; i < devicesState.length; i++) {
                 HashMap<String, Object> map = new HashMap<>();
+                String s = String.valueOf(devicesState[i].devState);
+                if (s == "DSRUNNING") {
+                    // 运行为绿色,设备启动中
+                    s = "<a style=\"color: #5FB878\"> 设备启动中</a>";
+                } else if (s == "DSSTARTING") {
+                    // 运行为绿色,设备运行中
+                    s = "<a style=\"color: #5FB878\"> 设备运行中</a>";
+                } else if (s == "DSFAULT") {
+                    // 故障为红色,设备故障
+                    s = "<a style=\"color: #FD482C\"> 设备故障</a>";
+                } else if (s == "DSSTOPPED") {
+                    // 未使用为灰色, 设备停止
+                    s = "<a style=\"color: #B2B2B2\"> 设备停止</a>";
+                }
                 map.put("devName", devicesState[i].devName);
-                map.put("devState", devicesState[i].devState);
+                map.put("devState", s);
                 maps.add(map);
             }
 
@@ -48,28 +58,29 @@ public class DataMonitorServiceImpl implements IDataMonitorService {
 
     @Override
     public Result queryRealData() {
-        Result result = new Result();
-        List<HashMap<String, Object>> maps = new ArrayList<>();
-        try {
-            Rvqt[] rvqts = DataMonitorUtil.queryRealData();
-            for (int i = 0; i < rvqts.length; i++) {
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("q", rvqts[i].q);
-                map.put("r", rvqts[i].r);
-                map.put("t", rvqts[i].t);
-                map.put("v", rvqts[i].v);
-                maps.add(map);
-            }
-
-            result.addCode(Constant.CODE_QUERY_SUCCESS);
-            result.addMsg(Constant.MSG_QUERY_SUCCESS);
-            result.addCount(rvqts.length);
-            result.addData(maps);
-            System.out.println(result);
-        } catch (Exception e) {
-            log.error("query", e);
-            result.addMsg(e.getMessage());
-        }
-        return result;
+//        Result result = new Result();
+//        List<HashMap<String, Object>> maps = new ArrayList<>();
+//        try {
+//            Rvqt[] rvqts = DataMonitorUtil.queryRealData();
+//            for (int i = 0; i < rvqts.length; i++) {
+//                HashMap<String, Object> map = new HashMap<>();
+//                map.put("q", rvqts[i].q);
+//                map.put("r", rvqts[i].r);
+//                map.put("t", rvqts[i].t);
+//                map.put("v", rvqts[i].v);
+//                maps.add(map);
+//            }
+//
+//            result.addCode(Constant.CODE_QUERY_SUCCESS);
+//            result.addMsg(Constant.MSG_QUERY_SUCCESS);
+//            result.addCount(rvqts.length);
+//            result.addData(maps);
+//            System.out.println(result);
+//        } catch (Exception e) {
+//            log.error("query", e);
+//            result.addMsg(e.getMessage());
+//        }
+        return null;
+//        return result;
     }
 }

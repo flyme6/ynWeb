@@ -81,11 +81,10 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void add() throws Exception {
-        IDevService service = (IDevService) applicationContext.getBean("devServiceImpl");
+        IsystemInformationService service = (IsystemInformationService) applicationContext.getBean("systemInformationServiceImpl");
 
-//        Result add = service.add();
-        Result del = service.del();
-        System.out.println(del);
-//        System.out.println(add);
+
+        Result appRunState = service.getAppRunState();
+//        System.out.println(appRunState);
     }
 }

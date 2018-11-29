@@ -452,6 +452,90 @@ public class SystemControllerUtil {
 
     }
 
+    public static Result startDevice(String deviceName) {
+        String[] args = {"ser", "yn"};
+        int status = 0;
+        Ice.Communicator ic = null;
+        Result result = null;
+        DeviceInfoListHolder deviceInfoListHolder = null;
+        try {
+            ic = Ice.Util.initialize(args);
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
+
+            IServicePrx service = IServicePrxHelper.checkedCast(base);
+            if (service == null) {
+                throw new Error("service为空");
+            }
+
+            ISystemControlPrxHolder iSystemControlPrxHolder = new ISystemControlPrxHolder();
+            service.getSystemControl(iSystemControlPrxHolder);
+            if (iSystemControlPrxHolder == null) {
+                throw new Error("iSystemControlPrxHolder为空");
+            }
+
+            ISystemControlPrx value = iSystemControlPrxHolder.value;
+            result = value.startDevice(deviceName);
+
+            System.out.println("启动指定设备----" + "获取结果：" + result + "----返回对象：null");
+            return result;
+        } catch (Ice.LocalException e) {
+            e.printStackTrace();
+            status = 1;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            status = 1;
+        } finally {
+            if (ic != null) {
+                ic.destroy();
+            }
+            return result;
+        }
+
+    }
+
+
+    public static Result stopDevice(String deviceName) {
+        String[] args = {"ser", "yn"};
+        int status = 0;
+        Ice.Communicator ic = null;
+        Result result = null;
+        DeviceInfoListHolder deviceInfoListHolder = null;
+        try {
+            ic = Ice.Util.initialize(args);
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
+
+            IServicePrx service = IServicePrxHelper.checkedCast(base);
+            if (service == null) {
+                throw new Error("service为空");
+            }
+
+            ISystemControlPrxHolder iSystemControlPrxHolder = new ISystemControlPrxHolder();
+            service.getSystemControl(iSystemControlPrxHolder);
+            if (iSystemControlPrxHolder == null) {
+                throw new Error("iSystemControlPrxHolder为空");
+            }
+
+            ISystemControlPrx value = iSystemControlPrxHolder.value;
+            result = value.stopDevice(deviceName);
+
+            System.out.println("停止指定设备----" + "获取结果：" + result + "----返回对象：null");
+            return result;
+        } catch (Ice.LocalException e) {
+            e.printStackTrace();
+            status = 1;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            status = 1;
+        } finally {
+            if (ic != null) {
+                ic.destroy();
+            }
+            return result;
+        }
+
+    }
+
+
     public static void main(String[] args) {
         DeviceInfoListHolder systemInformation = SystemControllerUtil.getSystemInformation();
         //新建工程

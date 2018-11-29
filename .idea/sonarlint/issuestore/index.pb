@@ -741,3 +741,11 @@ Z
 *src/test/java/com/yn/yntest/YnService.java,4\6\46918df2391b5ec1e8c36d2ba17435b524fb4c88
 W
 'src/main/webapp/lib/layui/css/layui.css,8\6\86e74a91364a339944277dcf9b8efd30eb701296
+_
+/src/main/java/YNRPC/Callback_IService_init.java,b\1\b13a4d6148402d2dd6606014eae5195e81f867af
+a
+1src/main/java/YNRPC/Callback_IService_uninit.java,b\0\b05e168c24446e96268707f33d7636e5d0be5b84
+m
+=src/main/java/YNRPC/Callback_ISystemControl_checkProject.java,3\b\3b41b6ded755132902db0df0d1970a08e2fb8a79
+x
+Hsrc/main/java/com/yn/controller/realTimeData/RealTimeDataController.java,8\0\808f2748f7ed986c3149eb0ef998422425303f3f

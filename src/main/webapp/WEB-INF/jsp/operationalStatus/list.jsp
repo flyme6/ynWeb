@@ -39,9 +39,9 @@
                         <legend>网口端口状态</legend>
                     </fieldset>
                     <div class="weadmin-block" id="NetportsState">
-                        <button class="layui-btn" style="background-color: #5FB878; ">TH1</button>
-                        <button class="layui-btn" style="background-color: #FD482C; ">TH2</button>
-                        <button class="layui-btn" style="background-color: #B2B2B2;">TH3</button>
+                        <%--<button class="layui-btn" style="background-color: #5FB878; ">TH1</button>--%>
+                        <%--<button class="layui-btn" style="background-color: #FD482C; ">TH2</button>--%>
+                        <%--<button class="layui-btn" style="background-color: #B2B2B2;">TH3</button>--%>
                     </div>
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
                         <legend>串口端口状态</legend>
@@ -49,7 +49,6 @@
                     <div class="weadmin-block" id="ComportsState">
                     </div>
 
-                    <table class="layui-table" id="communicationPortStatus"></table>
                     <%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">--%>
                     <%--<legend>系统网口状态</legend>--%>
                     <%--</fieldset>--%>
@@ -126,6 +125,7 @@
                         <tr>
                             <th>监测项</th>
                             <th>检测数据</th>
+
                         </tr>
                         </thead>
                         <tbody id="table-tbody-applicationRunningStatus">
@@ -137,7 +137,8 @@
                         <legend>设备运行状态</legend>
                     </fieldset>
 
-                    <table class="layui-table" lay-even="" lay-skin="row" id="equipmentOperatingStatus">
+                    <table class="layui-table" lay-even="" lay-skin="row" id="equipmentOperatingStatus"
+                           lay-filter="test">
                         <colgroup>
                             <col width="150">
                             <col width="150">
@@ -155,14 +156,13 @@
                     </table>
 
                 </div>
+                <script type="text/html" id="toolbar">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="open">开启</button>
+                    </div>
+                </script>
             </div>
         </div>
-        <script type="text/html" id="operateTpl">
-            <a title="开启" onclick="operateTpl_open(this,'要开启设备的ID')" href="javascript:;">
-                <!--<i class="layui-icon">&#xe63f;</i>-->
-                开启
-            </a>
-        </script>
     </div>
 </div>
 </body>
@@ -261,23 +261,23 @@
         //     , limit: 7 //每页默认显示的数量
         // });
 
-
         //展示设备运行状态
-        // table.render({
-        //     elem: '#equipmentOperatingStatus'
+        // var i = table.render({
+        //     elem: '#communicationPortStatus'
         //     , url: './dataMonitor/getDevicesState'
+        //     // , toolbar: '#toolbar'
         //     , cellMinWidth: 80
         //     , cols: [[ //标题栏
         //         {field: 'devName', title: '设备名'}
         //         , {field: 'devState', title: '运行状态'}
         //         ,
         //         {
-        //             field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+        //             field: 'operate', title: '操作', toolbar: '#toolbar', unresize: true
         //         }
         //     ]]
         //     , skin: 'line' //表格风格
         //     , even: true
-        //     , page: true //是否显示分页
+        //     // , page: true //是否显示分页
         //     , limits: [5, 7, 10]
         //     , limit: 5 //每页默认显示的数量
         // });
@@ -291,13 +291,91 @@
         });
 
         /*控制设备运行状态*/
-        window.operateTpl_open = function (obj, id) {
+        window.operateTpl_start = function (obj) {
+            var name = obj.name;
+            console.info(obj.name);
+
             layer.confirm('确认要开启吗？', function (index) {
-                //发异步删除数据
-                // $(obj).parents("tr").remove();
-                layer.msg('已开启!', {
-                    icon: 1,
-                    time: 1000
+                $.ajax({
+                    url: "./dataMonitor/startDevice?deviceName=" + name,
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    type: "get",
+                    dataType: "json",
+                    async: true,//这得注意是异步
+                    success: function (result) {
+                        console.info(result);
+                        if (result.msg == "RTOK") {
+                            layer.msg('已开启!', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('开启失败', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+
+                });
+            });
+        }
+
+        window.operateTpl_stop = function (obj) {
+            var name = obj.name;
+            console.info(obj.name);
+
+            layer.confirm('确认要关闭吗？', function (index) {
+                $.ajax({
+                    url: "./dataMonitor/stopDevice?deviceName=" + name,
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    type: "get",
+                    dataType: "json",
+                    async: true,//这得注意是异步
+                    success: function (result) {
+                        console.info(result);
+                        if (result.msg == "RTOK") {
+                            layer.msg('已关闭!', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('关闭失败', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+
                 });
             });
         }
@@ -316,6 +394,7 @@
 
         $.ajax({
             url: "./systemInformation/getSystemResourcesState",
+            timeout: 3000, //超时时间设置，单位毫秒
             type: "get",
             dataType: "json",
             async: true,//这得注意是异步
@@ -345,6 +424,7 @@
                     htmls = "<tr>" +
                         "<td>" + resultData[x].name + "</td>" +
                         "<td>" + resultData[x].val + "</td>" +
+                        // "<td><a style=\"color: #5FB878\"> " + resultData[x].val + "</a></td>" +
                         "</tr>";
                     $("#table-tbody-applicationRunningStatus").append(htmls);
                 }
@@ -365,32 +445,32 @@
                     htmls = "<tr>" +
                         "<td>" + resultData[x].devName + "</td>" +
                         "<td>" + resultData[x].devState + "</td>" +
-                        "<td><button class=\"layui-btn layui-btn-sm\" onclick=\"operateTpl_open(this,'要开启设备的ID')\" href=\"javascript:;\">开启</button></td>" +
+                        "<td><button class=\"layui-btn layui-btn-sm\"  name=" + resultData[x].devName + " onclick=\"operateTpl_start(this)\" href=\"javascript:;\">开启</button>" +
+                        "<button class=\"layui-btn layui-btn-sm\"  name=" + resultData[x].devName + " onclick=\"operateTpl_stop(this)\" href=\"javascript:;\">关闭</button></td>" +
                         "</tr>";
                     $("#table-tbody-equipmentOperatingStatus").append(htmls);
                 }
             }
-
         });
         //
-        // $.ajax({
-        //     url: "./systemInformation/getNetportsState",
-        //     type: "get",
-        //     dataType: "json",
-        //     async: true,//这得注意是异步
-        //     success: function (result) {
-        //         $("#NetportsState").html("");
-        //         resultData = result.data;
-        //         for (var x in resultData) {
-        //             htmls = "<button class=\"layui-btn\" style=\"background-color: #5FB878; height: 17px\"></button>   " + resultData[x].devName + "状态：" + resultData[x].devState;
-        //             if (x % 6 == 0) {
-        //                 htmls = "<HR SIZE=10>";
-        //             }
-        //             $("#NetportsState").append(htmls);
-        //         }
-        //     }
-        //
-        // });
+        $.ajax({
+            url: "./systemInformation/getNetportsState",
+            type: "get",
+            dataType: "json",
+            async: true,//这得注意是异步
+            success: function (result) {
+                $("#NetportsState").html("");
+                resultData = result.data;
+                for (var x in resultData) {
+                    htmls = "<button class=\"layui-btn\" style=\"background-color: " + resultData[x].devState + "; height: 17px\"></button>   " + resultData[x].devName + "状态：" + resultData[x].devState;
+                    if (x % 6 == 0) {
+                        htmls = "<HR SIZE=10>";
+                    }
+                    $("#NetportsState").append(htmls);
+                }
+            }
+
+        });
 
         $.ajax({
             url: "./systemInformation/getComportsState",
@@ -403,7 +483,7 @@
                 for (var x in resultData) {
                     // htmls = "<button class=\"layui-btn\" style=\"background-color: #5FB878; height: 17px\"></button>   " + resultData[x].devName + "状态：" + resultData[x].devState;
                     htmls = "<button class=\"layui-btn\" style=\"background-color:" + resultData[x].devState + "; height: 17px\"></button>   " + resultData[x].devName;
-                    if (x % 7 == 0) {
+                    if (x % 5 == 0) {
                         htmls = "<HR SIZE=10>";
                     }
                     $("#ComportsState").append(htmls);

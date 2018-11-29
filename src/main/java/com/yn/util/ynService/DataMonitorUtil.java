@@ -133,7 +133,7 @@ public class DataMonitorUtil {
      *
      * @return
      */
-    public static Rvqt[] queryRealData() {
+    public static Rvqt[] queryRealData(int[] ptIds) {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -156,7 +156,7 @@ public class DataMonitorUtil {
 
             IDataMonitorPrx value = iDataMonitorPrxHolder.value;
             rvqtListHolder = new RvqtListHolder();
-            int[] ptIds = {1, 2};
+//            ptIds = new int[]{1, 2};
             result = value.queryRealDatas(ptIds, rvqtListHolder);
             System.out.println("获得实时数据----" + "获取结果：" + result + "----返回对象：" + rvqtListHolder.value + "----点ID列表" + ptIds);
             return rvqtListHolder.value;

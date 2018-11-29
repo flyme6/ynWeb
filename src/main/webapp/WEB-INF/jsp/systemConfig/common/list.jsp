@@ -63,7 +63,7 @@
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">
-                                    发送间隔
+                                    冗余IP地址：
                                 </label>
                                 <div class="layui-input-inline">
                                     <input type="text" name="ip1" lay-verify="required|ip" autocomplete="off"

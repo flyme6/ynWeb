@@ -1,7 +1,9 @@
 package com.yn.controller.dataMonitor;
 
+import YNRPC.ISystemControl;
 import com.yn.common.Result;
 import com.yn.smo.IDataMonitorService;
+import com.yn.smo.ISystemControlService;
 import com.yn.util.ynService.DataMonitorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,8 @@ public class dataMonitorController {
 
     @Autowired
     private IDataMonitorService service;
+    @Autowired
+    private ISystemControlService systemControlService;
 
     /**
      * 获得设备状态
@@ -37,6 +41,32 @@ public class dataMonitorController {
     @GetMapping(value = "/getDevicesState")
     public String getDevicesState() throws Exception {
         Result query = service.getDevicesState();
+        return query.toString();
+    }
+
+    /**
+     * 启动设备
+     *
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @GetMapping(value = "/startDevice")
+    public String startDevice(String deviceName) throws Exception {
+        Result query = systemControlService.startDevice(deviceName);
+        return query.toString();
+    }
+
+    /**
+     * 停止设备
+     *
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @GetMapping(value = "/stopDevice")
+    public String stopDevice(String deviceName) throws Exception {
+        Result query = systemControlService.stopDevice(deviceName);
         return query.toString();
     }
 

@@ -38,7 +38,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("saveProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -53,7 +53,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("exportProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -68,7 +68,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("importProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -83,7 +83,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("checkProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -98,7 +98,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("startProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -113,7 +113,7 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("stopProject", e);
             result.addMsg(e.getMessage());
         }
         return result;
@@ -128,7 +128,37 @@ public class SystemControlServiceImpl implements ISystemControlService {
             result.addMsg(ynResult.toString());
             System.out.println(result);
         } catch (Exception e) {
-            log.error("newProject", e);
+            log.error("rebootBox", e);
+            result.addMsg(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Result startDevice(String deviceName) {
+        YNRPC.Result ynResult = SystemControllerUtil.startDevice(deviceName);
+        Result result = new Result();
+        try {
+            result.addCode(Constant.CODE_QUERY_SUCCESS);
+            result.addMsg(ynResult.toString());
+            System.out.println(result);
+        } catch (Exception e) {
+            log.error("startDevice", e);
+            result.addMsg(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Result stopDevice(String deviceName) {
+        YNRPC.Result ynResult = SystemControllerUtil.stopDevice(deviceName);
+        Result result = new Result();
+        try {
+            result.addCode(Constant.CODE_QUERY_SUCCESS);
+            result.addMsg(ynResult.toString());
+            System.out.println(result);
+        } catch (Exception e) {
+            log.error("stopDevice", e);
             result.addMsg(e.getMessage());
         }
         return result;

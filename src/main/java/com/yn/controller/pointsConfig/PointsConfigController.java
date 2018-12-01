@@ -86,6 +86,7 @@ public class PointsConfigController {
             PointsExample example = new PointsExample();
             int showCount = Integer.parseInt(limit);
             int currentPage = Integer.parseInt(page);
+
             recod.setName(name);
             recod.setcDev(cdev);
             recod.setfDev(fdev);

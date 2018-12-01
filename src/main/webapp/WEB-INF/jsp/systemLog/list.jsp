@@ -117,6 +117,7 @@
             }]
             , skin: 'line' //表格风格
             , even: true
+            , size: 'sm'
             , page: true //是否显示分页
             , limits: [5, 7, 10]
             , limit: 5 //每页默认显示的数量

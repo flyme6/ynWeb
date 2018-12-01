@@ -110,4 +110,21 @@ public class Points extends Base{
     public void setfIntype(String fIntype) {
         this.fIntype = fIntype == null ? null : fIntype.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Points{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", cDev='" + cDev + '\'' +
+                ", cDevid=" + cDevid +
+                ", cInaddr='" + cInaddr + '\'' +
+                ", cIntype='" + cIntype + '\'' +
+                ", cInbit=" + cInbit +
+                ", fDev='" + fDev + '\'' +
+                ", fDevid=" + fDevid +
+                ", fInaddr='" + fInaddr + '\'' +
+                ", fIntype='" + fIntype + '\'' +
+                '}';
+    }
 }

@@ -5,16 +5,29 @@ import YNRPC.KeyValue;
 import YNRPC.Rvqt;
 import com.yn.common.Constant;
 import com.yn.common.Result;
+import com.yn.entity.Points;
+import com.yn.entity.PointsExample;
+import com.yn.mapper.PointsMapper;
 import com.yn.util.ynService.DataMonitorUtil;
 import com.yn.util.ynService.SystemControllerUtil;
 import com.yn.util.ynService.systemInformationUtil;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class YnService {
+    private ApplicationContext applicationContext;
+
+    @Before
+    public void setUp() throws Exception {
+        applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext-sqlite.xml");
+    }
 
     @Test
     public void DataMonitor() {
@@ -103,13 +116,31 @@ public class YnService {
 
     @Test
     public void queryRealData() {
+        PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
+        Points points = new Points();
+
+//        points.setName("RTU_RTU1_AO16_1");
+//        points.setcDev("CRTU_com9");
+        points.setcDev("CRTU_com1");
+//        points.setfDev("FRTU_com1");
+        String[] strings = mapper.selectPoints(points);
+
+        System.out.println("ad" + strings.length);
+        for (String s : strings) {
+//            System.out.println(s);
+        }
+
+        int[] ints = DataMonitorUtil.queryPointIds(strings);
+
         com.yn.common.Result result = new com.yn.common.Result();
         List<HashMap<String, Object>> maps = new ArrayList<>();
         try {
-            int[] a = new int[]{1, 2};
-            Rvqt[] rvqts = DataMonitorUtil.queryRealData(a);
+
+            Rvqt[] rvqts = DataMonitorUtil.queryRealData(ints);
             for (int i = 0; i < rvqts.length; i++) {
                 HashMap<String, Object> map = new HashMap<>();
+                map.put("name", strings[i]);
+                map.put("id", ints[i]);
                 map.put("q", rvqts[i].q);
                 map.put("r", rvqts[i].r);
                 map.put("t", rvqts[i].t);
@@ -128,6 +159,18 @@ public class YnService {
         }
     }
 
+    @Test
+    public void queryRealData2() {
+        PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
+
+        Points points = new Points();
+        points.setLastCount(1);
+        points.setPageSize(5);
+        String[] strings = mapper.selectPoints(points);
+        System.out.println(strings.toString());
+        int[] ints = DataMonitorUtil.queryPointIds(strings);
+        System.out.println(ints.length + "length");
+    }
 
     @Test
     public void queryDeviceDataStream() {
@@ -137,8 +180,6 @@ public class YnService {
         System.out.println(o);
 
     }
-
-
 
 
     @Test

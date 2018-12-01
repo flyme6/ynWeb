@@ -41,8 +41,6 @@ public class CModbusTcpMapperTest {
     }
 
 
-
-
     @Test
     public void updateByPrimaryKey() throws Exception {
         IGeneralService service = (IGeneralService) applicationContext.getBean("generalServiceImpl");
@@ -67,6 +65,18 @@ public class CModbusTcpMapperTest {
         Result result = service.delICModbusTcp(cModbusTcp);
         System.out.println(result);
     }
+
+    @Test
+    public void queryRealData() throws Exception {
+        IDataMonitorService service = (IDataMonitorService) applicationContext.getBean("dataMonitorServiceImpl");
+
+        Points points = new Points();
+        points.setLastCount(2);
+        points.setPageSize(5);
+        Result result = service.queryRealData(points);
+        System.out.println(result);
+    }
+
 
     @Test
     public void insert() throws Exception {

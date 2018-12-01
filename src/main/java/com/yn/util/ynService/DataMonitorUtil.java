@@ -5,12 +5,10 @@ import YNRPC.*;
 import com.alibaba.fastjson.JSON;
 import com.yn.common.Constant;
 import com.yn.util.Const;
-import com.yn.util.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 获得数据监听接口，IDataMonitor可监视实时数据及日志及通信数据流等。
@@ -59,7 +57,7 @@ public class DataMonitorUtil {
 //                故障为红色
 //                s1 = deviceInfos[i].devState.toString();
                 s1 = "FD482C";
-            } else if (s1 == "DSSTOPPED"){
+            } else if (s1 == "DSSTOPPED") {
 //                未使用为灰色
 //                s1 = deviceInfos[i].devState.toString();
                 s1 = "B2B2B2";
@@ -175,6 +173,53 @@ public class DataMonitorUtil {
 
     }
 
+    /**
+     * Description: 转换点名为点ID(使用ID可提高点查询效率)
+     * Input: ptNames 点名列表
+     * Output: ptIds 返回点ID列表，如ID为-1表示无此点
+     * Return:
+     * Others:
+     **/
+    public static int[] queryPointIds(String[] ptNames) {
+        String[] args = {"ser", "yn"};
+        int status = 0;
+        Ice.Communicator ic = null;
+        Result result = null;
+        PointIdListHolder pointIdListHolder = null;
+        try {
+            ic = Ice.Util.initialize(args);
+            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
+
+            IServicePrx service = IServicePrxHelper.checkedCast(base);
+            if (service == null) {
+                throw new Error("service为空");
+            }
+
+            IDataMonitorPrxHolder iDataMonitorPrxHolder = new IDataMonitorPrxHolder();
+            service.getDataMonitor(iDataMonitorPrxHolder);
+            if (iDataMonitorPrxHolder == null) {
+                throw new Error("iDataMonitorPrxHolder为空");
+            }
+
+            IDataMonitorPrx value = iDataMonitorPrxHolder.value;
+            pointIdListHolder = new PointIdListHolder();
+            result = value.queryPointIds(ptNames, pointIdListHolder);
+            System.out.println("获得实时数据----" + "获取结果：" + result + "----返回对象：" + pointIdListHolder.value + "----点ID列表" + ptNames);
+            return pointIdListHolder.value;
+        } catch (Ice.LocalException e) {
+            e.printStackTrace();
+            status = 1;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            status = 1;
+        } finally {
+            if (ic != null) {
+                ic.destroy();
+            }
+            return pointIdListHolder.value;
+        }
+
+    }
 
     /**
      * 获得设备的通信数据流

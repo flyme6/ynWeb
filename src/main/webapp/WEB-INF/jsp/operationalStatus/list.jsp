@@ -389,7 +389,7 @@
     };
     var htmls = ''; //全局变量
     function runEvery10Sec() {
-        setTimeout(runEvery10Sec, 1000 * 1);
+        setTimeout(runEvery10Sec, 2000 * 1);
 
 
         $.ajax({

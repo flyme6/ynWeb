@@ -22,7 +22,7 @@ public class PointsServiceImpl implements IPointsService {
 
     @Autowired
     private IPointsBmo bmo;
-
+    @Autowired
     private IDevBmo devBmo;
 
     @Override

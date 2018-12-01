@@ -54,7 +54,8 @@
                             </div>
                             &nbsp;&nbsp;
                             <div class="layui-inline">
-                                <input class="layui-input" name="name" id="name" autocomplete="off" placeholder="请输入点名称">
+                                <input class="layui-input" name="name" id="name" autocomplete="off"
+                                       placeholder="请输入点名称">
                             </div>
                             &nbsp;&nbsp;
                             <button class="layui-btn" data-type="reload">搜索</button>
@@ -125,13 +126,13 @@
             elem: '#points'
             , url: './pointsConfig/Search'
             , cols: [[ //标题栏
-                {field: 'name', title: '点名'}
+                {field: 'name', title: '点名', width: 170}
                 , {field: 'desc', title: '点描述'}
-                , {field: 'c_dev', title: '采集设备名'}
-                , {field: 'c_devid', title: '采集设备IP'}
+                , {field: 'c_dev', title: '采集设备名', width: 120}
+                , {field: 'c_devid', title: '采集设备IP', width: 120}
                 , {field: 'c_inaddr', title: '采集地址'}
                 , {field: 'c_intype', title: '采集点类型'}
-                , {field: 'f_dev', title: '转发设备名'}
+                , {field: 'f_dev', title: '转发设备名', width: 170}
                 , {field: 'f_devid', title: '转发设备ID'}
                 , {field: 'f_inaddr', title: '转发地址'}
                 , {field: 'f_intype', title: '转发点类型'}
@@ -139,12 +140,13 @@
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
                 }
             ]]
-            , id: 'testReload'
+            , id: 'TableReload'
             , skin: 'line' //表格风格
             , even: true
+            , size: 'sm'
             , page: true //是否显示分页
-            , limits: [5, 7, 10]
-            , limit: 5 //每页默认显示的数量
+            , limits: [10, 30, 50]
+            , limit: 10 //每页默认显示的数量
             // , height: 600
         });
 
@@ -154,7 +156,7 @@
                 var cdev = $('#cdev');
                 var fdev = $('#fdev');
 
-                table.reload('testReload', {
+                table.reload('TableReload', {
                     where: {
                         name: name.val(),
                         cdev: cdev.val(),

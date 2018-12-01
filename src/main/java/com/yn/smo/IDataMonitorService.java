@@ -1,9 +1,12 @@
 package com.yn.smo;
 
 import com.yn.common.Result;
+import com.yn.entity.Points;
 
 public interface IDataMonitorService {
     Result getDevicesState();
 
-    Result queryRealData();
+    Result queryRealData(Points points);
+
+
 }

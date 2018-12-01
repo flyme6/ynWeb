@@ -48,7 +48,7 @@ public class systemInformationServiceImpl implements IsystemInformationService {
             String s = String.valueOf(keyValues[i].val);
             if (s.equals("STARTING")) {
                 s = "<a style=\"color: #5FB878\"> 应用启动中</a>";
-            } else if (s.equals("SRUNNING")) {
+            } else if (s.equals("RUNNING")) {
                 s = "<a style=\"color: #5FB878\"> 应用运行中</a>";
             } else if (s.equals("FAULT")) {
                 s = "<a style=\"color: #FD482C\"> 应用故障</a>";

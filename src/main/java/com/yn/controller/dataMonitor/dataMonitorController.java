@@ -1,7 +1,11 @@
 package com.yn.controller.dataMonitor;
 
 import YNRPC.ISystemControl;
+import com.yn.common.CommonUtils;
 import com.yn.common.Result;
+import com.yn.entity.CModbusTcp;
+import com.yn.entity.CModbusTcpExample;
+import com.yn.entity.Points;
 import com.yn.smo.IDataMonitorService;
 import com.yn.smo.ISystemControlService;
 import com.yn.util.ynService.DataMonitorUtil;
@@ -12,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author ：flyme
@@ -78,9 +84,48 @@ public class dataMonitorController {
      */
     @ResponseBody
     @GetMapping(value = "/queryRealData")
-    public String queryRealData() throws Exception {
-        Result query = service.queryRealData();
-        return query.toString();
+    public String queryRealData(String limit, String page) throws Exception {
+        try {
+
+            Points points = new Points();
+            int showCount = Integer.parseInt(limit);
+            int currentPage = Integer.parseInt(page);
+            points.setLastCount((currentPage - 1) * showCount);
+            points.setPageSize(showCount);
+
+            return service.queryRealData(points).toString();
+        } catch (Exception e) {
+            return Result.getQueryFailResult(e).toString();
+        }
+    }
+
+    /**
+     * 查询，提供api接口
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/searchRealData")
+    public String searchRealData(String limit, String page, String cdev, String fdev, HttpServletRequest request) {
+        String name = CommonUtils.getStrFromObject(request.getParameter("name"));
+        try {
+            Points recod = new Points();
+            int showCount = Integer.parseInt(limit);
+            int currentPage = Integer.parseInt(page);
+
+            recod.setName("%" + name + "%");
+            recod.setcDev(cdev);
+            recod.setfDev(fdev);
+
+            recod.setLastCount((currentPage - 1) * showCount);
+            recod.setPageSize(showCount);
+
+            System.out.println(recod+ "asd");
+            return service.queryRealData(recod).toString();
+        } catch (Exception e) {
+            return Result.getQueryFailResult(e).toString();
+        }
     }
 
     /**

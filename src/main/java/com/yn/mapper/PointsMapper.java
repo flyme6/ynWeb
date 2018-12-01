@@ -4,6 +4,7 @@ import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,8 @@ public interface PointsMapper {
     int insertSelective(Points record);
 
     List<Map<String, Object>> selectByExample(PointsExample example);
+
+    String[] selectPoints(Points record);
 
     List<Map<String, Object>> selectByConditions(Points record);
 

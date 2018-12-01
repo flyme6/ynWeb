@@ -39,7 +39,9 @@
                         <legend>实时数据监视</legend>
                     </fieldset>
                     <div class="layui-row" data-type="userReload">
-                        <div class="layui-form layui-col-md12 we-search demoTable">
+
+                        <div class="layui-form layui-col-md12 we-search Table">
+
                             采集设备名称：
                             <div class="layui-inline">
                                 <select name="cdev" id="cdev" lay-filter="cdev" style="width: 10px">
@@ -58,7 +60,8 @@
                                        placeholder="请输入点名称">
                             </div>
                             &nbsp;&nbsp;
-                            <button class="layui-btn" data-type="reload">搜索</button>
+                            <button class="layui-btn" data-type="search">搜索</button>
+                            <button class="layui-btn" data-type="export">导出</button>
                         </div>
                     </div>
                     <table class="layui-table" id="realtimeData"></table>
@@ -161,7 +164,7 @@
         form.render('select');//需要渲染一下
 
         var $ = layui.$, active = {
-            reload: function () {
+            search: function () {
                 var name = $('#name');
                 var cdev = $('#cdev');
                 var fdev = $('#fdev');
@@ -176,7 +179,7 @@
             }
         };
 
-        $('.demoTable .layui-btn').on('click', function () {
+        $('.Table .layui-btn').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });

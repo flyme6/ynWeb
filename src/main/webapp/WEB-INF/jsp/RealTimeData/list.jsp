@@ -61,7 +61,9 @@
                             </div>
                             &nbsp;&nbsp;
                             <button class="layui-btn" data-type="search">搜索</button>
-                            <button class="layui-btn" data-type="export" id="exportAll">导出</button>
+                            <button class="layui-btn" data-type="export" id="exportAll"
+                            >导出
+                            </button>
                         </div>
                     </div>
                     <table class="layui-table" id="realtimeData"></table>
@@ -110,7 +112,7 @@
             , id: 'TableReload'
             , skin: 'line' //表格风格
             , even: true
-            // , size: 'sm'
+            , size: 'sm'
             , page: true //是否显示分页
             , limits: [10, 30, 50]
             , limit: 10 //每页默认显示的数量
@@ -120,20 +122,10 @@
             }
         });
 
+        var name;
+        var cdev;
+        var fdev;
 
-        $('#exportAll').on('click', function () {
-            $.ajax({
-                url: "./dataMonitor/searchRealData?page=1&limit=10",
-                type: "get",
-                dataType: "json",
-                success: function(res) {
-                    console.info(res)
-                    if(res.code==200){
-                        table.exportFile(['名字','电话','所属区域', '来源'], res.data, 'xls');
-                    }
-                }
-            });
-        });
 
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
@@ -177,11 +169,12 @@
         });
         form.render('select');//需要渲染一下
 
+
         var $ = layui.$, active = {
             search: function () {
-                var name = $('#name');
-                var cdev = $('#cdev');
-                var fdev = $('#fdev');
+                name = $('#name');
+                cdev = $('#cdev');
+                fdev = $('#fdev');
 
                 table.reload('TableReload', {
                     where: {
@@ -191,10 +184,63 @@
                     }
                 });
             },
-            export: function () {
-
-            }
         };
+
+        name = $('#name').val();
+        cdev = $('#cdev').val();
+        fdev = $('#fdev').val();
+
+        $('#exportAll').on('click', function () {
+            var index = top.layer.msg('数据导出中，请稍候', {icon: 16, time: false, shade: 0.8});
+            $.ajax({
+                url: './realTimeData/export',
+                type: 'get',
+                data: {name: $('#name').val(), cdev: $('#cdev').val(), fdev: $('#fdev').val()},
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    console.log(info.code);
+                    if (info.code === 0) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg("数据导出成功，自动下载，请稍等");
+
+                            layer.closeAll("iframe");
+
+                            var url = './realTimeData/down?filename=';
+                            console.info(url);
+
+                            var form = $("<form>");//定义一个form表单
+                            form.attr("style", "display:none");
+                            form.attr("target", "");
+                            form.attr("method", "get");  //请求类型
+                            form.attr("action", url);   //请求地址
+                            $("body").append(form);//将表单放置在web中
+
+                            var input1 = $("<input>");
+                            input1.attr("type", "hidden");
+                            input1.attr("name", "filename");
+                            input1.attr("value", info.msg);
+                            form.append(input1);
+
+                            form.submit();//表单提交
+
+                        }, 1000);
+                    }
+                },
+                error: function (info) {
+                    if (info.code === 200) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg(info.msg);
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            parent.location.reload();
+                        }, 1000);
+                    }
+                }
+            });
+        });
 
         $('.Table .layui-btn').on('click', function () {
             var type = $(this).data('type');

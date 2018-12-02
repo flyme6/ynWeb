@@ -8,6 +8,7 @@ import com.yn.common.Result;
 import com.yn.entity.Points;
 import com.yn.mapper.PointsMapper;
 import com.yn.smo.IDataMonitorService;
+import com.yn.util.CSVUtils;
 import com.yn.util.ynService.DataMonitorUtil;
 import javafx.util.Pair;
 import org.slf4j.Logger;
@@ -160,7 +161,7 @@ public class DataMonitorServiceImpl implements IDataMonitorService {
 
         String path = "c:/export/";
         String fileName = "文件导出";
-        File file = com.saicfc.pmpf.internal.manage.utils.CSVUtils.createCSVFile(exportData, map, path, fileName);
+        File file = CSVUtils.createCSVFile(exportData, map, path, fileName);
         String fileName2 = file.getName();
         System.out.println("文件名称：" + fileName2 + path);
     }

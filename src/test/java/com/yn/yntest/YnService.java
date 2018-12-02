@@ -8,6 +8,7 @@ import com.yn.common.Result;
 import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
 import com.yn.mapper.PointsMapper;
+import com.yn.util.CSVUtils;
 import com.yn.util.DateUtil;
 import com.yn.util.ynService.DataMonitorUtil;
 import com.yn.util.ynService.SystemControllerUtil;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.*;
 
@@ -206,7 +208,7 @@ public class YnService {
 
             String fileName = time;
             System.out.println(time + "asd");
-            File file = com.saicfc.pmpf.internal.manage.utils.CSVUtils.createCSVFile(exportData, lie, path, time);
+            File file = CSVUtils.createCSVFile(exportData, lie, path, time);
             String fileName2 = file.getName();
             System.out.println("文件名称：" + fileName2 + path);
             System.out.println(fileName);
@@ -216,6 +218,10 @@ public class YnService {
         }
     }
 
+
+    @Test
+    public void exportFile() {
+    }
 
     @Test
     public void queryRealData2() {
@@ -229,8 +235,6 @@ public class YnService {
         int[] ints = DataMonitorUtil.queryPointIds(strings);
         System.out.println(ints.length + "length");
     }
-
-
 
 
     @Test

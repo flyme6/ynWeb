@@ -1,4 +1,4 @@
-package com.saicfc.pmpf.internal.manage.utils;
+package com.yn.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

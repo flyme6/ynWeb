@@ -9,4 +9,10 @@ public interface IDataMonitorService {
     Result queryRealData(Points points);
 
 
+    /**
+     * 获得通信数据流
+     *
+     * @return
+     */
+    Result queryDeviceDataStream(String devName, int dataPos, int itemLimit);
 }

@@ -75,7 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    name, desc, c_dev, c_devid, c_inaddr, c_intype, c_inbit, f_dev, f_devid, f_inaddr, 
+    name, desc, c_dev, c_devid, c_inaddr, c_intype, c_inbit, f_dev, f_devid, f_inaddr,
     f_intype
   </sql>
     <select id="selectByExample" resultType="java.util.LinkedHashMap" parameterType="com.yn.entity.PointsExample">
@@ -232,13 +232,13 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.yn.entity.Points">
-    insert into points (name, desc, c_dev, 
-      c_devid, c_inaddr, c_intype, 
-      c_inbit, f_dev, f_devid, 
+    insert into points (name, desc, c_dev,
+      c_devid, c_inaddr, c_intype,
+      c_inbit, f_dev, f_devid,
       f_inaddr, f_intype)
-    values (#{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{cDev,jdbcType=VARCHAR}, 
-      #{cDevid,jdbcType=INTEGER}, #{cInaddr,jdbcType=VARCHAR}, #{cIntype,jdbcType=VARCHAR}, 
-      #{cInbit,jdbcType=INTEGER}, #{fDev,jdbcType=VARCHAR}, #{fDevid,jdbcType=INTEGER}, 
+    values (#{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{cDev,jdbcType=VARCHAR},
+      #{cDevid,jdbcType=INTEGER}, #{cInaddr,jdbcType=VARCHAR}, #{cIntype,jdbcType=VARCHAR},
+      #{cInbit,jdbcType=INTEGER}, #{fDev,jdbcType=VARCHAR}, #{fDevid,jdbcType=INTEGER},
       #{fInaddr,jdbcType=VARCHAR}, #{fIntype,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.yn.entity.Points">

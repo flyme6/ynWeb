@@ -36,11 +36,12 @@
                 <div class="layui-card-body chart-card">
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-                        <legend>系统日志(第二版本)</legend>
+                        <legend>系统日志</legend>
                     </fieldset>
                     <div id="log-container"
                          style="height: 450px; overflow-y: scroll; background: #333; color: #aaa; padding: 10px;">
                         <div>
+                            <a style="color: #B2B2B2">获取不到数据，经检查系统日志路径，目前默认语法路径为：tail -f /usr/local/yn/log/yn_0.log</a>
                         </div>
                     </div>
                 </div>
@@ -55,8 +56,6 @@
     $(document).ready(function () {
         // 指定websocket路径
         var ipPort = window.location.host;
-        // var wsUri = 'ws://192.168.153.132:8080/ynWeb/log';
-        // var wsUri = 'ws://localhost:8080/ynWeb/log';
 
         var wsUri = 'ws://' + ipPort + '/ynWeb/log';
         var websocket = new WebSocket(wsUri);

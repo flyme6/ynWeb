@@ -8,6 +8,7 @@ import com.yn.common.Result;
 import com.yn.entity.Points;
 import com.yn.entity.PointsExample;
 import com.yn.mapper.PointsMapper;
+import com.yn.util.DateUtil;
 import com.yn.util.ynService.DataMonitorUtil;
 import com.yn.util.ynService.SystemControllerUtil;
 import com.yn.util.ynService.systemInformationUtil;
@@ -16,10 +17,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 
 public class YnService {
     private ApplicationContext applicationContext;
@@ -160,6 +159,65 @@ public class YnService {
     }
 
     @Test
+    public void expotRealData() {
+        PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
+        Points points = new Points();
+
+        String[] strings = mapper.selectPoints(points);
+
+        System.out.println("ad" + strings.length);
+        for (String s : strings) {
+//            System.out.println(s);
+        }
+
+        int[] ints = DataMonitorUtil.queryPointIds(strings);
+
+        com.yn.common.Result result = new com.yn.common.Result();
+        List<HashMap<String, Object>> maps = new ArrayList<>();
+        try {
+
+            Rvqt[] rvqts = DataMonitorUtil.queryRealData(ints);
+            List exportData = new ArrayList<Map>();
+            for (int i = 0; i < rvqts.length; i++) {
+                HashMap<String, Object> map = new HashMap<>();
+                Map row1 = new LinkedHashMap<String, String>();
+
+                row1.put("name", strings[i]);
+                row1.put("id", ints[i]);
+                row1.put("q", rvqts[i].q);
+                row1.put("r", rvqts[i].r);
+                row1.put("t", rvqts[i].t);
+                row1.put("v", rvqts[i].v);
+
+
+                exportData.add(row1);
+            }
+            LinkedHashMap lie = new LinkedHashMap();
+            lie.put("name", "name");
+            lie.put("id", "id");
+            lie.put("q", "q");
+            lie.put("r", "r");
+            lie.put("t", "t");
+            lie.put("v", "v");
+
+            String path = "c:/export/";
+            System.out.println("asdsa");
+            String time = DateUtil.getSdfTimes();
+
+            String fileName = time;
+            System.out.println(time + "asd");
+            File file = com.saicfc.pmpf.internal.manage.utils.CSVUtils.createCSVFile(exportData, lie, path, time);
+            String fileName2 = file.getName();
+            System.out.println("文件名称：" + fileName2 + path);
+            System.out.println(fileName);
+        } catch (Exception e) {
+//            log.error("query", e);
+            result.addMsg(e.getMessage());
+        }
+    }
+
+
+    @Test
     public void queryRealData2() {
         PointsMapper mapper = (PointsMapper) applicationContext.getBean("pointsMapper");
 
@@ -172,14 +230,7 @@ public class YnService {
         System.out.println(ints.length + "length");
     }
 
-    @Test
-    public void queryDeviceDataStream() {
-        com.yn.common.Result result = new com.yn.common.Result();
-        List<HashMap<String, Object>> maps = new ArrayList<>();
-        Object o = DataMonitorUtil.queryDeviceDataStream();
-        System.out.println(o);
 
-    }
 
 
     @Test

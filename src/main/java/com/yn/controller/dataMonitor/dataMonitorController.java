@@ -128,18 +128,18 @@ public class dataMonitorController {
         }
     }
 
-    /**
-     * 获得设备的通信数据流
-     *
-     * @return
-     * @throws Exception
-     */
-    @ResponseBody
-    @GetMapping(value = "/queryDeviceDataStream")
-    public String queryDeviceDataStream() throws Exception {
-        Object o = DataMonitorUtil.queryDeviceDataStream();
-        return "获得设备的通信数据流" + o;
-    }
+//    /**
+//     * 获得设备的通信数据流
+//     *
+//     * @return
+//     * @throws Exception
+//     */
+//    @ResponseBody
+//    @GetMapping(value = "/queryDeviceDataStream")
+//    public String queryDeviceDataStream() throws Exception {
+//        Object o = DataMonitorUtil.queryDeviceDataStream();
+//        return "获得设备的通信数据流" + o;
+//    }
 
     /**
      * 获得系统日志信息

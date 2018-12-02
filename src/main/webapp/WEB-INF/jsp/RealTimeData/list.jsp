@@ -61,7 +61,7 @@
                             </div>
                             &nbsp;&nbsp;
                             <button class="layui-btn" data-type="search">搜索</button>
-                            <button class="layui-btn" data-type="export">导出</button>
+                            <button class="layui-btn" data-type="export" id="exportAll">导出</button>
                         </div>
                     </div>
                     <table class="layui-table" id="realtimeData"></table>
@@ -120,6 +120,21 @@
             }
         });
 
+
+        $('#exportAll').on('click', function () {
+            $.ajax({
+                url: "./dataMonitor/searchRealData?page=1&limit=10",
+                type: "get",
+                dataType: "json",
+                success: function(res) {
+                    console.info(res)
+                    if(res.code==200){
+                        table.exportFile(['名字','电话','所属区域', '来源'], res.data, 'xls');
+                    }
+                }
+            });
+        });
+
         /*
          *数据表格中form表单元素是动态插入,所以需要更新渲染下
          * http://www.layui.com/doc/modules/form.html#render
@@ -152,7 +167,6 @@
             async: false,//这得注意是同步
             success: function (result) {
                 resultData = result.data;
-                console.info(resultData + "resultData");
                 for (var x in resultData) {
                     htmls += '<option value = "' + resultData[x].c_dev + '">' + resultData[x].c_dev + '</option>';
                     htmls2 += '<option value = "' + resultData[x].f_dev + '">' + resultData[x].f_dev + '</option>'
@@ -176,6 +190,9 @@
                         fdev: fdev.val(),
                     }
                 });
+            },
+            export: function () {
+
             }
         };
 

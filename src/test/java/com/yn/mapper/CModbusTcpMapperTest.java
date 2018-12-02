@@ -1,9 +1,6 @@
 package com.yn.mapper;
 
-import com.csvreader.CsvWriter;
 import com.yn.entity.*;
-import com.yn.smo.IUsermgrService;
-import com.yn.util.CsvUtil;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +8,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,8 +58,8 @@ public class CModbusTcpMapperTest {
         map.put("3", "第三列");
         map.put("4", "第四列");
 
-        File file2 = CsvUtil.createCSVFile(maps, fileds, map, path,
-                fileName);
+//        File file2 = CsvUtil.createCSVFile(maps, fileds, map, path,
+//                fileName);
     }
 
     @Test

@@ -5,6 +5,7 @@ import YNRPC.*;
 import com.alibaba.fastjson.JSON;
 import com.yn.common.Constant;
 import com.yn.util.Const;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -231,11 +232,81 @@ public class DataMonitorUtil {
      *
      * @return
      */
-    public static Object queryDeviceDataStream() {
+//    public static Object queryDeviceDataStream() {
+//        String[] args = {"ser", "yn"};
+//        int status = 0;
+//        Ice.Communicator ic = null;
+//        Result result = null;
+//        try {
+//            ic = Ice.Util.initialize(args);
+//            Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
+//
+//            IServicePrx service = IServicePrxHelper.checkedCast(base);
+//            if (service == null) {
+//                throw new Error("service为空");
+//            }
+//
+//            IDataMonitorPrxHolder iDataMonitorPrxHolder = new IDataMonitorPrxHolder();
+//            service.getDataMonitor(iDataMonitorPrxHolder);
+//            if (iDataMonitorPrxHolder == null) {
+//                throw new Error("iDataMonitorPrxHolder为空");
+//            }
+//
+//            IDataMonitorPrx monitorPrx = iDataMonitorPrxHolder.value;
+//            String devName = "dev";
+//            int inId = 0;
+//            int limit = 0;
+//            StringListHolder msgs = new StringListHolder();
+//            Ice.IntHolder outId = new IntHolder();
+//            result = monitorPrx.queryDeviceDataFrames(devName, inId, limit, msgs, outId);
+//
+//            System.out.println("获得设备的通信数据流----" + "获取结果："
+//                    + result + "----返回对象：StringListHolder "
+//                    + devName + "devName----"
+//                    + inId + "inId----"
+//                    + limit + "limit----"
+//                    + limit + "limit----"
+//                    + msgs + "msgs----"
+//                    + outId + "outId----"
+//            );
+//            return "获得设备的通信数据流----" + "获取结果："
+//                    + result + "----返回对象：StringListHolder "
+//                    + devName + "devName----"
+//                    + inId + "inId----"
+//                    + limit + "limit----"
+//                    + limit + "limit----"
+//                    + msgs + "msgs----"
+//                    + outId + "outId----";
+//        } catch (Ice.LocalException e) {
+//            e.printStackTrace();
+//            status = 1;
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//            status = 1;
+//        } finally {
+//            if (ic != null) {
+//                ic.destroy();
+//            }
+//            return result;
+//        }
+//
+//    }
+
+    /**
+     * 获得设备的通信数据流
+     * devName: 设备的名称
+     * inId: 数据流编号位置。第一调用此方法此参数传递0，再次调用时传递上次调用返回的outId参数
+     * limit：最大显示行数。参数为0表示无限制。
+     * Msgs：返回数据流的字符串数组
+     * outId：返回数据流位置，下次调用此方法时传递此参数
+     *
+     * @return
+     */
+    public static Pair<Integer, String[]> queryDeviceDataStream(String devName, int dataPos, int itemLimit) {
         String[] args = {"ser", "yn"};
-        int status = 0;
         Ice.Communicator ic = null;
-        Result result = null;
+        StringListHolder msgs = new StringListHolder();
+        IntHolder outId = new IntHolder();
         try {
             ic = Ice.Util.initialize(args);
             Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
@@ -252,43 +323,27 @@ public class DataMonitorUtil {
             }
 
             IDataMonitorPrx monitorPrx = iDataMonitorPrxHolder.value;
-            String devName = "dev";
-            int inId = 0;
-            int limit = 0;
-            StringListHolder msgs = new StringListHolder();
-            Ice.IntHolder outId = new IntHolder();
-            result = monitorPrx.queryDeviceDataFrames(devName, inId, limit, msgs, outId);
+            Result result = monitorPrx.queryDeviceDataFrames(devName, dataPos, itemLimit, msgs, outId);
 
             System.out.println("获得设备的通信数据流----" + "获取结果："
                     + result + "----返回对象：StringListHolder "
                     + devName + "devName----"
-                    + inId + "inId----"
-                    + limit + "limit----"
-                    + limit + "limit----"
+                    + dataPos + "inId----"
+                    + itemLimit + "limit----"
                     + msgs + "msgs----"
                     + outId + "outId----"
             );
-            return "获得设备的通信数据流----" + "获取结果："
-                    + result + "----返回对象：StringListHolder "
-                    + devName + "devName----"
-                    + inId + "inId----"
-                    + limit + "limit----"
-                    + limit + "limit----"
-                    + msgs + "msgs----"
-                    + outId + "outId----";
+            return new Pair<>(outId.value, msgs.value);
         } catch (Ice.LocalException e) {
             e.printStackTrace();
-            status = 1;
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            status = 1;
         } finally {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return new Pair<>(0, msgs.value);
         }
-
     }
 
 

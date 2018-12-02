@@ -9,11 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * 说明：日期处理
- * 创建人：FH Q313596790
- * 修改时间：2015年11月24日
- */
 public class DateUtil {
     private static final Log logger = LogFactory.getLog(DateUtil.class);
     private static SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
@@ -193,6 +188,8 @@ public class DateUtil {
     public static void main(String[] args) {
         System.out.println(getDays());
         System.out.println(getAfterDayWeek("3"));
+        System.out.println(getTime());
+        System.out.println(getSdfTimes());
     }
 
 }

@@ -258,19 +258,19 @@
                 </a>
             </li>
             <!--系统日志-->
-            <li>
-                <a _href="./systemLog">
-                    <i class="iconfont">&#xe705;</i>
-                    <cite>系统日志</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-            </li>
+            <%--<li>--%>
+            <%--<a _href="./systemLog">--%>
+            <%--<i class="iconfont">&#xe705;</i>--%>
+            <%--<cite>系统日志</cite>--%>
+            <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+            <%--</a>--%>
+            <%--</li>--%>
 
-            <!--控制台-->
+            <!--系统日志-->
             <li>
                 <a _href="./console">
                     <i class="iconfont">&#xe705;</i>
-                    <cite>系统日志(第二版本)</cite>
+                    <cite>系统日志</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             </li>

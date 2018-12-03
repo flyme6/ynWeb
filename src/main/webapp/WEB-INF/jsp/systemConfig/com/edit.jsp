@@ -81,9 +81,14 @@
                 奇偶校验
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_parity" name="parity" lay-verify=""
-                       autocomplete="off"
-                       class="layui-input">
+                <%--<input type="text" id="L_parity" name="parity" lay-verify=""--%>
+                <%--autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="parity" lay-verify="" id="L_parity">
+                    <option value="NONE">NONE</option>
+                    <option value="EVEN">EVEN</option>
+                    <option value="ODD">ODD</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">

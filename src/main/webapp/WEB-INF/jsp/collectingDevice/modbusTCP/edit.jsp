@@ -34,7 +34,7 @@
             <div class="layui-input-inline">
                 <input type="text" id="L_name" name="name" lay-verify="required|nikename"
                        autocomplete="off"
-                       class="layui-input" readonly>
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -119,7 +119,8 @@
                 包长度
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_package_len" name="package_len" lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="number" id="L_package_len" name="package_len" lay-verify="number" autocomplete="off"
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -127,7 +128,8 @@
                 采集空地址
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_allow_empty_addr" name="allow_empty_addr" lay-verify="number"  autocomplete="off"
+                <input type="number" id="L_allow_empty_addr" name="allow_empty_addr" lay-verify="number"
+                       autocomplete="off"
                        class="layui-input">
             </div>
         </div>
@@ -160,7 +162,8 @@
                 命令队列大小
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_cmd_cache_size" name="cmd_cache_size" lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="number" id="L_cmd_cache_size" name="cmd_cache_size" lay-verify="number" autocomplete="off"
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -168,7 +171,8 @@
                 激活
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_active" name="active" autocomplete="off" lay-verify="number" class="layui-input">
+                <input type="number" id="L_active" name="active" autocomplete="off" lay-verify="number"
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -276,7 +280,7 @@
         });
 
         form.on('submit(edit)', function (data) {
-            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
             $.ajax({
                 url: data.form.action,
                 type: data.form.method,
@@ -286,24 +290,24 @@
                     console.log(info);
                     console.log(info.code);
                     if (info.code === 201) {
-                        setTimeout(function(){
+                        setTimeout(function () {
                             top.layer.close(index);
                             top.layer.msg(info.msg);
                             layer.closeAll("iframe");
                             //刷新父页面
                             parent.location.reload();
-                        },1000);
+                        }, 1000);
                     }
                 },
-                error:function(info){
+                error: function (info) {
                     if (info.code === 200) {
-                        setTimeout(function(){
+                        setTimeout(function () {
                             top.layer.close(index);
                             top.layer.msg("用户添加成功！");
                             layer.closeAll("iframe");
                             //刷新父页面
                             parent.location.reload();
-                        },1000);
+                        }, 1000);
                     }
                 }
             });

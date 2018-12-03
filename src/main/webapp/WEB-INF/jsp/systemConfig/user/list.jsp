@@ -46,10 +46,10 @@
             </div>
         </div>
     </div>
-    <%--<script type="text/html" id="operateTpl">--%>
-    <%--<a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>--%>
-    <%--&lt;%&ndash;<a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>&ndash;%&gt;--%>
-    <%--</script>--%>
+    <script type="text/html" id="operateTpl">
+        <%--<a title="编辑" lay-event="edit" href="javascript:"><i class="layui-icon">&#xe642;</i></a>--%>
+        <a title="删除" lay-event="del" href="javascript:"><i class="layui-icon">&#xe640;</i></a>
+    </script>
 </div>
 </div>
 </body>
@@ -83,9 +83,9 @@
                 {field: 'username', title: '用户名'}
                 , {field: 'password', title: '密码'}
                 , {field: 'role', title: '角色'}
-                // , {
-                //     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
-                // }
+                , {
+                    field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true
+                }
             ]]
             , skin: 'line' //表格风格
             , even: true

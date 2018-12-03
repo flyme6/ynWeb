@@ -63,6 +63,7 @@
                 <%--<input type="number" id="L_baudRate" name="baudRate" lay-verify="" autocomplete="off"--%>
                 <%--class="layui-input">--%>
                 <select name="baudRate" lay-verify="" id="L_baudRate">
+                    <option value="">请选择</option>
                     <option value="1200">1200</option>
                     <option value="2400">2400</option>
                     <option value="4800">4800</option>
@@ -85,6 +86,7 @@
                 <%--autocomplete="off"--%>
                 <%--class="layui-input">--%>
                 <select name="parity" lay-verify="" id="L_parity">
+                    <option value="">请选择</option>
                     <option value="NONE">NONE</option>
                     <option value="EVEN">EVEN</option>
                     <option value="ODD">ODD</option>
@@ -96,9 +98,14 @@
                 数据位
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_dataBits" name="dataBits" lay-verify=""
-                       autocomplete="off"
-                       class="layui-input">
+                <%--<input type="number" id="L_dataBits" name="dataBits" lay-verify=""--%>
+                <%--autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="dataBits" lay-verify="" id="L_dataBits">
+                    <option value="">请选择</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -106,12 +113,16 @@
                 停止位
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_stopBits" name="stopBits" autocomplete="off"
-                       class="layui-input">
+                <%--<input type="number" id="L_stopBits" name="stopBits" autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="stopBits" lay-verify="" id="L_stopBits">
+                    <option value="">请选择</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                </select>
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
@@ -187,10 +198,10 @@
             $('input[name="portNumber"]').val(port_number);
             $('input[name="sendDelay"]').val(send_delay);
             $('input[name="recvTimeout"]').val(recv_timeout);
-            $('input[name="baudRate"]').val(baud_rate);
-            $('input[name="parity"]').val(parity);
-            $('input[name="dataBits"]').val(data_bits);
-            $('input[name="stopBits"]').val(stop_bits);
+            $('select[name="baudRate"]').val(baud_rate);
+            $('select[name="parity"]').val(parity);
+            $('select[name="dataBits"]').val(data_bits);
+            $('select[name="stopBits"]').val(stop_bits);
             form.render();
         }
 

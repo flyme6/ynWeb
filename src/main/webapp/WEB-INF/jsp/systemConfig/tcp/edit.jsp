@@ -126,8 +126,8 @@
 
             $('input[name="portNumber"]').val(port_number);
             $('input[name="ip"]').val(IP);
-            $('input[name="subnetMask"]').val(gateway);
-            $('input[name="gateway"]').val(subnet_mask);
+            $('input[name="subnetMask"]').val(subnet_mask);
+            $('input[name="gateway"]').val(gateway);
 
             form.render();
         }

@@ -60,8 +60,8 @@ public class SystemControlServiceImpl implements ISystemControlService {
     }
 
     @Override
-    public Result importProject() {
-        YNRPC.Result ynResult = SystemControllerUtil.importProject();
+    public Result importProject(String fileName) {
+        YNRPC.Result ynResult = SystemControllerUtil.importProject(fileName);
         Result result = new Result();
         try {
             result.addCode(Constant.CODE_QUERY_SUCCESS);

@@ -213,7 +213,7 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Result importProject() {
+    public static Result importProject(String fileName) {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
@@ -236,10 +236,9 @@ public class SystemControllerUtil {
 
             ISystemControlPrx value = iSystemControlPrxHolder.value;
 
-            String s = new String();
-            result = value.importProject(s);
+            result = value.importProject(fileName);
 
-            System.out.println("打开本地工程----" + "获取结果：" + result + "----返回对象：" + s);
+            System.out.println("打开本地工程----" + "获取结果：" + result + "----返回对象：" + fileName);
             return result;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
@@ -545,7 +544,7 @@ public class SystemControllerUtil {
         //保存工程到本地
         exportProject();
         //打开本地工程
-        importProject();
+//        importProject();
         //检查工程
         checkProject();
         //启动工程

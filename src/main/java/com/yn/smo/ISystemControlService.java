@@ -9,7 +9,7 @@ public interface ISystemControlService {
 
     Result exportProject();
 
-    Result importProject();
+    Result importProject(String fileName);
 
     Result checkProject();
 

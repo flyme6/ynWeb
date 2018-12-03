@@ -41,7 +41,8 @@
                 <!-- 工程管理二级菜单 -->
                 <dd>
                     <%--<a onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地</a>--%>
-                    <a title="保存工程到本地" onclick="export_project()" href="javascript:">保存工程到本地</a>
+                    <%--<a title="保存工程到本地" onclick="export_project()" href="javascript:">保存工程到本地</a>--%>
+                    <a href="./file/down?filename=1.rar">保存工程到本地</a>
                 </dd>
                 <dd>
                     <%--<a onclick="WeAdminShow('新建工程','./project/newProject')">新建工程</a>--%>
@@ -49,7 +50,8 @@
                 </dd>
                 <dd>
                     <%--<a onclick="WeAdminShow('工程文件下载','./file/down?filename=1.rar')">工程文件下载</a>--%>
-                    <a href="./file/down?filename=1.rar">工程文件下载</a>
+                    <%--<a href="./file/down?filename=1.rar">工程文件下载</a>--%>
+                    <a title="工程文件下载" onclick="save_project()" href="javascript:">工程文件下载</a>
                 </dd>
                 <dd>
                     <%--<a onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程</a>--%>
@@ -365,6 +367,46 @@
                             });
                         } else {
                             layer.msg('保存工程到本地失败，请检查配置是否已调试，错误代码：' + info.msg, {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+
+                    },
+                    error: function (error) {
+                        layer.msg('出现异常，请刷新页面', {
+                            icon: 2,
+                            time: 3000
+                        });
+                    },
+                    complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
+                        if (status == 'timeout') {//超时,status还有success,error等值的情况
+                            layer.msg('出现超时异常，请及时检查ynService是否开启', {
+                                icon: 2,
+                                time: 3000
+                            });
+                        }
+                    }
+                });
+            };
+
+
+            /*控制设备运行状态检查工程*/
+            window.save_project = function () {
+                $.ajax({
+                    url: "./project/saveProject",
+                    timeout: 3000, //超时时间设置，单位毫秒
+                    // data: "name=" + obj.data.name,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (info) {
+                        if (info.msg == "RTOK") {
+                            layer.msg('工程文件下载成功', {
+                                icon: 1,
+                                time: 3000
+                            });
+                        } else {
+                            layer.msg('工程文件下载失败，请检查配置是否已调试，错误代码：' + info.msg, {
                                 icon: 2,
                                 time: 3000
                             });

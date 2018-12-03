@@ -1,5 +1,7 @@
 package com.yn.controller;
 
+import com.yn.common.Result;
+import com.yn.util.ynService.SystemControllerUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,12 +37,17 @@ public class FileController {
         String path = request.getSession().getServletContext().getRealPath("upload");
         String fileName = file.getOriginalFilename();
         File dir = new File(path, fileName);
+        System.out.println(path + "path");
         if (!dir.exists()) {
             dir.mkdirs();
         }
         //MultipartFile自带的解析方法
         file.transferTo(dir);
-        return "{ \"code\": 200 ,\"msg\": \"上传成功\"}";
+        YNRPC.Result result1 = SystemControllerUtil.importProject(fileName);
+        Result result = new Result();
+        result.addMsg("文件:" + fileName + "上传成功，返回结果" + result1);
+        result.addCode(200);
+        return result.toString();
     }
 
     /**

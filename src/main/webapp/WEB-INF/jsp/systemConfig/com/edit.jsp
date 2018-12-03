@@ -57,11 +57,23 @@
         </div>
         <div class="layui-form-item">
             <label for="L_baudRate" class="layui-form-label">
-               波特率
+                波特率
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="L_baudRate" name="baudRate" lay-verify="" autocomplete="off"
-                       class="layui-input">
+                <%--<input type="number" id="L_baudRate" name="baudRate" lay-verify="" autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="baudRate" lay-verify="" id="L_baudRate">
+                    <option value="1200">1200</option>
+                    <option value="2400">2400</option>
+                    <option value="4800">4800</option>
+                    <option value="9600">9600</option>
+                    <option value="14400">14400</option>
+                    <option value="19200">19200</option>
+                    <option value="38400">38400</option>
+                    <option value="56000">56000</option>
+                    <option value="57600">57600</option>
+                    <option value="115200">115200</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">

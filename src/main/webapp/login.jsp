@@ -27,14 +27,14 @@
     <div class="message">YN后台管理系统</div>
     <div id="darkbannerwrap"></div>
     <form action="<%=basePath %>/login" method="post" class="layui-form">
-        <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+        <input name="username" id="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
         <hr class="hr15">
         <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
         <hr class="hr15">
         <button lay-submit lay-filter="login" class="layui-btn" style="width:100%; height: 55px">登录</button>
         <hr class="hr20">
         <%--<div>--%>
-            <%--前端静态展示，请随意输入，即可登录。--%>
+        <%--前端静态展示，请随意输入，即可登录。--%>
         <%--</div>--%>
     </form>
 </div>
@@ -44,6 +44,48 @@
     layui.extend({
         admin: '{/}./static/js/admin'
     });
+
+    checkCookie();
+
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
+
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+
+    function checkCookie() {
+        username = getCookie('username');
+        role = getCookie('role');
+        if (username != null && username != "" && role == 0) {
+            location.href = "./index";
+        }
+        else {
+
+        }
+    }
+
+    function clearCookie() {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
+
     layui.use(['form', 'layer', 'jquery'], function () {
 
         // 操作对象
@@ -60,21 +102,26 @@
                 data: data.field,
                 dataType: "json",
                 success: function (info) {
+                    var username = $("#username").val();
+                    setCookie("username", username, 1);
                     if (info.code == 501) {
                         console.info(info.data);
                         if (info.data == "0") {
                             console.info(info.data);
+
                             setTimeout(function () {
                                 top.layer.msg(info.msg);
                                 top.layer.close(index);
                                 location.href = "./index";
                             }, 2000);
+                            setCookie("role", 0, 1);
                         } else if (info.data == "1") {
                             setTimeout(function () {
                                 top.layer.msg(info.msg);
                                 top.layer.close(index);
                                 location.href = "./indexOperator";
                             }, 2000);
+                            setCookie("role", 1, 1);
                         } else {
                             setTimeout(function () {
                                 top.layer.msg("无权限");

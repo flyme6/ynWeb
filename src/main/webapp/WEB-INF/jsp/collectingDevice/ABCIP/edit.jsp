@@ -101,9 +101,7 @@
                 <input type="number" id="L_cmd_timeout" name="cmdTimeout" lay-verify="number" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_package_len" class="layui-form-label">

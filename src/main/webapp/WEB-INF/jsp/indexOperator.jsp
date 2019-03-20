@@ -67,7 +67,7 @@
             </dl>
         </li>
         <li class="layui-nav-item">
-            <a href="javascript:;">ceshi</a>
+            <a href="javascript:;" id="username">未登录</a>
             <dl class="layui-nav-child">
                 <!-- 个人管理二级菜单 -->
                 <%--<dd>--%>
@@ -77,7 +77,7 @@
                 <%--<a onclick="WeAdminShow('切换帐号','./login.jsp')">切换帐号</a>--%>
                 <%--</dd>--%>
                 <dd>
-                    <a class="loginout" href="login.html">退出</a>
+                    <a class="loginout" href="login" onclick="clearCookie()">退出</a>
                 </dd>
             </dl>
         </li>
@@ -247,9 +247,10 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             </li>
+
             <!--系统日志-->
             <li>
-                <a _href="./systemLog">
+                <a _href="./console">
                     <i class="iconfont">&#xe705;</i>
                     <cite>系统日志</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
@@ -296,6 +297,14 @@
     }).use('admin');
     layui.use(['jquery', 'admin'], function () {
         var $ = layui.jquery;
+
+        var username = getCookie("username");
+
+        console.info(username)
+        $("#username").html(username);
+
+        checkCookie(username);
+
         $(function () {
             // var login = JSON.parse(localStorage.getItem("login"));
             // if (login) {
@@ -311,6 +320,58 @@
             // }
         });
     });
+
+</script>
+<script type="text/javascript">
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
+
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+
+    function checkCookie() {
+        username = getCookie('username');
+        role = getCookie('role');
+        console.info(role + "asd")
+        if (username != null && username != "" && role == 1) {
+            // alert('Welcome again ' + username + '!')
+        }
+        else {
+            layer.confirm('请您前往登录', {
+                btn: ['是', '否']
+                , btn1: function () {
+                    location.href = "./login";
+                    clearCookie();
+                }
+                , btn2: function () {
+                    location.href = "./login";
+                    clearCookie();
+                }
+            });
+        }
+    }
+
+    function clearCookie() {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
 
 </script>
 </body>

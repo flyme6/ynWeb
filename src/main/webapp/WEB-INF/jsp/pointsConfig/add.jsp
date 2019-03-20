@@ -118,9 +118,7 @@
                 <input type="text" id="L_f_inaddr" name="fInaddr" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_f_intype" class="layui-form-label">

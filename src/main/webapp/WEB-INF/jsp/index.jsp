@@ -42,7 +42,7 @@
                 <dd>
                     <%--<a onclick="WeAdminShow('保存工程到本地','./project/exportProject')">保存工程到本地</a>--%>
                     <%--<a title="保存工程到本地" onclick="export_project()" href="javascript:">保存工程到本地</a>--%>
-                    <a href="./file/down?filename=1.rar">保存工程到本地</a>
+                    <button class="layui-btn" data-type="export" id="export">保存工程到本地</button>
                 </dd>
                 <dd>
                     <%--<a onclick="WeAdminShow('新建工程','./project/newProject')">新建工程</a>--%>
@@ -51,7 +51,7 @@
                 <dd>
                     <%--<a onclick="WeAdminShow('工程文件下载','./file/down?filename=1.rar')">工程文件下载</a>--%>
                     <%--<a href="./file/down?filename=1.rar">工程文件下载</a>--%>
-                    <a title="工程文件下载" onclick="save_project()" href="javascript:">工程文件下载</a>
+                    <a title="下载" onclick="save_project()" href="javascript:">工程文件下载</a>
                 </dd>
                 <dd>
                     <%--<a onclick="WeAdminShow('检查工程','./project/checkProject')">检查工程</a>--%>
@@ -79,7 +79,7 @@
             </dl>
         </li>
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;" id="username">未登录</a>
             <dl class="layui-nav-child">
                 <!-- 个人管理二级菜单 -->
                 <%--<dd>--%>
@@ -89,7 +89,7 @@
                 <%--<a onclick="WeAdminShow('切换帐号','./login.jsp')">切换帐号</a>--%>
                 <%--</dd>--%>
                 <dd>
-                    <a class="loginout" href="login.html">退出</a>
+                    <a class="loginout" href="login" onclick="clearCookie()">退出</a>
                 </dd>
             </dl>
         </li>
@@ -311,6 +311,62 @@
     layui.use(['jquery', 'admin'], function () {
             var $ = layui.jquery;
 
+
+            var username = getCookie("username");
+            $("#username").html(username);
+
+            checkCookie();
+
+            $('#export').on('click', function () {
+                var index = top.layer.msg('接口请求中，请稍等', {icon: 16, time: false, shade: 0.8});
+                $.ajax({
+                    url: './project/exportProject',
+                    type: 'get',
+                    dataType: "json",
+                    success: function (info) {
+                        console.log(info);
+                        console.log(info.code);
+                        if (info.code === 0) {
+                            setTimeout(function () {
+                                top.layer.close(index);
+                                top.layer.msg("接口请求成功，自动下载，请稍等");
+
+                                layer.closeAll("iframe");
+
+                                var url = './file/down?filename=' + info.msg;
+                                console.info(url);
+
+                                var form = $("<form>");//定义一个form表单
+                                form.attr("style", "display:none");
+                                form.attr("target", "");
+                                form.attr("method", "get");  //请求类型
+                                form.attr("action", url);   //请求地址
+                                $("body").append(form);//将表单放置在web中
+
+                                var input1 = $("<input>");
+                                input1.attr("type", "hidden");
+                                input1.attr("name", "filename");
+                                input1.attr("value", info.msg);
+                                form.append(input1);
+
+                                form.submit();//表单提交
+
+                            }, 3000);
+                        }
+                    },
+                    error: function (info) {
+                        if (info.code === 200) {
+                            setTimeout(function () {
+                                top.layer.close(index);
+                                top.layer.msg(info.msg);
+                                layer.closeAll("iframe");
+                                //刷新父页面
+                                parent.location.reload();
+                            }, 1000);
+                        }
+                    }
+                });
+            });
 
             /*控制设备运行状态新建工程*/
             window.new_project = function () {
@@ -577,6 +633,59 @@
             }
         }
     );
+
+</script>
+<script type="text/javascript">
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
+
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+
+    function checkCookie() {
+        username = getCookie('username');
+        role = getCookie('role');
+        console.info(role + "asd")
+        if (username != null && username != "" && role == 0) {
+            // alert('Welcome again ' + username + '!')
+        }
+        else {
+            layer.confirm('请您前往登录', {
+                btn: ['是', '否']
+                , btn1: function () {
+                    location.href = "./login";
+                    clearCookie();
+                }
+                , btn2: function () {
+                    location.href = "./login";
+                    clearCookie();
+                }
+            });
+        }
+    }
+
+    function clearCookie() {
+        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+            for (var i = keys.length; i--;)
+                document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+        }
+    }
+
 
 </script>
 </body>

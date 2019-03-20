@@ -50,19 +50,22 @@
                 <span class="we-red">*</span>采集设备名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_c_dev" name="cDev" lay-verify="required" autocomplete="off"
-                       class="layui-input">
+                <%--<input type="text" id="L_c_dev" name="cDev" lay-verify="required" autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="cDev" id="L_c_dev" lay-filter="cDev" style="width: 10px">
+                    <option value="请选择"></option>
+                </select>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label for="L_c_devid" class="layui-form-label">
-                采集设备ID
-            </label>
-            <div class="layui-input-inline">
-                <input type="number" id="L_c_devid" name="cDevid" lay-verify="" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
+        <%--<div class="layui-form-item">--%>
+        <%--<label for="L_c_devid" class="layui-form-label">--%>
+        <%--采集设备ID--%>
+        <%--</label>--%>
+        <%--<div class="layui-input-inline">--%>
+        <%--<input type="number" id="L_c_devid" name="cDevid" lay-verify="" autocomplete="off"--%>
+        <%--class="layui-input">--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <div class="layui-form-item">
             <label for="L_c_inaddr" class="layui-form-label">
                 <span class="we-red">*</span>采集地址
@@ -83,7 +86,7 @@
         </div>
         <div class="layui-form-item">
             <label for="L_cInbit" class="layui-form-label">
-                采集地址类型
+                采集数据位
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_cInbit" name="cInbit" lay-verify="" autocomplete="off"
@@ -95,21 +98,24 @@
                 <span class="we-red">*</span>转发设备名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_f_dev" name="fDev" lay-verify="required"
-                       autocomplete="off"
-                       class="layui-input">
+                <%--<input type="text" id="L_f_dev" name="fDev" lay-verify="required"--%>
+                <%--autocomplete="off"--%>
+                <%--class="layui-input">--%>
+                <select name="fDev" id="L_f_dev" lay-filter="fDev">
+                    <option value="请选择"></option>
+                </select>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label for="L_f_devid" class="layui-form-label">
-                转发设备ID
-            </label>
-            <div class="layui-input-inline">
-                <input type="number" id="L_f_devid" name="fDevid" lay-verify=""
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
+        <%--<div class="layui-form-item">--%>
+        <%--<label for="L_f_devid" class="layui-form-label">--%>
+        <%--转发设备ID--%>
+        <%--</label>--%>
+        <%--<div class="layui-input-inline">--%>
+        <%--<input type="number" id="L_f_devid" name="fDevid" lay-verify=""--%>
+        <%--autocomplete="off"--%>
+        <%--class="layui-input">--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <div class="layui-form-item">
             <label for="L_f_inaddr" class="layui-form-label">
                 <span class="we-red">*</span>转发地址
@@ -118,9 +124,7 @@
                 <input type="text" id="L_f_inaddr" name="fInaddr" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_f_intype" class="layui-form-label">
@@ -160,6 +164,30 @@
                 }
             }
         });
+
+        var resultData;
+
+        var htmls = '<option value="">请选择</option>'; //全局变量
+        var htmls2 = '<option value="">请选择</option>'; //全局变量
+        $.ajax({
+            url: "./queryDriver",
+            type: "get",
+            dataType: "json",
+            // contentType: "application/json",
+            async: false,//这得注意是同步
+            success: function (result) {
+                resultData = result.data;
+                console.info(resultData + "resultData");
+                for (var x in resultData) {
+                    htmls += '<option value = "' + resultData[x].c_dev + '">' + resultData[x].c_dev + '</option>';
+                    htmls2 += '<option value = "' + resultData[x].f_dev + '">' + resultData[x].f_dev + '</option>'
+                }
+                $("#L_c_dev").html(htmls);
+                $("#L_f_dev").html(htmls2);
+            }
+        });
+        form.render('select');//需要渲染一下
+
         //页面初始化加载
         $(function () {
             setTimeout(function () {
@@ -187,12 +215,12 @@
 
             $('input[name="name"]').val(name);
             $('input[name="desc"]').val(desc);
-            $('input[name="cDev"]').val(c_dev);
+            $('select[name="cDev"]').val(c_dev);
             $('input[name="cDevid"]').val(c_devid);
             $('input[name="cInaddr"]').val(c_inaddr);
             $('input[name="cIntype"]').val(c_intype);
             $('input[name="cInbit"]').val(c_inbit);
-            $('input[name="fDev"]').val(f_dev);
+            $('select[name="fDev"]').val(f_dev);
             $('input[name="fDevid"]').val(f_devid);
             $('input[name="fInaddr"]').val(f_inaddr);
             $('input[name="fIntype"]').val(f_intype);

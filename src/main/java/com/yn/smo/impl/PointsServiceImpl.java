@@ -48,6 +48,7 @@ public class PointsServiceImpl implements IPointsService {
         Result result = new Result();
         try {
             List<Map<String, Object>> maps = bmo.queryByConditions(recod);
+            System.out.println(maps.toString() + "asdsadsad");
             int total = bmo.selectTotal(recod);
             log.info("total" + total);
             result.addCode(Constant.CODE_QUERY_SUCCESS);

@@ -86,12 +86,12 @@
                 , {field: 'clct_timeout', title: '采集超时'}
                 , {field: 'cmd_timeout', title: '命令超时'}
                 , {field: 'fault_count', title: '允许失败次数'}
-                , {field: 'package_len', title: '包长度'}
-                , {field: 'allow_empty_addr', title: '包长度'}
-                , {field: 'byte_order16', title: '包长度'}
-                , {field: 'byte_order32', title: '包长度'}
-                , {field: 'byte_order64', title: '包长度'}
-                , {field: 'cmd_cache_size', title: '包长度'}
+                , {field: 'package_len', title: '数据包长度'}
+                , {field: 'allow_empty_addr', title: '采集空地址'}
+                , {field: 'byte_order16', title: '16位'}
+                , {field: 'byte_order32', title: '32位'}
+                , {field: 'byte_order64', title: '64位'}
+                , {field: 'cmd_cache_size', title: '命令队列大小'}
                 , {field: 'active', title: '激活'}
                 ,{
                     field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, fixed: 'right'

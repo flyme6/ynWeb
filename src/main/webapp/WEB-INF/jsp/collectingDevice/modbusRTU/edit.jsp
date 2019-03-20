@@ -32,7 +32,7 @@
                 <span class="we-red">*</span>设备名称
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_name" name="name" lay-verify="required|nikename"
+                <input type="text" id="L_name" name="name" lay-verify="required"
                        autocomplete="off"
                        class="layui-input">
             </div>
@@ -82,9 +82,6 @@
             <div class="layui-input-inline">
                 <input type="number" id="L_cmd_timeout" name="cmdTimeout" lay-verify="number" autocomplete="off"
                        class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
             </div>
         </div>
         <div class="layui-form-item">

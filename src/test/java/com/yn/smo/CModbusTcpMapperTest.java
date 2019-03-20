@@ -79,12 +79,12 @@ public class CModbusTcpMapperTest {
 
     @Test
     public void query() throws Exception {
-        ITcpService service = (ITcpService) applicationContext.getBean("tcpServiceImpl");
+        IPointsService service = (IPointsService) applicationContext.getBean("pointsServiceImpl");
 
-        Points points = new Points();
-        points.setLastCount(2);
-        points.setPageSize(5);
-        Result result = service.query(new TcpExample());
+//        Points points = new Points();
+//        points.setLastCount(2);
+//        points.setPageSize(5);
+        Result result = service.query( new Points());
         System.out.println(result);
     }
 

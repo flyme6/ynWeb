@@ -1,5 +1,6 @@
 package com.yn.yntest;
 
+import Ice.StringHolder;
 import YNRPC.DeviceInfo;
 import YNRPC.KeyValue;
 import YNRPC.Rvqt;
@@ -220,7 +221,9 @@ public class YnService {
 
 
     @Test
-    public void exportFile() {
+    public void exportProject() {
+        StringHolder stringHolder = SystemControllerUtil.exportProject();
+        System.out.println(stringHolder.value);
     }
 
     @Test

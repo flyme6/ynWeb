@@ -101,9 +101,7 @@
                 <input type="number" id="L_r_cache_size" name="rCacheSize" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_s_cache_size" class="layui-form-label">

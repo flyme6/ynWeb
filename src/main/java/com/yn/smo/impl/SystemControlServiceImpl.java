@@ -1,5 +1,6 @@
 package com.yn.smo.impl;
 
+import Ice.StringHolder;
 import com.yn.common.Constant;
 import com.yn.common.Result;
 import com.yn.smo.ISystemControlService;
@@ -46,11 +47,11 @@ public class SystemControlServiceImpl implements ISystemControlService {
 
     @Override
     public Result exportProject() {
-        YNRPC.Result ynResult = SystemControllerUtil.exportProject();
+        StringHolder stringHolder = SystemControllerUtil.exportProject();
         Result result = new Result();
         try {
             result.addCode(Constant.CODE_QUERY_SUCCESS);
-            result.addMsg(ynResult.toString());
+            result.addMsg(stringHolder.value);
             System.out.println(result);
         } catch (Exception e) {
             log.error("exportProject", e);

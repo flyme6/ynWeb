@@ -101,9 +101,7 @@
                 <input type="number" id="L_cmd_timeout" name="cmd_timeout" lay-verify="number" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_fault_count" class="layui-form-label">
@@ -281,7 +279,7 @@
 
         form.on('submit(edit)', function (data) {
             var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
-            $.ajax({
+            $.({
                 url: data.form.action,
                 type: data.form.method,
                 data: $(data.form).serialize(),

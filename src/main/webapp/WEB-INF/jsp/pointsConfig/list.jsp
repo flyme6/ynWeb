@@ -129,11 +129,12 @@
                 {field: 'name', title: '点名', width: 170}
                 , {field: 'desc', title: '点描述'}
                 , {field: 'c_dev', title: '采集设备名', width: 120}
-                , {field: 'c_devid', title: '采集设备IP', width: 120}
+                // , {field: 'c_devid', title: '采集设备IP', width: 120}
                 , {field: 'c_inaddr', title: '采集地址'}
                 , {field: 'c_intype', title: '采集点类型'}
+                , {field: 'c_inbit', title: '采集数据位'}
                 , {field: 'f_dev', title: '转发设备名', width: 170}
-                , {field: 'f_devid', title: '转发设备ID'}
+                // , {field: 'f_devid', title: '转发设备ID'}
                 , {field: 'f_inaddr', title: '转发地址'}
                 , {field: 'f_intype', title: '转发点类型'}
                 , {

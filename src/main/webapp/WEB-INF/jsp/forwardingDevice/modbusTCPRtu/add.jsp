@@ -101,9 +101,7 @@
                 <input type="text" id="L_byte_order32" name="byteOrder32" autocomplete="off"
                        class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                提示信息
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="L_byte_order64" class="layui-form-label">

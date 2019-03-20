@@ -164,12 +164,13 @@ public class SystemControllerUtil {
      * @return
      */
 
-    public static Result exportProject() {
+    public static StringHolder exportProject() {
         String[] args = {"ser", "yn"};
         int status = 0;
         Ice.Communicator ic = null;
         Result result = null;
         DeviceInfoListHolder deviceInfoListHolder = null;
+        StringHolder stringHolder = null;
         try {
             ic = Ice.Util.initialize(args);
             Ice.ObjectPrx base = ic.stringToProxy(Const.STRINGIFIED_PROXIES);
@@ -185,12 +186,11 @@ public class SystemControllerUtil {
                 throw new Error("iSystemControlPrxHolder为空");
             }
 
-            ISystemControlPrx value = iSystemControlPrxHolder.value;
-            StringHolder stringHolder = new StringHolder();
-            result = value.exportProject(stringHolder);
-
+            ISystemControlPrx controlPrx = iSystemControlPrxHolder.value;
+            stringHolder = new StringHolder();
+            result = controlPrx.exportProject(stringHolder);
             System.out.println("保存工程到本地----" + "获取结果：" + result + "----返回对象：" + stringHolder);
-            return result;
+            return stringHolder;
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -201,7 +201,7 @@ public class SystemControllerUtil {
             if (ic != null) {
                 ic.destroy();
             }
-            return result;
+            return stringHolder;
         }
 
     }

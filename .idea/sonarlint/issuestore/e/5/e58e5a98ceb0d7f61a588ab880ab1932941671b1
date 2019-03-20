@@ -1,7 +1,9 @@
 
-Gsquid:S1075"&Remove this hard-coded path-delimiter.(ñÄÌ¼ûÿÿÿÿ8éµºûó,
-Fsquid:S00108")Either remove or fill this block of code.(”ı¾8Ó‹ºûó,
-rsquid:S2095"QUse try-with-resources or close this "BufferedInputStream" in a "finally" clause.(Ú‚ìùÿÿÿÿ8éµºûó,
-Gsquid:S1135"2Complete the task associated to this TODO comment.(Üğ£Å
-\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(”•ºš
-_squid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¯éœ
+hsquid:S4488""JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¯éœ8äƒë¡÷,
+Isquid:S1075C"&Remove this hard-coded path-delimiter.(ñÄÌ¼ûÿÿÿÿ8äƒë¡÷,
+tsquid:S2095E"QUse try-with-resources or close this "BufferedInputStream" in a "finally" clause.(Ú‚ìùÿÿÿÿ8äƒë¡÷,
+[
+squid:S106("9Replace this use of System.out or System.err by a logger.(ûÓ¶şÿÿÿÿ8äƒë¡÷,
+Psquid:S1135"2Complete the task associated to this TODO comment.(Üğ£Å8äƒë¡÷,
+Hsquid:S00108U")Either remove or fill this block of code.(”ı¾8äƒë¡÷,
+esquid:S00112="FDefine and throw a dedicated exception instead of using a generic one.(”•ºš8äƒë¡÷,
